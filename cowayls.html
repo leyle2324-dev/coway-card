@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#0b453c">
+<title>코라솔 상품 안내 · 코웨이 렌탈 상담</title>
+<meta name="description" content="코웨이라이프솔루션(코라솔) CowayLife 699·599·499와 LifeOnly 499의 총 납입액·월 납입액·거치기간·렌탈 선혜택을 비교합니다.">
+<style>
+  :root{
+    --navy:#0e2c4a;
+    --green:#0f6a5c;
+    --green-deep:#0b453c;
+    --green-soft:#12816d;
+    --green-tint:#e7f4f0;
+    --accent:#0a7ac2;
+    --ink:#14212e;
+    --muted:#5e6f80;
+    --line:#e3e9f0;
+    --bg:#f4f7fa;
+    --card:#ffffff;
+    --radius:16px;
+    --shadow:0 5px 16px rgba(14,44,74,.08);
+    --bar-h:74px;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", "Helvetica Neue", Arial, sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    padding-bottom:calc(var(--bar-h) + env(safe-area-inset-bottom));
+    word-break:keep-all;
+    overflow-wrap:anywhere;
+  }
+  a{color:inherit;}
+  .wrap{max-width:520px;margin:0 auto;padding:0 0 26px;}
+
+  /* ── 상단 바 ── */
+  .topbar{
+    position:sticky;top:0;z-index:20;
+    display:flex;align-items:center;gap:8px;
+    padding:calc(8px + env(safe-area-inset-top)) 14px 8px;
+    background:rgba(255,255,255,.95);
+    -webkit-backdrop-filter:blur(10px);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-back{
+    display:inline-flex;align-items:center;gap:4px;
+    min-height:38px;padding:0 8px 0 2px;
+    font-size:14.5px;font-weight:700;color:var(--navy);
+    text-decoration:none;
+  }
+  .topbar-title{font-size:14.5px;font-weight:700;color:var(--ink);}
+  .topbar-sp{flex:1;}
+
+  /* ── 히어로 ── */
+  .phero{
+    padding:22px 20px 22px;
+    background:linear-gradient(160deg,#14705f 0%, var(--green) 48%, var(--green-deep) 100%);
+    color:#fff;
+    border-radius:0 0 22px 22px;
+  }
+  .phero .eyebrow{
+    margin:0 0 8px;
+    font-size:11.5px;letter-spacing:.12em;font-weight:700;
+    color:rgba(255,255,255,.74);text-transform:uppercase;
+  }
+  .phero h1{
+    margin:0;
+    font-size:25px;line-height:1.32;font-weight:800;letter-spacing:-.01em;
+  }
+  .phero h1 small{display:block;font-size:14px;font-weight:700;color:rgba(255,255,255,.8);margin-top:4px;letter-spacing:0;}
+  .phero p.lead{
+    margin:10px 0 0;
+    font-size:14px;line-height:1.65;color:rgba(255,255,255,.88);
+  }
+  .phero-chips{display:flex;flex-wrap:wrap;gap:6px;margin:13px 0 0;}
+  .phero-chips span{
+    display:inline-flex;align-items:center;
+    padding:4px 10px;border-radius:999px;
+    background:rgba(255,255,255,.13);
+    border:1px solid rgba(255,255,255,.22);
+    font-size:12px;font-weight:700;color:#fff;
+  }
+
+  /* ── 섹션 ── */
+  .sec{padding:24px 16px 0;}
+  .sec-head{margin:0 0 11px;}
+  .sec-head h2{
+    margin:0;font-size:19px;color:var(--green-deep);letter-spacing:-.01em;
+    display:flex;align-items:baseline;gap:7px;
+  }
+  .sec-head h2 span{font-size:12.5px;font-weight:700;color:var(--muted);}
+  .sec-head p{margin:4px 0 0;font-size:13px;color:var(--muted);line-height:1.55;}
+
+  /* ── 상품 카드 ── */
+  .plan{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:15px 15px 13px;
+    margin:0 0 11px;
+  }
+  .plan-head{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+  .plan-head h3{
+    margin:0;font-size:18px;font-weight:800;color:var(--ink);letter-spacing:-.01em;
+  }
+  .ptag{
+    flex:0 0 auto;
+    font-size:10.5px;font-weight:800;line-height:1.6;
+    padding:2px 7px;border-radius:6px;
+    background:var(--green-tint);border:1px solid #c8e6dc;color:#0c6a58;
+    white-space:nowrap;
+  }
+  .ptag.solo{background:#eef2f7;border-color:#dde5ee;color:#4d6480;}
+  .plan-total{
+    margin:8px 0 0;font-size:13px;color:var(--muted);
+    font-variant-numeric:tabular-nums;
+  }
+  .plan-total b{font-size:20px;font-weight:800;color:var(--green-deep);letter-spacing:-.02em;}
+  .plan-total s{font-size:12px;color:#9aa9b8;}
+
+  .sched{
+    list-style:none;margin:10px 0 0;padding:0;
+    border:1px solid #e6eef5;border-radius:10px;overflow:hidden;
+    background:#f8fbfd;
+  }
+  .sched li{
+    display:flex;align-items:center;justify-content:space-between;gap:8px;
+    padding:6px 10px;font-size:12.5px;color:#45566a;
+    border-bottom:1px solid #eaf1f7;
+    font-variant-numeric:tabular-nums;
+  }
+  .sched li:last-child{border-bottom:none;}
+  .sched li b{font-size:13.5px;font-weight:800;color:var(--green-deep);}
+  .sched li .zero b{color:#7b8a99;font-weight:700;}
+
+  .plan-note{
+    margin:9px 0 0;font-size:12px;color:var(--muted);line-height:1.55;
+  }
+  .plan-note b{color:#3f4e5e;}
+
+  /* ── 비교 표 ── */
+  .tablecard{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:12px 10px 8px;
+  }
+  .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{border-collapse:collapse;width:100%;font-size:12.5px;}
+  caption{
+    caption-side:top;text-align:left;font-size:11.5px;color:var(--muted);
+    padding:0 4px 7px;line-height:1.5;
+  }
+  th,td{
+    padding:8px 4px;border-bottom:1px solid var(--line);
+    text-align:right;vertical-align:middle;font-variant-numeric:tabular-nums;
+    white-space:nowrap;
+  }
+  th:first-child,td:first-child{text-align:left;padding-left:4px;}
+  thead th{
+    font-size:11px;font-weight:700;color:var(--muted);
+    border-bottom:1px solid var(--line);line-height:1.35;
+  }
+  tbody tr:last-child td{border-bottom:none;}
+  td.pname-c{font-weight:800;color:var(--ink);white-space:nowrap;}
+  td.pname-c em{display:block;font-style:normal;font-size:10.5px;font-weight:600;color:var(--muted);}
+  td.pay-c{font-weight:800;color:var(--green-deep);white-space:nowrap;}
+  td.zero-c{color:#7b8a99;}
+
+  /* ── 안내 카드 ── */
+  .notecard{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:15px 16px 14px;margin:0 0 10px;
+  }
+  .notecard h3{margin:0 0 8px;font-size:15.5px;font-weight:800;color:var(--green-deep);}
+  .notecard ul{margin:0;padding:0;list-style:none;}
+  .notecard li{
+    position:relative;padding-left:13px;margin:6px 0;
+    font-size:13.5px;line-height:1.6;color:#3f4e5e;
+  }
+  .notecard li::before{
+    content:"";position:absolute;left:2px;top:.62em;
+    width:5px;height:5px;border-radius:50%;background:#b0d4cc;
+  }
+  .notecard li b{color:var(--green-deep);font-weight:800;}
+  .notecard .fine{font-size:11.5px;color:var(--muted);margin:9px 0 0;line-height:1.6;}
+
+  /* ── 넘어가기 배너 ── */
+  .xbanner{
+    display:flex;align-items:center;gap:12px;
+    margin:16px 0 0;
+    padding:14px 15px;
+    border-radius:var(--radius);
+    background:linear-gradient(135deg,#15507a 0%,#0e2c4a 100%);
+    color:#fff;text-decoration:none;
+    box-shadow:0 6px 18px rgba(14,44,74,.2);
+  }
+  .xbanner .xb-t{flex:1;min-width:0;}
+  .xbanner strong{display:block;font-size:15.5px;font-weight:800;letter-spacing:-.01em;}
+  .xbanner small{display:block;margin-top:2px;font-size:12px;color:rgba(255,255,255,.82);line-height:1.5;}
+  .xbanner .xb-go{
+    flex:0 0 auto;font-size:12px;font-weight:800;
+    background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);
+    padding:6px 10px;border-radius:9px;white-space:nowrap;
+  }
+
+  .src{
+    margin:14px 4px 0;font-size:11.5px;color:var(--muted);
+    text-align:center;line-height:1.6;
+  }
+
+  /* ── 하단 상담 바 ── */
+  .callbar{
+    position:fixed;left:0;right:0;bottom:0;z-index:20;
+    display:grid;grid-template-columns:1fr 1fr;gap:8px;
+    padding:9px 12px calc(9px + env(safe-area-inset-bottom));
+    background:rgba(255,255,255,.94);
+    -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+    border-top:1px solid var(--line);
+  }
+  .cbtn{
+    display:flex;align-items:center;justify-content:center;gap:7px;
+    min-height:52px;border-radius:12px;
+    font-size:16px;font-weight:800;text-decoration:none;
+    border:1px solid transparent;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .cbtn-call{background:var(--navy);color:#fff;}
+  .cbtn-sms{background:#fff;color:var(--navy);border-color:#b9d2e6;}
+
+  @media (min-width:600px){
+    .callbar{max-width:520px;margin:0 auto;border-radius:16px 16px 0 0;border:1px solid var(--line);border-bottom:0;}
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root{--ink:#e9f0f7;--muted:#9fb0c1;--line:#243446;--bg:#0b131c;--card:#121d29;}
+    body{background:var(--bg);color:var(--ink);}
+    .topbar{background:rgba(13,22,32,.95);}
+    .topbar-title{color:#dce9f6;}
+    .topbar-back{color:#cfe3f5;}
+    .sec-head h2,.notecard h3{color:#7fd7c3;}
+    .plan-head h3{color:#f1f6fb;}
+    .plan-total b{color:#7fd7c3;}
+    .sched{background:#101d28;border-color:#26374a;}
+    .sched li{color:#c3d1de;border-bottom-color:#1d2b3a;}
+    .sched li b{color:#9fe6d5;}
+    .ptag{background:#0f2f2a;border-color:#1d4a42;color:#4fd1b5;}
+    .ptag.solo{background:#1a2634;border-color:#2a3a4c;color:#9fb0c1;}
+    .notecard li{color:#c3d1de;}
+    .notecard li b{color:#9fe6d5;}
+    .tablecard{background:var(--card);}
+    td.pname-c{color:#f1f6fb;}
+    td.pay-c{color:#9fe6d5;}
+    .callbar{background:rgba(13,22,32,.96);}
+    .cbtn-sms{background:#16232f;color:#dce9f6;border-color:#2a4a66;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="topbar" aria-label="페이지 이동">
+  <a class="topbar-back" href="index.html">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+    명함
+  </a>
+  <span class="topbar-sp"></span>
+  <span class="topbar-title">코라솔 상품 안내</span>
+  <span class="topbar-sp"></span>
+  <a class="topbar-back" href="tel:01094228307" aria-label="전화 상담">상담</a>
+</nav>
+
+<main class="wrap">
+
+  <header class="phero">
+    <p class="eyebrow">Coway Life Solution</p>
+    <h1>코라솔 <small>코웨이라이프솔루션</small></h1>
+    <p class="lead">가전 렌탈과 결합하거나 단독으로 준비하는 장기 납입형 라이프케어 상품입니다. 총액과 월 납입액을 상품별로 비교해 보세요.</p>
+    <div class="phero-chips">
+      <span>4개 상품</span>
+      <span>결합형 3 · 단독형 1</span>
+      <span>2026-11-25 기준</span>
+    </div>
+  </header>
+
+  <section class="sec" aria-labelledby="plans-h">
+    <div class="sec-head">
+      <h2 id="plans-h">상품별 납입 구조 <span>총액 기준</span></h2>
+      <p>월 납입액은 총액을 나눈 금액이며, 일정 회차 이후에는 납입 없이 보증이 유지되는 '거치' 구간이 있습니다.</p>
+    </div>
+
+    <article class="plan">
+      <div class="plan-head">
+        <h3>CowayLife 699</h3>
+        <span class="ptag">가전 렌탈 결합형</span>
+      </div>
+      <p class="plan-total">총 납입액 <b>6,990,000원</b> · 180개월</p>
+      <ul class="sched">
+        <li><span>1~150회</span><b>월 46,600원</b></li>
+        <li class="zero"><span>151~180회 (거치 30개월)</span><b>0원</b></li>
+      </ul>
+      <p class="plan-note">납입 기간은 <b>10·12·13·15년</b> 중 선택(위 금액은 15년 기준) · <b>렌탈 선혜택 120만원</b>(5년간 월 20,000원 지원)</p>
+    </article>
+
+    <article class="plan">
+      <div class="plan-head">
+        <h3>CowayLife 599</h3>
+        <span class="ptag">가전 렌탈 결합형</span>
+      </div>
+      <p class="plan-total">총 납입액 <b>5,990,000원</b> · 180개월</p>
+      <ul class="sched">
+        <li><span>1~150회</span><b>월 39,900원</b></li>
+        <li><span>151회</span><b>5,000원</b></li>
+        <li class="zero"><span>152~180회 (거치 29개월)</span><b>0원</b></li>
+      </ul>
+      <p class="plan-note">납입 기간 <b>10·12·13·15년</b> 중 선택(15년 기준) · <b>렌탈 선혜택 100만원</b>(5년간 월 16,600원, 60회차 20,600원 지원)</p>
+    </article>
+
+    <article class="plan">
+      <div class="plan-head">
+        <h3>CowayLife 499</h3>
+        <span class="ptag">가전 렌탈 결합형</span>
+      </div>
+      <p class="plan-total">총 납입액 <b>4,990,000원</b> · 180개월</p>
+      <ul class="sched">
+        <li><span>1~150회</span><b>월 33,200원</b></li>
+        <li><span>151회</span><b>10,000원</b></li>
+        <li class="zero"><span>152~180회 (거치 29개월)</span><b>0원</b></li>
+      </ul>
+      <p class="plan-note"><b>15년 단일</b> 상품 · <b>렌탈 선혜택 80만원</b> 지원</p>
+    </article>
+
+    <article class="plan">
+      <div class="plan-head">
+        <h3>LifeOnly 499</h3>
+        <span class="ptag solo">렌탈 미결합 단독형</span>
+      </div>
+      <p class="plan-total">총 납입액 <b>4,290,000원</b> · 290개월</p>
+      <ul class="sched">
+        <li><span>1~289회</span><b>월 14,800원</b></li>
+        <li><span>290회</span><b>12,800원</b></li>
+      </ul>
+      <p class="plan-note"><b>거치 기간 없음</b> · 상조 · 전환 · 멤버십 단독 상품 · 정가 4,990,000원에서 70만원 할인</p>
+    </article>
+  </section>
+
+  <section class="sec" aria-labelledby="table-h">
+    <div class="sec-head">
+      <h2 id="table-h">한눈에 비교</h2>
+    </div>
+    <div class="tablecard">
+      <div class="scroll">
+        <table>
+          <caption>단위: 원 · 결합형은 15년(180개월) 기준입니다.</caption>
+          <thead>
+            <tr>
+              <th scope="col">상품</th>
+              <th scope="col">총액</th>
+              <th scope="col">월 납입</th>
+              <th scope="col">거치</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="pname-c">CowayLife 699<em>결합형 · 180개월</em></td>
+              <td>6,990,000</td>
+              <td class="pay-c">46,600</td>
+              <td class="zero-c">30개월</td>
+            </tr>
+            <tr>
+              <td class="pname-c">CowayLife 599<em>결합형 · 180개월</em></td>
+              <td>5,990,000</td>
+              <td class="pay-c">39,900</td>
+              <td class="zero-c">29개월</td>
+            </tr>
+            <tr>
+              <td class="pname-c">CowayLife 499<em>결합형 · 180개월</em></td>
+              <td>4,990,000</td>
+              <td class="pay-c">33,200</td>
+              <td class="zero-c">29개월</td>
+            </tr>
+            <tr>
+              <td class="pname-c">LifeOnly 499<em>단독형 · 290개월</em></td>
+              <td>4,290,000</td>
+              <td class="pay-c">14,800</td>
+              <td class="zero-c">없음</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="plan-note">렌탈 선혜택은 699 120만원 · 599 100만원 · 499 80만원으로, 결합형에만 적용됩니다. LifeOnly 499는 가전 렌탈과 결합하지 않는 단독 상품입니다.</p>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="rule-h">
+    <div class="sec-head">
+      <h2 id="rule-h">공통으로 확인할 점</h2>
+    </div>
+
+    <div class="notecard">
+      <h3>가입·납입 구조</h3>
+      <ul>
+        <li>결합형(699·599·499)은 <b>코웨이 가전 렌탈과 결합</b>하는 상품이고, LifeOnly 499는 <b>상조 단독</b> 상품입니다.</li>
+        <li>결합형은 <b>주문번호 1개당 최대 5구좌까지</b> 조합할 수 있습니다.</li>
+        <li>할인·지원금의 <b>잔여 금액은 기간 종료 후 페이백</b>됩니다.</li>
+        <li>거치 기간이 끝난 뒤 <b>만기 해지하면 납입금 전액이 환급</b>되고, 중도 해지 시에는 <b>최대 85%</b>까지 돌려받습니다.</li>
+      </ul>
+      <p class="fine">위 내용은 코라솔(코웨이라이프솔루션) 상품 안내 기준입니다. 실제 가입 조건·환급률·페이백 시점은 계약 약관과 상담으로 확인해 주세요.</p>
+    </div>
+
+    <div class="notecard">
+      <h3>코라솔 납부금에 쓸 수 있는 카드</h3>
+      <ul>
+        <li>코라솔 전용 제휴카드는 <b>신한 · 하나 · LOCA X Special SE(롯데 기반)</b> 3종입니다.</li>
+        <li>월 납부금을 자동이체로 등록해야 할인이 적용되고, 코웨이 가전 렌탈료에는 적용되지 않습니다.</li>
+        <li>전월 실적별 월 할인한도는 <b>신한 최대 3만원 · 하나 최대 2만 5천원 · LOCA 최대 2만 5천원</b>입니다.</li>
+      </ul>
+    </div>
+
+    <a class="xbanner" href="cards.html">
+      <span class="xb-t">
+        <strong>11월 제휴카드 혜택 보기</strong>
+        <small>코웨이 10종 + 코라솔 3종 할인한도, 현대·롯데 캐시백 프로모션</small>
+      </span>
+      <span class="xb-go">카드 보기</span>
+    </a>
+
+    <p class="src">2026-11-25 기준 정리 · 출처: cowayls.com 코라솔 상품 안내 · 코라솔 제휴카드 안내<br>금액은 상담 시점의 프로모션과 가입 조건에 따라 달라질 수 있습니다.</p>
+  </section>
+</main>
+
+<nav class="callbar" aria-label="빠른 상담">
+  <a class="cbtn cbtn-call" href="tel:01094228307" aria-label="전화 상담 010-9422-8307">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6.4 6.4l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg>
+    전화 상담
+  </a>
+  <a class="cbtn cbtn-sms" href="sms:01094228307" aria-label="문자 상담 010-9422-8307">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.9 9.9 0 0 1-3.8-.8L3 21l1.9-4.6a8.2 8.2 0 0 1-1-3.9 8.4 8.4 0 0 1 8.5-8.4 8.4 8.4 0 0 1 8.6 7.4Z"/></svg>
+    문자 상담
+  </a>
+</nav>
+
+</body>
+</html>
