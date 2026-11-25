@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BEREX 수면·매트리스 맞춤 진단</title>
+<meta name="description" content="8단계 문진으로 체형과 수면 습관, 반려동물 동반 여부를 읽고 코웨이 BEREX 매트리스 중 가장 맞는 모델을 제안합니다. 코웨이 공식 렌탈 상담.">
+<meta name="theme-color" content="#153B31">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="BEREX 진단">
+<meta property="og:title" content="BEREX 수면·매트리스 맞춤 진단">
+<meta property="og:description" content="8단계 문진으로 체형과 수면 습관, 반려동물 동반 여부에 맞는 BEREX 매트리스를 찾아드립니다.">
+<meta property="og:type" content="website">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+  :root{
+    --ink:#1B211E; --ink-2:#39423C; --muted:#6E7771; --line:#E6E1D7;
+    --bg:#F6F4EF; --paper:#FFFDF9; --cream:#F1ECE1;
+    --brand:#153B31; --brand-2:#1F5244; --brand-3:#2E6B57;
+    --gold:#B08A54; --gold-2:#8E6C3C; --gold-soft:#F3EADA;
+    --ok:#2E6B57; --radius:18px;
+    --shadow:0 1px 2px rgba(24,32,28,.04), 0 10px 26px rgba(24,32,28,.06);
+    --safe-b: env(safe-area-inset-bottom, 0px);
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0; padding:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic","Segoe UI",sans-serif;
+    font-size:15px; line-height:1.6; word-break:keep-all; letter-spacing:-0.01em;
+  }
+  button{font-family:inherit; color:inherit; cursor:pointer; border:0; background:none;}
+  .app{max-width:480px; margin:0 auto; min-height:100dvh; background:var(--bg); position:relative;}
+  .screen{display:none;}
+  .screen.on{display:block; animation:fade .26s ease both;}
+  @keyframes fade{from{opacity:0;} to{opacity:1;}}
+
+  /* ---------- shared ---------- */
+  .wordmark{font-family:Georgia,"Times New Roman",serif; letter-spacing:.3em; font-weight:600;}
+  .eyebrow{font-size:11px; letter-spacing:.18em; color:var(--gold-2); font-weight:700; text-transform:uppercase;}
+  .muted{color:var(--muted);}
+  .btn{
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    width:100%; min-height:54px; padding:0 18px; border-radius:14px;
+    font-size:16px; font-weight:700; letter-spacing:-0.01em;
+    transition:transform .12s ease, opacity .15s ease;
+  }
+  .btn:active{transform:scale(.985);}
+  .btn-primary{background:var(--brand); color:#FBF8F1; box-shadow:0 8px 20px rgba(21,59,49,.18);}
+  .btn-primary[disabled]{background:#C9CEC9; color:#F4F4F2; box-shadow:none;}
+  .btn-outline{background:transparent; color:var(--brand); border:1.4px solid rgba(21,59,49,.35);}
+  .btn-ghost{background:transparent; color:var(--muted); font-weight:600; font-size:14px; min-height:44px;}
+  .btn svg{flex:0 0 auto;}
+
+  /* ---------- start ---------- */
+  #screen-start{padding:22px 22px calc(26px + var(--safe-b));}
+  .top-bar{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:20px;}
+  .top-bar .brandmark{display:flex; flex-direction:column; gap:1px; min-width:0;}
+  .top-bar .wordmark{font-size:14px; color:var(--brand);}
+  .top-bar .sub{font-size:9.5px; letter-spacing:.22em; color:var(--muted);}
+  .card-back{
+    flex:0 0 auto; display:inline-flex; align-items:center; gap:4px;
+    padding:6px 11px; border-radius:999px;
+    background:var(--paper); border:1px solid var(--line);
+    font-size:11.5px; font-weight:700; color:var(--ink-2); text-decoration:none;
+    white-space:nowrap;
+  }
+  .card-back:active{background:var(--cream);}
+  .card-back svg{width:12px; height:12px; opacity:.75;}
+  .start-kicker{display:inline-flex; align-items:center; gap:6px; padding:5px 11px; border-radius:999px; background:var(--gold-soft); color:var(--gold-2); font-size:11.5px; font-weight:700; letter-spacing:.02em;}
+  .start-kicker i{width:5px; height:5px; border-radius:50%; background:var(--gold); display:block;}
+  .start h1{font-size:29px; line-height:1.34; letter-spacing:-0.035em; margin:14px 0 10px; font-weight:800;}
+  .start h1 em{font-style:normal; color:var(--brand-3);}
+  .start .lead{font-size:14px; color:var(--ink-2); line-height:1.7; margin:0 0 16px;}
+  .hero{
+    position:relative; border-radius:22px; overflow:hidden;
+    background:radial-gradient(120% 90% at 50% 8%, #245745 0%, #173E33 58%, #11312A 100%);
+    padding:22px 14px 14px; margin-bottom:18px; box-shadow:0 16px 36px rgba(17,49,42,.22);
+  }
+  .hero::after{content:""; position:absolute; left:16%; right:16%; bottom:46px; height:16px; border-radius:50%; background:rgba(0,0,0,.3); filter:blur(9px);}
+  .hero img{position:relative; z-index:1; display:block; width:100%; max-width:100%; height:auto; margin:0 auto; filter:drop-shadow(0 18px 16px rgba(0,0,0,.28));}
+  .hero .hero-tag{position:relative; z-index:2; display:flex; align-items:center; justify-content:space-between; margin-top:6px; color:#E9DFC9;}
+  .hero .hero-tag span{font-size:10px; letter-spacing:.24em; font-family:Georgia,serif;}
+  .hero .hero-tag b{font-size:10px; letter-spacing:.06em; font-weight:600; color:rgba(255,255,255,.72);}
+  .features{display:grid; gap:8px; margin:0 0 20px; padding:0; list-style:none;}
+  .features li{display:flex; gap:12px; align-items:flex-start; padding:12px 15px; background:var(--paper); border:1px solid var(--line); border-radius:14px;}
+  .features .num{flex:0 0 auto; width:24px; height:24px; border-radius:8px; background:var(--brand); color:#F7F3E8; font-size:11.5px; font-weight:700; display:grid; place-items:center; margin-top:1px;}
+  .features b{display:block; font-size:13.5px; font-weight:700; letter-spacing:-0.01em;}
+  .features p{margin:2px 0 0; font-size:12.5px; color:var(--muted); line-height:1.55;}
+  .start-cta{padding-top:6px;}
+  .start-note{margin:12px 0 0; text-align:center; font-size:11.5px; color:var(--muted);}
+  .start-foot{margin-top:22px; padding-top:14px; border-top:1px solid var(--line); font-size:11px; color:#8B938D; line-height:1.7; text-align:center;}
+
+  /* ---------- quiz ---------- */
+  .quiz-head{position:sticky; top:0; z-index:10; background:rgba(246,244,239,.94); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+  .quiz-head .row{display:flex; align-items:center; justify-content:space-between; padding:12px 16px 8px;}
+  .quiz-head .ttl{font-size:12px; letter-spacing:.14em; color:var(--muted); font-weight:700;}
+  .icon-btn{width:36px; height:36px; border-radius:10px; display:grid; place-items:center; color:var(--ink-2);}
+  .icon-btn:active{background:rgba(0,0,0,.05);}
+  .progress{height:3px; background:#E4DFD3; margin:0 16px 10px; border-radius:2px; overflow:hidden;}
+  .progress i{display:block; height:100%; width:0; background:linear-gradient(90deg, var(--brand-3), var(--gold)); border-radius:2px; transition:width .3s ease;}
+  .quiz-body{padding:22px 20px 132px;}
+  .step-no{font-size:11px; font-weight:800; letter-spacing:.2em; color:var(--gold-2);}
+  .step-title{font-size:22px; font-weight:800; letter-spacing:-0.03em; line-height:1.42; margin:8px 0 6px;}
+  .step-sub{font-size:13px; color:var(--muted); line-height:1.65; margin:0 0 20px;}
+  .group-label{font-size:12px; font-weight:700; color:var(--ink-2); margin:22px 0 9px; display:flex; align-items:center; gap:6px;}
+  .group-label:first-of-type{margin-top:0;}
+  .group-label span{font-weight:500; color:var(--muted); font-size:11.5px;}
+  .opts{display:grid; gap:9px;}
+  .opt{
+    display:flex; gap:12px; align-items:center; width:100%; text-align:left;
+    padding:15px 15px; border-radius:15px; border:1.4px solid var(--line); background:var(--paper);
+    transition:border-color .15s ease, background .15s ease, transform .1s ease;
+  }
+  .opt:active{transform:scale(.994);}
+  .opt .txt{flex:1; min-width:0;}
+  .opt b{display:block; font-size:15px; font-weight:700; letter-spacing:-0.02em;}
+  .opt small{display:block; font-size:12px; color:var(--muted); margin-top:2px; line-height:1.5;}
+  .opt .dot{flex:0 0 auto; width:20px; height:20px; border-radius:50%; border:1.6px solid #CFCABE; position:relative; transition:.15s;}
+  .opt[aria-pressed="true"]{border-color:var(--brand); background:#F0F5F1; box-shadow:0 0 0 3px rgba(21,59,49,.06);}
+  .opt[aria-pressed="true"] .dot{border-color:var(--brand); background:var(--brand);}
+  .opt[aria-pressed="true"] .dot::after{content:""; position:absolute; inset:5px; border-radius:50%; background:#FFFDF9;}
+  .size-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:8px;}
+  .size-chip{padding:13px 6px; border-radius:13px; border:1.4px solid var(--line); background:var(--paper); text-align:center; transition:.15s;}
+  .size-chip b{display:block; font-size:14.5px; font-weight:800; letter-spacing:-0.01em;}
+  .size-chip small{display:block; font-size:10.5px; color:var(--muted); margin-top:1px;}
+  .size-chip[aria-pressed="true"]{border-color:var(--brand); background:var(--brand); color:#FFFDF9;}
+  .size-chip[aria-pressed="true"] small{color:rgba(255,255,255,.7);}
+  .size-auto{margin-top:8px; width:100%; padding:12px; border-radius:13px; border:1.4px dashed #C9C3B4; background:transparent; font-size:13px; font-weight:600; color:var(--brand-3);}
+  .size-auto[aria-pressed="true"]{border-style:solid; border-color:var(--brand); background:#F0F5F1;}
+
+  .measure{margin-top:6px; display:grid; gap:26px;}
+  .measure-card{background:var(--paper); border:1px solid var(--line); border-radius:16px; padding:16px 16px 10px;}
+  .measure-top{display:flex; align-items:baseline; justify-content:space-between;}
+  .measure-top .label{font-size:12.5px; font-weight:700; color:var(--ink-2);}
+  .measure-top .val{font-size:26px; font-weight:800; letter-spacing:-0.03em;}
+  .measure-top .val span{font-size:13px; font-weight:600; color:var(--muted); margin-left:3px;}
+  .measure-scale{display:flex; justify-content:space-between; font-size:10.5px; color:#9AA29C; margin-top:2px;}
+  input[type=range]{
+    -webkit-appearance:none; appearance:none; width:100%; height:34px; margin:4px 0 0; background:transparent;
+  }
+  input[type=range]::-webkit-slider-runnable-track{height:6px; border-radius:3px; background:linear-gradient(90deg,#1F5244 0%, #1F5244 var(--fill,45%), #E3DED2 var(--fill,45%), #E3DED2 100%);}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none; width:26px; height:26px; border-radius:50%; background:#FFFDF9; border:2px solid var(--brand); box-shadow:0 2px 6px rgba(0,0,0,.15); margin-top:-10px;}
+  input[type=range]::-moz-range-track{height:6px; border-radius:3px; background:#E3DED2;}
+  input[type=range]::-moz-range-progress{height:6px; border-radius:3px; background:var(--brand-2);}
+  input[type=range]::-moz-range-thumb{width:24px; height:24px; border-radius:50%; background:#FFFDF9; border:2px solid var(--brand);}
+  .measure-hint{margin:6px 0 12px; font-size:12px; color:var(--muted); line-height:1.6;}
+  .badge-soft{display:inline-block; padding:3px 9px; border-radius:999px; background:var(--gold-soft); color:var(--gold-2); font-size:11px; font-weight:700;}
+
+  .quiz-foot{position:fixed; left:0; right:0; bottom:0; z-index:12; padding:10px 20px calc(14px + var(--safe-b)); background:linear-gradient(to top, var(--bg) 70%, rgba(246,244,239,0));}
+  .quiz-foot .inner{max-width:480px; margin:0 auto; display:flex; gap:10px; align-items:center;}
+  .quiz-foot .btn{flex:1;}
+
+  /* ---------- result ---------- */
+  #screen-result{padding:0 0 calc(30px + var(--safe-b));}
+  .result-head{padding:18px 20px 6px; display:flex; align-items:center; justify-content:space-between;}
+  .result-head .ttl{font-size:12px; letter-spacing:.16em; color:var(--muted); font-weight:700;}
+  .result-body{padding:0 20px;}
+  .result-intro{padding:8px 0 18px;}
+  .result-intro h1{font-size:25px; line-height:1.4; letter-spacing:-0.03em; margin:8px 0 6px; font-weight:800;}
+  .result-intro p{margin:0; font-size:13px; color:var(--muted);}
+  .answer-chips{display:flex; flex-wrap:wrap; gap:6px; margin-top:14px;}
+  .answer-chips span{font-size:11.5px; padding:5px 9px; border-radius:8px; background:var(--paper); border:1px solid var(--line); color:var(--ink-2);}
+
+  .analysis{border-radius:20px; overflow:hidden; margin-bottom:22px; box-shadow:var(--shadow);}
+  .analysis-top{background:linear-gradient(135deg,#1B463A,#153B31); color:#F7F3E8; padding:18px 18px 16px;}
+  .analysis-top .ttl{font-size:11px; letter-spacing:.2em; color:rgba(233,223,201,.8); font-weight:700;}
+  .analysis-top h2{font-size:18px; margin:6px 0 12px; letter-spacing:-0.02em;}
+  .analysis-badges{display:flex; gap:8px; flex-wrap:wrap;}
+  .badge{border:1px solid rgba(233,223,201,.35); border-radius:10px; padding:7px 11px; background:rgba(255,255,255,.06);}
+  .badge small{display:block; font-size:10px; color:rgba(233,223,201,.75); letter-spacing:.04em;}
+  .badge b{display:block; font-size:13px; margin-top:1px; letter-spacing:-0.01em;}
+  .analysis-body{background:var(--paper); padding:6px 18px 12px;}
+  .arow{display:flex; gap:12px; padding:13px 0; border-bottom:1px solid #EFEBE2;}
+  .arow:last-child{border-bottom:0;}
+  .arow .ico{flex:0 0 auto; width:30px; height:30px; border-radius:9px; background:#F0F5F1; color:var(--brand-3); display:grid; place-items:center; margin-top:2px;}
+  .arow b{display:block; font-size:12.5px; color:var(--brand-3); letter-spacing:.02em; margin-bottom:2px;}
+  .arow p{margin:0; font-size:13px; line-height:1.62; color:var(--ink-2);}
+  .analysis-summary{margin:12px 0 0; padding:12px 14px; border-radius:12px; background:var(--gold-soft); font-size:12.5px; line-height:1.65; color:#6B532F;}
+
+  .section-cap{display:flex; align-items:center; gap:8px; margin:26px 0 12px;}
+  .section-cap .rank{font-size:10.5px; font-weight:800; letter-spacing:.14em; color:#fff; background:var(--gold); padding:3px 8px; border-radius:6px;}
+  .section-cap h3{font-size:15px; margin:0; letter-spacing:-0.02em;}
+
+  .pcard{background:var(--paper); border:1px solid var(--line); border-radius:20px; overflow:hidden; box-shadow:var(--shadow);}
+  .pcard .visual{background:linear-gradient(180deg,#F4EFE4,#FBF8F1); padding:26px 0 14px; position:relative;}
+  .pcard .visual img{display:block; width:100%; max-width:330px; height:auto; margin:0 auto;}
+  .pcard .visual .firm{position:absolute; top:12px; left:12px; font-size:10.5px; font-weight:700; color:var(--brand-3); background:rgba(255,255,255,.85); border:1px solid var(--line); padding:4px 8px; border-radius:7px;}
+  .pcard .info{padding:16px 18px 18px;}
+  .pcard .name{font-size:18px; font-weight:800; letter-spacing:-0.03em; margin:0 0 3px;}
+  .pcard .code{font-size:11px; color:var(--muted); letter-spacing:.02em; margin:0 0 12px;}
+  .pcard .price{display:flex; align-items:baseline; gap:6px; padding:12px 0 2px; border-top:1px solid #EFEBE2;}
+  .pcard .price b{font-size:23px; font-weight:800; letter-spacing:-0.03em; color:var(--brand);}
+  .pcard .price span{font-size:12px; color:var(--muted);}
+  .pcard .price-cap{font-size:11px; color:var(--muted); margin:3px 0 0;}
+  .reasons{list-style:none; padding:0; margin:14px 0 0; display:grid; gap:9px;}
+  .reasons li{display:flex; gap:8px; font-size:13px; line-height:1.6; color:var(--ink-2);}
+  .reasons svg{flex:0 0 auto; margin-top:3px; color:var(--brand-3);}
+  .note-box{margin-top:14px; padding:12px 14px; border-radius:12px; background:#F6F2E8; font-size:12px; line-height:1.65; color:#5E5748;}
+  .note-box b{color:var(--ink-2);}
+  .note-box + .note-box{margin-top:8px;}
+  .pet-tip{margin:0 0 4px; border:1px solid #E7DCC6;}
+  .pet-tip b{display:flex; align-items:center; gap:6px; margin-bottom:4px; font-size:12.5px;}
+  .pet-tip p{margin:0 0 4px;}
+  .pet-tip p:last-child{margin-bottom:0;}
+
+  .alts{display:grid; gap:10px;}
+  .alt{display:flex; gap:12px; align-items:center; padding:12px; background:var(--paper); border:1px solid var(--line); border-radius:16px;}
+  .alt .thumb{flex:0 0 auto; width:88px; height:72px; border-radius:12px; background:#F6F2E8; display:grid; place-items:center; overflow:hidden;}
+  .alt .thumb img{width:100%; height:100%; object-fit:contain; padding:5px;}
+  .alt .body{flex:1; min-width:0;}
+  .alt .body b{display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; font-size:13.5px; font-weight:700; letter-spacing:-0.02em; line-height:1.4;}
+  .alt .body p{margin:3px 0 0; font-size:11.5px; color:var(--muted); line-height:1.5;}
+  .alt .body .p{font-size:12.5px; font-weight:700; color:var(--brand); margin-top:4px;}
+  .alt .body .p .psize{font-weight:500; color:var(--muted); font-size:11px;}
+  .frame-box{margin-top:14px; padding:14px 16px; border-radius:15px; border:1px dashed #CFC7B6; background:#FBF8F1;}
+  .frame-box b{font-size:12.5px; display:block; margin-bottom:4px;}
+  .frame-box p{margin:0; font-size:12px; color:var(--muted); line-height:1.62;}
+  .frame-box .sum{font-size:12.5px; font-weight:700; color:var(--brand); margin-top:6px;}
+
+  .actions{margin-top:26px; display:grid; gap:9px;}
+  .result-foot{margin-top:22px; padding-top:16px; border-top:1px solid var(--line); font-size:11px; color:#8B938D; line-height:1.75; text-align:center;}
+  .result-foot a{color:var(--brand-3); text-decoration:none; font-weight:700;}
+
+  .sheet-wrap{position:fixed; inset:0; background:rgba(20,30,26,.45); z-index:80; display:none; align-items:flex-end;}
+  .sheet-wrap.on{display:flex;}
+  .sheet{background:var(--paper); width:100%; max-width:480px; margin:0 auto; border-radius:20px 20px 0 0; padding:16px 18px calc(18px + var(--safe-b)); max-height:82dvh; overflow:auto;}
+  .sheet-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;}
+  .sheet-head b{font-size:15px; letter-spacing:-0.02em;}
+  .sheet-head button{font-size:13px; color:var(--muted); font-weight:600; padding:6px 4px;}
+  .sheet-hint{margin:0 0 10px; font-size:12px; color:var(--muted);}
+  .sheet textarea, .sheet .sheet-text{width:100%; border:1px solid var(--line); border-radius:12px; padding:12px; font-size:12.5px; line-height:1.7; background:#FBFAF6; font-family:inherit; color:var(--ink-2);}
+  .sheet .sheet-text{white-space:pre-wrap; max-height:46dvh; overflow:auto; -webkit-user-select:text; user-select:text; margin:0;}
+  .sheet .btn{margin-top:10px; min-height:48px; font-size:14.5px;}
+
+  .toast{
+    position:fixed; left:50%; bottom:calc(24px + var(--safe-b)); transform:translate(-50%, 20px);
+    background:rgba(24,40,34,.94); color:#fff; font-size:13px; font-weight:600;
+    padding:11px 18px; border-radius:999px; opacity:0; pointer-events:none; transition:.25s ease; z-index:60; white-space:nowrap;
+  }
+  .toast.on{opacity:1; transform:translate(-50%, 0);}
+  @media (max-width:360px){
+    .start h1{font-size:27px;}
+    .step-title{font-size:20px;}
+    .size-chip b{font-size:13px;}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ================= START ================= -->
+  <section class="screen on" id="screen-start">
+    <div class="start">
+      <div class="top-bar">
+        <span class="brandmark">
+          <span class="wordmark">BEREX</span>
+          <span class="sub">COWAY SLEEP CONSULTING</span>
+        </span>
+        <a class="card-back" href="https://leyle2324-dev.github.io/coway-card/" aria-label="코웨이 명함으로 돌아가기">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 18l-6-6 6-6"/></svg>
+          명함
+        </a>
+      </div>
+
+      <div class="start-kicker"><i></i>8단계 수면·체형 문진</div>
+      <h1>잠은,<br>몸에 맞춰야<br><em>편안해집니다.</em></h1>
+      <p class="lead">체형과 수면 습관, 반려동물 동반 여부까지 8단계로 읽고 코웨이 BEREX 매트리스 가운데 가장 잘 맞는 한 대를 골라 드립니다. 약 1분이면 충분합니다.</p>
+
+      <div class="hero">
+        <img src="img/signature-hero.webp" alt="BEREX 시그니처 매트리스" width="760" height="313">
+        <div class="hero-tag"><span>SIGNATURE</span><b>BEREX PREMIUM LINE</b></div>
+      </div>
+
+      <ul class="features">
+        <li><span class="num">1</span><div><b>8단계 문진</b><p>인원·체격·허리·자세·열감·반려동물·쿠션감·구성까지</p></div></li>
+        <li><span class="num">2</span><div><b>실제 BEREX 모델 매칭</b><p>사이즈별 월 렌탈료와 추천 이유까지 한 번에</p></div></li>
+        <li><span class="num">3</span><div><b>상담 요약 복사</b><p>진단 결과를 그대로 복사해 상담에 바로 사용</p></div></li>
+      </ul>
+
+      <div class="start-cta">
+        <button class="btn btn-primary" id="start-btn">
+          진단 시작하기
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+        <p class="start-note">결과는 상담용으로 바로 복사할 수 있어요.</p>
+      </div>
+
+      <div class="start-foot">
+        코웨이 BEREX 매트리스 렌탈 상담 · 010-9422-8307<br>
+        본 진단은 상담 참고용으로, 의학적 진단이 아닙니다.
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= QUIZ ================= -->
+  <section class="screen" id="screen-quiz">
+    <div class="quiz-head">
+      <div class="row">
+        <button class="icon-btn" id="quiz-back" aria-label="이전 단계">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <span class="ttl">맞춤 진단</span>
+        <span class="ttl" id="step-count">1 / 8</span>
+      </div>
+      <div class="progress"><i id="progress-bar"></i></div>
+    </div>
+    <div class="quiz-body" id="quiz-body"></div>
+    <div class="quiz-foot">
+      <div class="inner">
+        <button class="btn btn-primary" id="next-btn" disabled>다음</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= RESULT ================= -->
+  <section class="screen" id="screen-result">
+    <div class="result-head">
+      <span class="ttl">진단 결과</span>
+      <button class="icon-btn" id="result-restart-top" aria-label="처음부터 다시 진단">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5"/></svg>
+      </button>
+    </div>
+    <div class="result-body" id="result-body"></div>
+  </section>
+
+</div>
+<div class="toast" id="toast">복사했어요</div>
+
+<script>
+/* =========================================================
+   BEREX 맞춤 진단 · 데이터
+   금액: 코웨이 공식몰(coway.com) 2026-11-26 조회 표시가
+   ========================================================= */
+const SIZE_LABEL = { SS:'슈퍼싱글', Q:'퀸', K:'킹', LK:'라지킹' };
+const SIZE_NOTE = { SS:'1인', Q:'2인 기본', K:'여유·아이 동반', LK:'가장 넓게' };
+
+const MODELS = [
+  /* ---------- 일반 BEREX 매트리스 ---------- */
+  {
+    id:'elite', name:'BEREX 엘리트 매트리스', family:'general', type:'general',
+    img:'img/elite.webp', desc:'탄탄한 지지력으로 신체를 안정적으로 받쳐주는',
+    firm:[{key:'X',label:'엑스트라 하드',h:0.97}],
+    sizes:['SS','Q'], prices:{SS:13900,Q:17900},
+    codes:{X:{SS:'CMSS-ST01EH',Q:'CMQ-ST01EH'}},
+    support:5, pressure:2.3, breath:3, hygiene:3,
+    spec:'시그니처 독립스프링 · 페더라이크 패딩 · HD폼, 260mm',
+    why:{
+      back:'엑스트라 하드 상단이 허리가 가라앉지 않게 잡아 줍니다.',
+      posture:'엎드리거나 뒤척여도 상체가 꺼지지 않습니다.',
+      body:'든든한 체격이 눌러도 바닥이 느껴지지 않는 지지력입니다.',
+      value:'하드 타입 가운데 월 렌탈료가 가장 낮습니다.'
+    }
+  },
+  {
+    id:'modi', name:'BEREX 모디 매트리스', family:'general', type:'general',
+    img:'img/modi.webp', desc:'탄탄하게 받쳐주고 부드럽게 감싸주는',
+    firm:[{key:'H',label:'단단함(Hard)',h:0.8},{key:'M',label:'중간(Medium)',h:0.5}],
+    sizes:['SS','Q','K','LK'], prices:{SS:14900,Q:18900,K:22900,LK:27900},
+    codes:{
+      H:{SS:'CMSS-SE02H',Q:'CMQ-SE02H',K:'CMK-SE02H',LK:'CMLK-SE02H'},
+      M:{SS:'CMSS-SE02M',Q:'CMQ-SE02M',K:'CMK-SE02M',LK:'CMLK-SE02M'}
+    },
+    support:4, pressure:3.2, breath:3.2, hygiene:3,
+    spec:'컨투어 7존 폼 · 엘라스틱 플레이트 폼 · 페더라이크 패딩, 320mm',
+    why:{
+      back:'컨투어 7존 폼이 허리 라인을 따라 밀착됩니다.',
+      posture:'옆으로 자도 어깨와 엉덩이가 과하게 파묻히지 않습니다.',
+      body:'7존 구조가 몸의 무게를 부위별로 나눠 받칩니다.',
+      dual:'같은 값으로 하드·미디엄 두 경도를 고를 수 있습니다.',
+      value:'하드·미디엄을 같은 금액으로 선택할 수 있습니다.'
+    }
+  },
+  {
+    id:'prime', name:'BEREX 프라임 매트리스', family:'general', type:'general',
+    img:'img/prime.webp', desc:'5존 컨투어 폼 탑퍼로 편안하게',
+    firm:[{key:'H',label:'단단함(Hard)',h:0.8},{key:'M',label:'중간(Medium)',h:0.52}],
+    sizes:['SS','Q','K','LK'], prices:{SS:13900,Q:17900,K:21900,LK:25900},
+    codes:{
+      H:{SS:'CMSS-S03H',Q:'CMQ-S03H',K:'CMK-S03H',LK:'CMLK-S03H'},
+      M:{LK:'CMLK-S03M'}
+    },
+    support:4, pressure:3.2, breath:3.4, hygiene:3,
+    spec:'5존 컨투어 폼 · 독립스프링, 305mm',
+    why:{
+      back:'5존 컨투어 폼 탑퍼가 허리와 골반을 나눠 받칩니다.',
+      posture:'뒤척임이 많아도 상단이 쉽게 꺼지지 않습니다.',
+      body:'체중이 집중되는 허리·골반을 존별로 지지합니다.',
+      value:'5존 폼에 독립스프링까지, 2만원 이하 구성입니다.'
+    }
+  },
+  {
+    id:'hybrid3', name:'BEREX 하이브리드 3 매트리스', family:'general', type:'general',
+    img:'img/hybrid3.webp', desc:'통몰드 라텍스 매트리스의 편안함',
+    firm:[{key:'M',label:'중간(Medium)',h:0.52}],
+    sizes:['SS','Q','K'], prices:{SS:21900,Q:24900,K:31900},
+    codes:{M:{SS:'CMSS-PR03',Q:'CMQ-PR03',K:'CMK-PR03'}},
+    support:4.3, pressure:4, breath:5, hygiene:3,
+    spec:'통몰드 라텍스 · Advanced 7존 듀얼 독립스프링, 340mm',
+    why:{
+      back:'라텍스의 탄성이 허리를 밀어올리듯 받쳐 줍니다.',
+      heat:'통몰드 라텍스와 7존 스프링 구조로 열과 습기가 덜 고입니다.',
+      posture:'듀얼 독립스프링이 어깨와 엉덩이 압력을 나눠 받습니다.',
+      body:'라텍스와 7존 스프링이 무거운 체격도 지지합니다.',
+      value:'라텍스 매트리스를 2만원대에 시작할 수 있습니다.'
+    }
+  },
+  {
+    id:'hybrid4', name:'BEREX 하이브리드 4 매트리스', family:'general', type:'general',
+    img:'img/hybrid4.webp', desc:'프리미엄 메모리폼 탑퍼로 완성한',
+    firm:[{key:'M',label:'중간(Medium)',h:0.5},{key:'H',label:'단단함(Hard)',h:0.8}],
+    sizes:['SS','Q','K','LK'], prices:{SS:22900,Q:25900,K:32900,LK:39900},
+    codes:{
+      M:{SS:'CMSS-PR04M_V2',Q:'CMQ-PR04M_V2',K:'CMK-PR04M_V2',LK:'CMLK-PR04M'},
+      H:{SS:'CMSS-PR04H_V2',Q:'CMQ-PR04H_V2',K:'CMK-PR04H_V2',LK:'CMLK-PR04H'}
+    },
+    support:4.2, pressure:4.2, breath:4, hygiene:3.5,
+    spec:'양모 패딩 · 고밀도 MDI 메모리폼 · 독립스프링, 330mm',
+    why:{
+      back:'고밀도 메모리폼 탑퍼가 허리 굴곡을 채워 줍니다.',
+      heat:'양모 패딩이 습기를 흡수하고 배출합니다.',
+      posture:'메모리폼이 어깨와 엉덩이를 감싸 압력을 분산합니다.',
+      body:'고밀도 폼이 체중을 넓게 나눠 받습니다.',
+      value:'양모·메모리폼 구성을 2만원대에 갖췄습니다.'
+    }
+  },
+  {
+    id:'rounaire', name:'BEREX 루네어 매트리스', family:'general', type:'general',
+    img:'img/rounaire.webp', desc:'내 몸에 맞춘 듯 편안한 프리미엄',
+    firm:[{key:'H',label:'단단함(Hard)',h:0.78},{key:'M',label:'중간(Medium)',h:0.5}],
+    sizes:['SS','Q','K','LK'], prices:{SS:17900,Q:21900,K:25900,LK:30900},
+    codes:{
+      H:{SS:'CMSS-SE03H',Q:'CMQ-SE03H',K:'CMK-SE03H',LK:'CMLK-SE03H'},
+      M:{SS:'CMSS-SE03M',Q:'CMQ-SE03M',K:'CMK-SE03M',LK:'CMLK-SE03M'}
+    },
+    support:4.3, pressure:4.1, breath:3.4, hygiene:3,
+    spec:'컨투어 7존 폼 · 고밀도 메모리폼 · 엘라스틱 플레이트 폼, 345mm',
+    why:{
+      back:'컨투어 7존 폼과 고밀도 메모리폼이 허리를 감싸 지지합니다.',
+      posture:'어깨와 엉덩이가 파묻히지 않고 고르게 눌립니다.',
+      body:'7존 구조로 무게가 집중되는 부위를 따로 받칩니다.',
+      dual:'하드·미디엄을 같은 값으로 선택할 수 있습니다.',
+      value:'7존 폼 프리미엄 라인 중 구성이 좋습니다.'
+    }
+  },
+  {
+    id:'signature', name:'BEREX 시그니처 매트리스', family:'general', type:'general',
+    img:'img/signature.webp', desc:'아름다운 실루엣으로 완성된 차원이 다른 편안함',
+    firm:[{key:'S',label:'푹신함(Soft)',h:0.25}],
+    sizes:['SS','Q','K','LK'], prices:{SS:39900,Q:46900,K:53900,LK:61900},
+    codes:{S:{SS:'CMSS-SP01S',Q:'CMQ-SP01S',K:'CMK-SP01S',LK:'CMLK-SP01S'}},
+    support:3.2, pressure:5, breath:4, hygiene:3.5,
+    spec:'AD9 마이크로 포켓 스프링 · 브리즈 메모리폼 · 얼티밋HD폼, 370mm',
+    why:{
+      back:'허리를 과하게 밀어올리지 않고 자연스러운 굴곡을 지켜 줍니다.',
+      heat:'브리즈 메모리폼과 마이크로 포켓 스프링이 공기를 순환시킵니다.',
+      posture:'옆으로 잘 때 어깨와 엉덩이를 부드럽게 감싸 줍니다.',
+      body:'가벼운 체격일수록 시그니처의 푹신함이 편안하게 느껴집니다.',
+      value:'BEREX 최상단 라인의 촉감을 3만원대에 시작합니다.'
+    }
+  },
+  {
+    id:'signature-fire', name:'BEREX 시그니처 파이어쉴드 매트리스', family:'general', type:'general',
+    img:'img/signature-fire.webp', desc:'한층 더 안전한 프리미엄 수면 경험',
+    firm:[{key:'S',label:'푹신함(Soft)',h:0.25}],
+    sizes:['SS','Q','K','LK'], prices:{SS:43900,Q:50900,K:57900,LK:65900},
+    codes:{S:{SS:'CMSS-SP02S',Q:'CMQ-SP02S',K:'CMK-SP02S',LK:'CMLK-SP02S'}},
+    support:3.3, pressure:5, breath:4.2, hygiene:3.5, safety:true,
+    spec:'파이어쉴드 난연 원단 · 울 파이어쉴드 패딩 · AD9 마이크로 포켓 스프링, 370mm',
+    why:{
+      back:'푹신한 상단 안쪽에서 마이크로 포켓 스프링이 허리를 받칩니다.',
+      heat:'울 파이어쉴드 패딩이 습기를 흡수하고 열을 배출합니다.',
+      posture:'부드러운 탑퍼가 어깨와 엉덩이 압력을 흡수합니다.',
+      kids:'난연 파이어쉴드 원단이라 아이와 함께 쓰기 안전합니다.',
+      value:'시그니처와 같은 촉감에 난연 설계를 더한 모델입니다.'
+    }
+  },
+  {
+    id:'doubleside', name:'BEREX 더블사이드 매트리스', family:'general', type:'general',
+    img:'img/doubleside.webp', desc:'나에게 맞는 착와감을 고를 수 있는',
+    firm:[{key:'R',label:'리버서블(양면)',h:0.45}],
+    sizes:['SS','Q','K'], prices:{SS:17900,Q:21900,K:26900},
+    codes:{R:{SS:'CMSS-SE01',Q:'CMQ-SE01',K:'CMK-SE01'}},
+    flexible:true, support:3.2, pressure:4, breath:3.4, hygiene:3,
+    spec:'듀얼 HD폼 · AD7 시스템, 320mm · 양면 사용',
+    why:{
+      back:'한쪽은 단단하게, 한쪽은 부드럽게 뒤집어 허리 상태에 맞출 수 있습니다.',
+      posture:'자세나 컨디션이 바뀌는 날엔 뒤집어 경도를 바꿀 수 있습니다.',
+      body:'체중 변화나 취향 변화에 뒤집어 대응합니다.',
+      kids:'아이와 함께 쓰다 경도가 안 맞으면 뒤집으면 됩니다.',
+      value:'한 대로 두 가지 경도를 쓰는 구성입니다.'
+    }
+  },
+  {
+    id:'compact', name:'BEREX 컴팩트 메모리폼 매트리스', family:'general', type:'general',
+    img:'img/compact.webp', desc:'편안함을 위한 4중 레이어 구조',
+    firm:[{key:'M',label:'중간(Medium)',h:0.5},{key:'S',label:'푹신함(Soft)',h:0.3}],
+    sizes:['SS','Q'], prices:{SS:16900,Q:22900},
+    codes:{M:{SS:'CMSS-M01M',Q:'CMQ-M01M'},S:{Q:'CMQ-M01S'}},
+    support:2.4, pressure:4, breath:3.4, hygiene:3,
+    spec:'클라우드 메모리폼 · 액티브 엘라스틱 폼 · 코어 HD폼, 210mm',
+    why:{
+      back:'허리를 강하게 받치기보다 부드럽게 감싸는 쪽입니다.',
+      posture:'옆으로 자는 분께 부드러운 쿠션이 편합니다.',
+      body:'가벼운 체격이나 보조 침대에 알맞습니다.',
+      kids:'두께가 210mm로 낮아 아이가 오르내리기 쉽습니다.',
+      value:'가장 낮은 월 렌탈료로 시작할 수 있습니다.'
+    }
+  },
+
+  /* ---------- 스마트 매트리스 ---------- */
+  {
+    id:'s6', name:'BEREX 스마트 매트리스 S6+', family:'smart', type:'smart',
+    img:'img/smart-s6.webp', desc:'잠이 달라진다, 잘 자는 기술',
+    firm:[{key:'A',label:'9단계 스마트 경도',h:0.5}],
+    sizes:['SS','Q','K','LK'], prices:{SS:57900,Q:72900,K:77900,LK:86900},
+    codes:{A:{SS:'CMSS-AS04',Q:'CMQ-AS04',K:'CMK-AS04',LK:'CMLK-AS04'}},
+    flexible:true, dual:true, support:4.5, pressure:5, breath:4.2, hygiene:3.5,
+    spec:'슬립셀 80개 · 클라우드 메모리폼(오픈셀) · 9단계 경도, 290mm',
+    why:{
+      back:'9단계 경도로 허리에 맞는 단계를 직접 찾을 수 있습니다.',
+      heat:'오픈셀 구조 클라우드 메모리폼이 열과 습기를 배출합니다.',
+      posture:'자동 체압 분산이 뒤척임에 맞춰 압력을 나눠 줍니다.',
+      body:'체중이 실리는 부위만 더 단단하게 조절할 수 있습니다.',
+      kids:'경도를 탄탄하게 올려 두면 아이가 뛰어도 안정적입니다.',
+      dual:'Q·K·LK는 좌우 경도를 따로 설정할 수 있습니다.',
+      value:'스마트 매트리스 가운데 시작가가 가장 낮습니다.'
+    }
+  },
+  {
+    id:'s8', name:'BEREX 스마트 매트리스 S8+', family:'smart', type:'smart',
+    img:'img/smart-s8.webp', desc:'잠이 달라진다, 잘 자는 기술',
+    firm:[{key:'A',label:'9단계 스마트 경도',h:0.5}],
+    sizes:['SS','Q','K','LK'], prices:{SS:71900,Q:93900,K:99900,LK:110900},
+    codes:{A:{SS:'CMSS-AS05',Q:'CMQ-AS05',K:'CMK-AS05',LK:'CMLK-AS05'}},
+    flexible:true, dual:true, support:4.7, pressure:5, breath:4.3, hygiene:3.5,
+    spec:'슬립셀 + 스트레칭셀 · 스마트 자세 조절 · 9단계 경도, 330mm',
+    why:{
+      back:'자는 동안 경도가 9단으로 올라가 허리를 받쳐 줍니다(수면코스).',
+      posture:'자동 체압 분산과 스마트 자세 조절이 뒤척임을 따라갑니다.',
+      body:'어깨·허리·엉덩이·다리 부위별로 경도를 조절할 수 있습니다.',
+      heat:'오픈셀 메모리폼과 스트레칭셀 구조로 열이 덜 고입니다.',
+      dual:'Q·K·LK에서 좌우 경도를 따로 맞춥니다.',
+      value:'허리 스트레칭과 자세 조절까지 필요한 분께 맞습니다.'
+    }
+  },
+  {
+    id:'s6-sync', name:'BEREX 스마트 매트리스 S6+ 슬립 싱크', family:'smart', type:'smart',
+    img:'img/smart-s6-sync.webp', desc:'수면 측정·분석까지 더한 스마트 매트리스',
+    firm:[{key:'A',label:'9단계 스마트 경도',h:0.5}],
+    sizes:['SS','Q'], prices:{SS:72900,Q:87900},
+    codes:{A:{SS:'CMSS-AS04SD',Q:'CMQ-AS04SD'}},
+    flexible:true, dual:true, support:4.5, pressure:5, breath:4.2, hygiene:3.5, sleepSync:true,
+    spec:'슬립셀 · 수면센서 내장(슬립 싱크) · 9단계 경도, 290mm',
+    why:{
+      back:'경도 조절에 수면 기록까지 더해 허리와 수면을 함께 봅니다.',
+      posture:'체압 분산은 S6+와 같고, 수면 자세 데이터가 쌓입니다.',
+      dual:'Q 사이즈는 좌우 경도를 따로 맞출 수 있습니다.',
+      value:'수면 측정·분석 리포트를 원하시면 이 구성입니다.'
+    }
+  },
+  {
+    id:'s8-sync', name:'BEREX 스마트 매트리스 S8+ 슬립 싱크', family:'smart', type:'smart',
+    img:'img/smart-s8-sync.webp', desc:'수면 측정·분석까지 더한 스마트 매트리스',
+    firm:[{key:'A',label:'9단계 스마트 경도',h:0.5}],
+    sizes:['SS','Q'], prices:{SS:86900,Q:108900},
+    codes:{A:{SS:'CMSS-AS05SD',Q:'CMQ-AS05SD'}},
+    flexible:true, dual:true, support:4.7, pressure:5, breath:4.3, hygiene:3.5, sleepSync:true,
+    spec:'슬립셀 + 스트레칭셀 · 수면센서 내장(슬립 싱크) · 9단계 경도, 330mm',
+    why:{
+      back:'수면코스와 자세 조절에 수면 기록까지 더한 상위 구성입니다.',
+      posture:'뒤척임에 맞춘 체압 분산과 자세 조절이 함께 작동합니다.',
+      dual:'Q 사이즈에서 좌우 경도를 따로 설정할 수 있습니다.',
+      value:'수면 리포트까지 보면서 허리를 관리하고 싶을 때 맞습니다.'
+    }
+  },
+  {
+    id:'signature-fire-sync', name:'BEREX 시그니처 파이어쉴드 매트리스 슬립 싱크', family:'smart', type:'smart',
+    img:'img/signature-fire-sync.webp', desc:'안전하게 잠들고 스마트하게 관리하는 수면 케어',
+    firm:[{key:'S',label:'푹신함(Soft)',h:0.25}],
+    sizes:['SS','Q'], prices:{SS:68900,Q:75900},
+    codes:{S:{SS:'CMSS-SP02SD',Q:'CMQ-SP02SD'}},
+    support:3.4, pressure:5, breath:4.2, hygiene:3.5, safety:true, sleepSync:true,
+    spec:'파이어쉴드 난연 원단 + 슬립 싱크 탑퍼 · AD9 마이크로 포켓 스프링, 420mm',
+    why:{
+      back:'푹신한 시그니처 위에 수면 측정 탑퍼를 올린 구성입니다.',
+      heat:'울 파이어쉴드 패딩이 습기를 배출합니다.',
+      posture:'부드러운 탑퍼가 어깨와 엉덩이 압력을 흡수합니다.',
+      kids:'난연 원단에 수면 기록까지 더했습니다.',
+      value:'부드러운 촉감과 수면 기록을 함께 원할 때 맞습니다.'
+    }
+  },
+
+  /* ---------- R·M 시리즈 ---------- */
+  {
+    id:'r3', name:'BEREX R시리즈 R3 모션베드', family:'rm', type:'motion', asOf:'2026-11-22',
+    img:'img/r3.webp', desc:'자유로운 휴식이 가능한 침대',
+    firm:[{key:'A',label:'모션베드',h:0.5}],
+    sizes:['SS','Q','K','LK'], prices:{SS:84820},
+    codes:{A:{SS:'CFSS-EM03 + CMSS-EM03'}},
+    flexible:true, support:4, pressure:4.5, breath:3.6, hygiene:3.5, motion:true,
+    spec:'프레임 CFSS-EM03 + 매트리스 CMSS-EM03 · 7년 · 서비스프리 · 무헤드',
+    why:{
+      back:'상체를 올린 리클라이닝 자세로 허리 부담을 덜 수 있습니다.',
+      posture:'각도를 자유롭게 조절해 뒤척임이 편합니다.',
+      value:'R시리즈 가운데 가장 낮은 월 렌탈료입니다.'
+    }
+  },
+  {
+    id:'r5', name:'BEREX R시리즈 R5 스트레칭 베드', family:'rm', type:'motion', asOf:'2026-11-22',
+    img:'img/r5.webp', desc:'부드럽고 깊은 허리 이완을 돕는 침대',
+    firm:[{key:'A',label:'모션베드',h:0.5}],
+    sizes:['SS','Q','K','LK'], prices:{SS:94170},
+    codes:{A:{SS:'CFSS-EM05 + CMSS-EM07'}},
+    flexible:true, support:4.2, pressure:4.6, breath:3.6, hygiene:3.5, motion:true,
+    spec:'프레임 CFSS-EM05 + 매트리스 CMSS-EM07 · 7년 · 서비스프리 · 무헤드',
+    why:{
+      back:'부드럽고 깊게 허리를 이완하는 스트레칭에 맞춰져 있습니다.',
+      posture:'리클라이닝과 스트레칭을 함께 쓸 수 있습니다.',
+      value:'허리 이완을 위한 중간 구성입니다.'
+    }
+  },
+  {
+    id:'r7', name:'BEREX R시리즈 R7 스트레칭 모션베드', family:'rm', type:'motion', asOf:'2026-11-22',
+    img:'img/r7.webp', desc:'완벽한 허리 스트레칭을 위한 침대',
+    firm:[{key:'A',label:'모션베드',h:0.5}],
+    sizes:['SS','Q','K','LK'], prices:{SS:104370},
+    codes:{A:{SS:'CFSS-EM07 + CMSS-EM07'}},
+    flexible:true, support:4.4, pressure:4.7, breath:3.6, hygiene:3.5, motion:true,
+    spec:'프레임 CFSS-EM07 + 매트리스 CMSS-EM07 · 7년 · 서비스프리 · 무헤드',
+    why:{
+      back:'R시리즈에서 허리 스트레칭이 가장 강한 상위 모델입니다.',
+      posture:'모션과 스트레칭 폭이 넓어 자세 전환이 편합니다.',
+      value:'허리 관리를 가장 중시할 때 맞는 구성입니다.'
+    }
+  },
+  {
+    id:'m-massage', name:'BEREX M시리즈 안마매트리스 (안마형)', family:'rm', type:'massage', asOf:'2026-11-22',
+    img:'img/m-series.webp', desc:'BEREX 안마기술로 완성되는 숙면',
+    firm:[{key:'A',label:'안마형 · 매트리스 하드',h:0.8}],
+    sizes:['SS','Q','K','LK'], prices:{Q:138880},
+    codes:{A:{Q:'CMMQ-M01 + CFQ-FRAME01'}},
+    support:4, pressure:4, breath:3.4, hygiene:3, kidsLock:true,
+    spec:'3D 입체 안마(주무름·스트레칭·지압) · 강도 12단계 · 온열 30~65도 · 퀸 1,500×2,080×300mm',
+    why:{
+      back:'주무름과 스트레칭이 들어간 3D 안마로 뭉친 허리를 풉니다.',
+      posture:'평소에는 안마 모듈이 숨어 있어 잠잘 때 단차가 적습니다.',
+      kids:'키즈락으로 아이 사용을 제한할 수 있습니다.',
+      heat:'온열 30~65도로 몸을 따뜻하게 데웁니다.',
+      value:'퀸·무헤드·7년 기준 월 13만원대입니다.'
+    }
+  },
+  {
+    id:'m-spine', name:'BEREX M시리즈 안마매트리스 (척추형)', family:'rm', type:'massage', asOf:'2026-11-22',
+    img:'img/m-series.webp', desc:'척추 라인을 따라 내려오는 롤링 지압',
+    firm:[{key:'A',label:'척추형 · 매트리스 하드',h:0.8}],
+    sizes:['SS','Q','K','LK'], prices:{Q:132080},
+    codes:{A:{Q:'CMMQ-R01 + CFQ-FRAME01'}},
+    support:4, pressure:4, breath:3.4, hygiene:3, kidsLock:true,
+    spec:'엘리베이션 롤링 지압(수평이동·지압·문지름) · 강도 12단계 · 온열 30~65도 · 퀸 1,500×2,080×300mm',
+    why:{
+      back:'척추 라인을 따라 내려오는 롤링 지압으로 허리를 풉니다.',
+      posture:'평소에는 안마 모듈이 숨어 있어 단차가 적습니다.',
+      kids:'키즈락으로 아이 사용을 제한할 수 있습니다.',
+      heat:'온열 30~65도로 몸을 따뜻하게 데웁니다.',
+      value:'같은 조건이면 안마형보다 월 6,800원 낮습니다.'
+    }
+  }
+];
+
+const FRAMES = {
+  foundation:{ name:'BEREX 모던 파운데이션', prices:{SS:12900,Q:13900,K:14900,LK:15900} },
+  volume:{ name:'BEREX 볼륨 프레임', prices:{SS:20900,Q:22900,K:24900,LK:25900} }
+};
+
+/* =========================================================
+   상태
+   ========================================================= */
+const state = {
+  step:0, persons:null, sizePref:null, height:170, weight:65,
+  back:null, posture:null, heat:null, pet:null, firm:null, family:null, frame:'no'
+};
+
+const $ = (s, r=document) => r.querySelector(s);
+const won = n => n.toLocaleString('ko-KR');
+function josa(word, withBatchim, withoutBatchim){
+  const c = (word || '').charCodeAt((word||'').length-1);
+  if(c>=0xAC00 && c<=0xD7A3) return ((c-0xAC00)%28) ? withBatchim : withoutBatchim;
+  return withBatchim;
+}
+
+/* =========================================================
+   문진 단계 정의
+   ========================================================= */
+const STEPS = [
+  {
+    id:'basic', title:'누구와 함께\n주무시나요?', sub:'사용 인원과 희망 사이즈를 알려 주세요. 추천 사이즈도 가능합니다.',
+    valid:()=> !!(state.persons && state.sizePref),
+    render(){
+      return `
+        <div class="group-label">사용 인원</div>
+        <div class="opts">
+          ${opt('persons','solo','혼자','1인 사용 · 1,100~1,200mm 폭이면 충분')}
+          ${opt('persons','couple','둘이','부부·커플 · 서로 뒤척임이 적은 폭')}
+          ${opt('persons','kids','아이와 함께','아이 동반 · 넓은 폭과 안전·위생이 중요')}
+        </div>
+        <div class="group-label">희망 사이즈 <span>잘 모르시면 추천받기를 눌러 주세요</span></div>
+        <div class="size-grid">
+          ${sizeChip('SS')}${sizeChip('Q')}${sizeChip('K')}${sizeChip('LK')}
+        </div>
+        <button class="size-auto" data-field="sizePref" data-value="auto" aria-pressed="${state.sizePref==='auto'}">추천 사이즈로 받기</button>
+      `;
+    }
+  },
+  {
+    id:'body', title:'키와 몸무게를\n알려 주세요.', sub:'체격에 따라 필요한 지지력과 쿠션의 정도가 달라집니다.',
+    valid:()=> true,
+    render(){
+      return `
+        <div class="measure">
+          <div class="measure-card">
+            <div class="measure-top">
+              <span class="label">키</span>
+              <span class="val"><b id="h-val">${state.height}</b><span>cm</span></span>
+            </div>
+            <input type="range" id="h-range" min="140" max="200" step="1" value="${state.height}" aria-label="키">
+            <div class="measure-scale"><span>140cm</span><span>200cm</span></div>
+          </div>
+          <div class="measure-card">
+            <div class="measure-top">
+              <span class="label">몸무게</span>
+              <span class="val"><b id="w-val">${state.weight}</b><span>kg</span></span>
+            </div>
+            <input type="range" id="w-range" min="35" max="150" step="1" value="${state.weight}" aria-label="몸무게">
+            <div class="measure-scale"><span>35kg</span><span>150kg</span></div>
+            <p class="measure-hint" id="body-hint">${bodyHint()}</p>
+          </div>
+        </div>
+      `;
+    }
+  },
+  {
+    id:'back', title:'허리는\n어떠신가요?', sub:'허리 상태는 매트리스 경도와 지지 구조를 고르는 가장 큰 기준입니다.',
+    valid:()=> !!state.back,
+    render(){
+      return `<div class="opts">
+        ${opt('back','healthy','건강한 편이에요','특별한 불편 없이 지내고 있어요')}
+        ${opt('back','ache','가끔 뻐근하고 피로해요','오래 앉거나 자고 나면 허리가 뻐근해요')}
+        ${opt('back','disk','디스크·허리 수술·시술 이력이 있어요','허리 질환을 진단받았거나 시술을 받은 적이 있어요')}
+      </div>`;
+    }
+  },
+  {
+    id:'posture', title:'주로 어떤 자세로\n주무시나요?', sub:'수면 자세에 따라 어깨·엉덩이 압력을 나눠 주는 방식이 달라집니다.',
+    valid:()=> !!state.posture,
+    render(){
+      return `<div class="opts">
+        ${opt('posture','back','정자세','천장을 보고 똑바로 누워 자는 편')}
+        ${opt('posture','side','옆으로 눕는 편','옆으로 자다가 어깨나 팔이 저린 적이 있어요')}
+        ${opt('posture','stomach','엎드리거나 뒤척임이 많아요','엎드려 자거나 밤에 자주 자세를 바꿔요')}
+      </div>`;
+    }
+  },
+  {
+    id:'heat', title:'몸의 열감과\n땀은 어떤가요?', sub:'열이 많거나 땀이 나는 편이면 소재의 통기성과 커버 관리가 중요합니다.',
+    valid:()=> !!state.heat,
+    render(){
+      return `<div class="opts">
+        ${opt('heat','hot','열이 많고 땀도 많이 나요','자다가 덥고 땀에 젖는 편이에요')}
+        ${opt('heat','sweat','열은 보통인데 땀이 나요','덥지 않아도 땀이 나고 끈적해요')}
+        ${opt('heat','cold','추위를 타는 편이에요','자다가 발이나 허리가 차가워요')}
+        ${opt('heat','normal','보통이에요','더위·추위를 크게 타지 않아요')}
+      </div>`;
+    }
+  },
+  {
+    id:'pet', title:'반려동물과 함께\n주무시나요?', sub:'털·오염과 위생 관리가 커버 재질과 관리유형 선택에 영향을 줍니다.',
+    valid:()=> !!state.pet,
+    render(){
+      return `<div class="opts">
+        ${opt('pet','none','없음','반려동물과 함께 살지 않아요')}
+        ${opt('pet','indoor','반려동물은 있지만 침대엔 올라오지 않아요','털·실내 위생은 신경 쓰이는 편')}
+        ${opt('pet','bed','반려견·반려묘와 함께 잠','침대 위에서 함께 생활해요 · 털·오염 관리가 필요')}
+      </div>
+      <p class="measure-hint" style="margin-top:16px">함께 주무시면 커버에 털·침·오염이 쌓입니다. 커버 교체가 포함된 관리유형과 사이즈 여유를 추천에 반영합니다.</p>`;
+    }
+  },
+  {
+    id:'firm', title:'어떤 쿠션감이\n편하신가요?', sub:'평소 잠자리에서 느끼는 감각에 가깝게 골라 주세요.',
+    valid:()=> !!state.firm,
+    render(){
+      return `<div class="opts">
+        ${opt('firm','hard','탄탄한 하드','누웠을 때 바닥이 느껴질 만큼 단단한 편')}
+        ${opt('firm','medium','적당한 미디엄','적당히 받쳐 주면서 살짝 감싸는 편')}
+        ${opt('firm','soft','폭신한 소프트','푹 파묻히듯 부드럽게 감싸는 편')}
+        ${opt('firm','auto','전문가 추천대로','제 체형과 습관에 맞춰 골라 주세요')}
+      </div>`;
+    }
+  },
+  {
+    id:'family', title:'어떤 방식의\n침대를 원하세요?', sub:'일반 매트리스, 경도 조절 스마트 매트리스, 안마·리클라이닝 시리즈 중에서 고르시면 됩니다.',
+    valid:()=> !!state.family,
+    render(){
+      return `
+        <div class="opts">
+          ${opt('family','general','일반 BEREX 매트리스','경도가 정해진 매트리스 · 합리적인 렌탈료')}
+          ${opt('family','smart','경도 맞춤 스마트 매트리스','9단계 경도 조절 · 체압 분산 · 앱 제어')}
+          ${opt('family','rm','안마·리클라이닝 R·M시리즈','허리 스트레칭 모션베드 / 안마매트리스')}
+        </div>
+        <div class="group-label" style="margin-top:24px">프레임 구성 <span>R·M시리즈는 프레임이 포함됩니다</span></div>
+        <div class="opts">
+          ${opt('frame','no','매트리스만','지금 쓰는 침대 프레임에 올려 사용')}
+          ${opt('frame','yes','프레임까지 함께','침대 프레임을 같이 렌탈')}
+        </div>
+      `;
+    }
+  }
+];
+
+function opt(field,value,title,sub){
+  const on = state[field]===value;
+  return `<button class="opt" data-field="${field}" data-value="${value}" aria-pressed="${on}">
+    <span class="txt"><b>${title}</b><small>${sub}</small></span>
+    <span class="dot"></span>
+  </button>`;
+}
+function sizeChip(k){
+  const on = state.sizePref===k;
+  return `<button class="size-chip" data-field="sizePref" data-value="${k}" aria-pressed="${on}">
+    <b>${k}</b><small>${SIZE_NOTE[k]}</small>
+  </button>`;
+}
+function bodyHint(){
+  const bmi = state.weight / Math.pow(state.height/100,2);
+  let t = bmi < 18.5 ? '마른 체격' : bmi < 25 ? '보통 체격' : bmi < 30 ? '든든한 체격' : '체중이 많이 나가는 편';
+  return `BMI ${bmi.toFixed(1)} · ${t} — 지지력 계산에 반영합니다.`;
+}
+
+/* =========================================================
+   화면 전환
+   ========================================================= */
+function show(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));
+  $('#'+id).classList.add('on');
+  window.scrollTo({top:0,behavior:'instant'});
+}
+function startQuiz(){
+  Object.assign(state,{step:0,persons:null,sizePref:null,height:170,weight:65,back:null,posture:null,heat:null,pet:null,firm:null,family:null,frame:'no'});
+  show('screen-quiz'); renderStep();
+}
+function renderStep(){
+  const s = STEPS[state.step];
+  $('#step-count').textContent = (state.step+1)+' / '+STEPS.length;
+  $('#progress-bar').style.width = ((state.step+1)/STEPS.length*100)+'%';
+  $('#quiz-body').innerHTML = `
+    <div class="step-no">STEP ${String(state.step+1).padStart(2,'0')}</div>
+    <h2 class="step-title">${s.title.replace(/\n/g,'<br>')}</h2>
+    <p class="step-sub">${s.sub}</p>
+    ${s.render()}
+  `;
+  bindStepInputs();
+  updateNext();
+  $('#quiz-body').scrollTop = 0;
+  window.scrollTo({top:0,behavior:'instant'});
+}
+function updateNext(){
+  const s = STEPS[state.step];
+  const btn = $('#next-btn');
+  btn.disabled = !s.valid();
+  btn.textContent = state.step===STEPS.length-1 ? '진단 결과 보기' : '다음';
+}
+function bindStepInputs(){
+  if(state.step===1){
+    const hr=$('#h-range'), wr=$('#w-range');
+    const sync=(r,fillEl)=>{ r.style.setProperty('--fill', ((r.value-r.min)/(r.max-r.min)*100)+'%'); };
+    sync(hr); sync(wr);
+    hr.addEventListener('input',()=>{
+      state.height=+hr.value; $('#h-val').textContent=hr.value; sync(hr);
+      $('#body-hint').textContent=bodyHint();
+    });
+    wr.addEventListener('input',()=>{
+      state.weight=+wr.value; $('#w-val').textContent=wr.value; sync(wr);
+      $('#body-hint').textContent=bodyHint();
+    });
+  }
+}
+document.addEventListener('click', e=>{
+  const b = e.target.closest('[data-field]');
+  if(!b) return;
+  const {field, value} = b.dataset;
+  state[field]=value;
+  // 같은 그룹 다시 그리기
+  document.querySelectorAll(`[data-field="${field}"]`).forEach(x=>{
+    x.setAttribute('aria-pressed', String(x.dataset.value===value));
+  });
+  if(field==='persons' && state.sizePref==='auto'){ /* 추천 유지 */ }
+  updateNext();
+});
+
+$('#start-btn').addEventListener('click', startQuiz);
+$('#quiz-back').addEventListener('click', ()=>{
+  if(state.step===0){ show('screen-start'); return; }
+  state.step--; renderStep();
+});
+$('#next-btn').addEventListener('click', ()=>{
+  if(!STEPS[state.step].valid()) return;
+  if(state.step===STEPS.length-1){ buildResult(); show('screen-result'); return; }
+  state.step++; renderStep();
+});
+$('#result-restart-top').addEventListener('click', ()=>{ show('screen-start'); });
+document.addEventListener('click', e=>{
+  if(e.target.closest('#restart-btn')){ show('screen-start'); }
+});
+
+/* =========================================================
+   진단 로직
+   ========================================================= */
+function resolveSize(){
+  if(state.sizePref && state.sizePref!=='auto') return state.sizePref;
+  if(state.persons==='solo') return (state.height>=185 || state.weight>=85) ? 'Q' : 'SS';
+  if(state.persons==='couple') return (state.height>=182 || state.weight>=88) ? 'K' : 'Q';
+  return state.height>=180 ? 'LK' : 'K';
+}
+function resolveTarget(){
+  const f=state.firm;
+  if(f==='hard') return 0.85;
+  if(f==='medium') return 0.5;
+  if(f==='soft') return 0.25;
+  let t=0.52;
+  if(state.back==='disk') t+=0.16; else if(state.back==='ache') t+=0.07;
+  if(state.weight>=85) t+=0.07; else if(state.weight<=55) t-=0.07;
+  if(state.posture==='stomach') t+=0.06; else if(state.posture==='side') t-=0.08;
+  if(state.heat==='cold') t+=0.02;
+  return Math.min(0.9, Math.max(0.2, t));
+}
+function targetLabel(t){
+  if(t>=0.74) return '탄탄한 하드';
+  if(t>=0.58) return '미디엄 하드';
+  if(t>=0.42) return '적당한 미디엄';
+  return '폭신한 소프트';
+}
+function weights(){
+  const s=state;
+  const w={
+    firm:30,
+    support:18 + (s.weight>=85?10:s.weight>=75?5:0) + (s.back==='disk'?12:s.back==='ache'?6:0),
+    pressure:14 + (s.posture==='side'?12:0) + (s.posture==='stomach'?4:0) + (s.back==='disk'?8:0) + (s.weight<60?4:0),
+    breath:6 + (s.heat==='hot'?14:s.heat==='sweat'?10:s.heat==='cold'?0:2),
+    hygiene:3 + ((s.heat==='hot'||s.heat==='sweat')?6:0) + (s.persons==='kids'?5:0) + (s.pet==='bed'?14:s.pet==='indoor'?5:0)
+  };
+  return w;
+}
+function bestFirmOption(m, target){
+  if(m.flexible) return {opt:m.firm[0], match:0.94};
+  let best=null, bd=9;
+  m.firm.forEach(f=>{
+    const d=Math.abs(f.h-target);
+    if(d<bd){bd=d; best=f;}
+  });
+  return {opt:best, match:Math.max(0, 1 - bd/0.42)};
+}
+function scoreModel(m, target, w, size){
+  const {opt:fo, match} = bestFirmOption(m, target);
+  const sum = w.firm+w.support+w.pressure+w.breath+w.hygiene;
+  let score = (
+    w.firm*match +
+    w.support*(m.support/5) +
+    w.pressure*(m.pressure/5) +
+    w.breath*(m.breath/5) +
+    w.hygiene*(m.hygiene/5)
+  )/sum*100;
+
+  if(state.persons==='kids' && m.safety) score += 6;
+  if(state.persons==='kids' && m.kidsLock) score += 4;
+  if(state.pet==='bed' && m.hygiene>=3.5) score += 3;
+  if(state.persons==='couple' && m.dual && ['Q','K','LK'].includes(size)) score += 5;
+  if(state.heat==='hot' && m.breath>=5) score += 4;
+  if(state.back==='disk' && m.flexible) score += 3;
+  if(state.weight>=95 && m.support<=2.4) score -= 8;
+  if(state.back==='disk' && fo.h<0.4 && !m.flexible) score -= 6;
+  if(!m.sizes.includes(size)) score -= 2.5;
+  return {score, fo};
+}
+function buildPlan(){
+  const size = resolveSize();
+  const target = resolveTarget();
+  const w = weights();
+  const plan = {size, target, targetLabel:targetLabel(target), ctx:{...state}, w};
+
+  if(state.family==='rm'){
+    const rScore = 52 + (state.back==='disk'?30:state.back==='ache'?20:0) + (state.posture==='stomach'?6:0) + (state.persons!=='kids'?4:0);
+    const mScore = 52 + (state.heat==='cold'?8:0) + (state.persons==='kids'?14:0) + (state.posture==='stomach'?4:0) + (state.back==='disk'?-8:state.back==='ache'?7:0) - (state.heat==='hot'?6:0);
+    const pickR = rScore>=mScore;
+    let primary, altRm;
+    if(pickR){
+      const rid = state.back==='disk' ? 'r7' : state.back==='ache' ? 'r5' : 'r3';
+      primary = MODELS.find(m=>m.id===rid);
+      altRm = MODELS.find(m=>m.id===(state.back==='disk'||state.back==='ache' ? 'm-spine' : 'm-massage'));
+    }else{
+      const mid = (state.back==='disk'||state.back==='ache') ? 'm-spine' : 'm-massage';
+      primary = MODELS.find(m=>m.id===mid);
+      altRm = MODELS.find(m=>m.id==='r5');
+    }
+    const altGeneral = bestOf(['smart'], size, target, w)[0];
+    plan.primary = primary;
+    plan.alts = [altRm, altGeneral].filter(Boolean);
+    plan.primaryScore = Math.round(pickR?rScore:mScore);
+    return plan;
+  }
+
+  const candsAll = MODELS.filter(m=>m.family===state.family);
+  const sized = candsAll.filter(m=>m.sizes.includes(size));
+  const cands = sized.length ? sized : candsAll;
+  const scored = cands.map(m=>{
+    const r = scoreModel(m,target,w,size);
+    return {m, ...r};
+  }).sort((a,b)=>b.score-a.score);
+
+  plan.primary = scored[0].m;
+  plan.primaryOpt = scored[0].fo;
+
+  const alts=[];
+  const runner = scored.find(x=>x.m.id!==plan.primary.id && x.m.img!==plan.primary.img);
+  if(runner) alts.push(runner.m);
+
+  const otherFamily = state.family==='general' ? 'smart' : 'general';
+  const cross = bestOf([otherFamily], size, target, w).filter(m=>m.id!==plan.primary.id && !alts.some(a=>a.id===m.id));
+  if(cross[0]) alts.push(cross[0]);
+
+  plan.alts = alts.slice(0,2);
+  return plan;
+}
+function bestOf(families, size, target, w){
+  const all = MODELS.filter(m=>families.includes(m.family));
+  const sized = all.filter(m=>m.sizes.includes(size));
+  const pool = sized.length ? sized : all;
+  return pool
+    .map(m=>({m, ...scoreModel(m,target,w,size)}))
+    .sort((a,b)=>b.score-a.score)
+    .map(x=>x.m);
+}
+function priceOf(m, size){
+  if(m.prices[size]) return {value:m.prices[size], exact:true};
+  const keys = Object.keys(m.prices);
+  const min = Math.min(...keys.map(k=>m.prices[k]));
+  return {value:min, exact:false, baseKey:keys.sort((a,b)=>m.prices[a]-m.prices[b])[0]};
+}
+function codeOf(m, size, fo){
+  const c = (fo && m.codes[fo.key]) || m.codes[Object.keys(m.codes)[0]];
+  return c[size] || Object.values(m.codes)[0][size] || Object.values(Object.values(m.codes)[0])[0];
+}
+function firmLabelOf(m, plan){
+  const {opt} = bestFirmOption(m, plan.target);
+  return opt ? opt.label : m.firm[0].label;
+}
+
+/* ---------- 분석 문구 ---------- */
+function buildAnalysis(plan){
+  const s=state;
+  const rows=[];
+  const needSupport = s.weight>=85 ? 'high' : s.weight>=72 ? 'mid' : 'low';
+
+  let supportText;
+  if(s.back==='disk') supportText='허리 이력이 있어 허리 구간을 따로 받쳐 주는 구조가 필요합니다. 단단함만으로는 부족하고, 압력을 나눠 주는 설계를 함께 보세요.';
+  else if(needSupport==='high') supportText='체중이 실리는 허리와 엉덩이가 가라앉지 않도록 지지력이 뒷받침되어야 합니다.';
+  else if(needSupport==='low') supportText='가벼운 체격은 너무 단단한 매트리스에서 어깨·엉덩이가 눌릴 수 있어 적당한 탄성이 좋습니다.';
+  else supportText='적당한 탄성으로 허리 라인을 고르게 받쳐 주는 정도가 알맞습니다.';
+  rows.push({icon:'support', title:'지지력', text:supportText});
+
+  let breathText;
+  if(s.heat==='hot') breathText='열과 땀이 많은 편이라 공기 순환이 잘 되는 소재(라텍스·오픈셀 메모리폼)와 커버 관리가 함께 중요합니다.';
+  else if(s.heat==='sweat') breathText='땀이 나는 편이라 흡습·배출이 좋은 원단과 통기 구조를 우선했습니다.';
+  else if(s.heat==='cold') breathText='추위를 타는 편이라 보온감 있는 패딩과 포근한 촉감을 함께 봤습니다.';
+  else breathText='열감이 크지 않아 통기성은 기본 수준으로 충분합니다.';
+  rows.push({icon:'breath', title:'통기성', text:breathText});
+
+  if(s.pet==='bed'){
+    rows.push({icon:'pet', title:'위생·케어', text:'반려동물과 함께 자면 털·침·오염이 커버에 쌓입니다. 커버 교체가 포함된 관리유형(스페셜체인지·토탈케어)과 침구 세탁·털 제거 주기를 함께 계획하시면 좋습니다.'});
+  } else if(s.pet==='indoor'){
+    rows.push({icon:'pet', title:'위생·케어', text:'침대에 올라오지 않아도 털과 실내 먼지는 침구에 쌓입니다. 커버 청결과 침구 털 제거를 꾸준히 하는 편이 좋습니다.'});
+  }
+
+  let postureText;
+  if(s.posture==='side') postureText='옆으로 자는 편이라 어깨와 엉덩이가 눌리지 않도록 체압을 분산하는 구조가 유리합니다.';
+  else if(s.posture==='stomach') postureText='엎드리거나 뒤척임이 많아 상체가 가라앉지 않는 탄탄한 상단이 편합니다.';
+  else postureText='정자세로 주무시니 허리 라인을 따라 고르게 받쳐 주는 정도면 충분합니다.';
+  rows.push({icon:'posture', title:'자세·압력', text:postureText});
+
+  let backText;
+  if(s.back==='disk') backText='디스크·수술 이력은 경도 하나로 해결되지 않습니다. 지지와 압력 분산, 자세 관리를 함께 보세요.';
+  else if(s.back==='ache') backText='가끔 뻐근한 정도라면 허리 구간 지지와 적당한 쿠션의 균형이 좋습니다.';
+  else backText='허리는 건강한 편이라 쿠션 선호를 우선해도 괜찮습니다.';
+  rows.push({icon:'back', title:'허리', text:backText});
+
+  const parts=[];
+  if(s.back!=='healthy') parts.push('허리');
+  if(s.heat==='hot'||s.heat==='sweat') parts.push('땀과 열');
+  if(s.pet==='bed') parts.push('반려동물 위생');
+  if(s.posture==='side'||s.posture==='stomach') parts.push('수면 자세');
+  if(needSupport==='high') parts.push('체격');
+  const joined = parts.join(' · ');
+  const sizeClause = (s.pet==='bed' && plan.size==='SS')
+    ? `사이즈는 선택하신 ${SIZE_LABEL[plan.size]}(${plan.size})보다 한 단계 넓은 Q 이상을 권합니다.`
+    : `${SIZE_LABEL[plan.size]}(${plan.size}) 사이즈를 권합니다.`;
+  const summary = parts.length
+    ? `${joined}${josa(joined,'을','를')} 함께 고려하면, 쿠션은 ${plan.targetLabel} 쪽이 맞습니다. ${sizeClause}`
+    : `특별한 불편이 없다면 쿠션 선호를 우선하세요. ${plan.targetLabel} 쪽에 ${SIZE_LABEL[plan.size]}(${plan.size}) 사이즈를 권합니다.`;
+
+  return {rows, summary};
+}
+
+/* ---------- 추천 이유 ---------- */
+function buildReasons(m, plan){
+  const s=state, c=[];
+  const add=(w,t)=>{ if(t) c.push({w,t}); };
+  add(6, m.why.value);
+  if(s.back==='disk') add(12, m.why.back);
+  else if(s.back==='ache') add(9, m.why.back);
+  if(s.heat==='hot') add(11, m.why.heat);
+  else if(s.heat==='sweat') add(8, m.why.heat);
+  else if(s.heat==='cold') add(6, m.why.heat);
+  if(s.posture==='side') add(10, m.why.posture);
+  else if(s.posture==='stomach') add(9, m.why.posture);
+  if(s.weight>=82 || s.weight<=55) add(8, m.why.body);
+  if(s.persons==='kids') add(10, m.why.kids);
+  if(s.persons==='couple') add(7, m.why.dual);
+  if(s.firm==='auto') add(7, m.why.dual);
+
+  c.sort((a,b)=>b.w-a.w);
+  const out=[];
+  for(const x of c){
+    if(out.length>=2) break;
+    if(!out.includes(x.t)) out.push(x.t);
+  }
+  // 경도 문구
+  const fo = bestFirmOption(m, plan.target).opt;
+  let firmLine;
+  if(m.type==='motion') firmLine = `모션베드 + 매트리스 세트로, 리클라이닝과 스트레칭이 함께 됩니다.`;
+  else if(m.type==='massage') firmLine = `${fo.label.split(' · ')[0]} 구성으로, 잠잘 때는 안마 모듈이 숨어 단차가 적습니다.`;
+  else if(m.flexible && m.family==='smart') firmLine = `9단계 경도 조절로 ${plan.targetLabel}부터 탄탄한 단계까지 직접 맞출 수 있습니다.`;
+  else if(m.flexible) firmLine = `한 대로 두 가지 경도를 쓸 수 있어 ${plan.targetLabel} 쪽으로 시작하기 좋습니다.`;
+  else firmLine = `${fo.label} 타입으로 ${plan.targetLabel} 취향에 맞습니다.`;
+  out.unshift(firmLine);
+
+  out.push(m.spec);
+  return out.slice(0,3);
+}
+
+/* =========================================================
+   결과 화면
+   ========================================================= */
+const ICONS = {
+  support:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 17h18M5 17v-5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v5M9 10V7a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v3"/></svg>',
+  breath:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h11a3 3 0 1 0-3-3M3 15h15a3 3 0 1 1-3 3M3 12h8"/></svg>',
+  posture:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20v-3a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v3M8 11a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/><path d="M6 3h12"/></svg>',
+  back:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v18M12 7c-2 2-4 2-4 5M12 7c2 2 4 2 4 5M12 15c-2 2-3 2-3 4M12 15c2 2 3 2 3 4"/></svg>',
+  pet:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="7" cy="9" r="1.8"/><circle cx="12" cy="7" r="1.8"/><circle cx="17" cy="9" r="1.8"/><path d="M12 12c-2.2 0-4 1.6-4 3.4 0 1.4 1.1 2.4 2.6 2.4.8 0 1.4-.3 1.4-.3s.6.3 1.4.3c1.5 0 2.6-1 2.6-2.4C16 13.6 14.2 12 12 12z"/></svg>'
+};
+
+let currentPlan = null;
+
+function buildResult(){
+  const plan = buildPlan();
+  currentPlan = plan;
+  const m = plan.primary;
+  const price = priceOf(m, plan.size);
+  const fo = bestFirmOption(m, plan.target).opt;
+  const code = codeOf(m, plan.size, fo);
+  const analysis = buildAnalysis(plan);
+  const reasons = buildReasons(m, plan);
+
+  const chips = [
+    personChip(),
+    ...(state.pet && state.pet!=='none' ? [PET_LABEL[state.pet]] : []),
+    SIZE_LABEL[plan.size]+'('+plan.size+')',
+    state.height+'cm · '+state.weight+'kg',
+    BACK_LABEL[state.back], POSTURE_LABEL[state.posture], HEAT_LABEL[state.heat],
+    FAMILY_LABEL[state.family] + (state.family==='rm' ? '' : (state.frame==='yes' ? ' + 프레임' : ''))
+  ];
+
+  const frameHTML = frameBlock(plan, price, m);
+
+  $('#result-body').innerHTML = `
+    <div class="result-intro">
+      <div class="eyebrow">SLEEP DIAGNOSIS</div>
+      <h1>고객님께 맞는<br>매트리스를 찾았습니다.</h1>
+      <p>8단계 문진 결과를 수면 체형 분석과 추천 모델로 정리했습니다.</p>
+      <div class="answer-chips">${chips.map(c=>`<span>${c}</span>`).join('')}</div>
+    </div>
+
+    <div class="analysis">
+      <div class="analysis-top">
+        <div class="ttl">수면 체형 분석</div>
+        <h2>${plan.targetLabel} · ${SIZE_LABEL[plan.size]}</h2>
+        <div class="analysis-badges">
+          <div class="badge"><small>권장 경도</small><b>${plan.targetLabel}</b></div>
+          <div class="badge"><small>추천 사이즈</small><b>${SIZE_LABEL[plan.size]} (${plan.size})${(state.pet==='bed' && plan.size==='SS')?' → Q 이상':''}</b></div>
+          <div class="badge"><small>체격</small><b>${buildHintShort()}</b></div>
+        </div>
+      </div>
+      <div class="analysis-body">
+        ${analysis.rows.map(r=>`
+          <div class="arow">
+            <div class="ico">${ICONS[r.icon]}</div>
+            <div><b>${r.title}</b><p>${r.text}</p></div>
+          </div>`).join('')}
+        <p class="analysis-summary">${analysis.summary}</p>
+      </div>
+    </div>
+
+    ${petBlock(plan, m)}
+
+    <div class="section-cap"><span class="rank">1순위</span><h3>맞춤 추천 모델</h3></div>
+    <div class="pcard">
+      <div class="visual">
+        <span class="firm">${firmLabelOf(m, plan)}</span>
+        <img src="${m.img}" alt="${m.name}">
+      </div>
+      <div class="info">
+        <h3 class="name">${m.name}</h3>
+        <p class="code">${code}</p>
+        <div class="price">
+          <b>월 ${won(price.value)}원${price.exact?'':'~'}</b>
+          <span>${price.exact ? SIZE_LABEL[plan.size]+'('+plan.size+') 기준' : SIZE_LABEL[price.baseKey]+' 기준 시작가'}</span>
+        </div>
+        <p class="price-cap">코웨이 공식몰 ${m.asOf||'2026-11-26'} 조회 표시가 · 약정·관리유형·카드 조건에 따라 달라집니다.</p>
+        <ul class="reasons">
+          ${reasons.map(r=>`<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>${r}</span></li>`).join('')}
+        </ul>
+        ${careNote(m)}
+        <div class="note-box"><b>제휴카드 참고</b> — 렌탈료를 자동이체로 등록하면 월 최대 3만원 청구할인(신한카드 기준, 전월 실적 충족 시). 카드별 할인액과 실적 구간이 달라 상담에서 맞춰 드립니다.</div>
+      </div>
+    </div>
+
+    ${frameHTML}
+
+
+    <div class="section-cap"><span class="rank">대안</span><h3>함께 비교해 보세요</h3></div>
+    <div class="alts">
+      ${plan.alts.map(a=>altCard(a, plan)).join('')}
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="copy-btn">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        상담 결과 요약 복사
+      </button>
+      <a class="btn btn-outline" href="https://leyle2324-dev.github.io/coway-card/" target="_blank" rel="noopener">
+        코웨이 전체 명함 보기
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+      </a>
+      <button class="btn btn-ghost" id="restart-btn">처음부터 다시 진단</button>
+    </div>
+
+    <div class="result-foot">
+      코웨이 BEREX 매트리스 렌탈 상담 · <a href="tel:01094228307">010-9422-8307</a><br>
+      표시 금액은 코웨이 공식몰 조회 기준이며 실제 계약 조건(설치 환경·색상·관리유형·카드 실적·상담 시점 프로모션)에 따라 달라질 수 있습니다.<br>
+      본 진단은 상담 참고용으로, 의학적 진단·치료를 목적으로 하지 않습니다.
+    </div>
+  `;
+
+  $('#copy-btn').addEventListener('click', copySummary);
+}
+
+const PERSON_LABEL={solo:'혼자',couple:'둘이',kids:'아이와 함께'};
+const BACK_LABEL={healthy:'허리 건강',ache:'가끔 뻐근함',disk:'디스크·수술 이력'};
+const POSTURE_LABEL={back:'정자세',side:'옆으로',stomach:'엎드림·뒤척임'};
+const HEAT_LABEL={hot:'열·땀 많음',sweat:'땀 나는 편',cold:'추위 타는 편',normal:'보통'};
+const FAMILY_LABEL={general:'일반 매트리스',smart:'스마트 매트리스',rm:'R·M시리즈'};
+const PET_LABEL={none:'없음',indoor:'반려동물(침대 밖)',bed:'반려동물 동반'};
+
+function personChip(){ return PERSON_LABEL[state.persons] || '1인'; }
+function buildHintShort(){
+  const bmi = state.weight / Math.pow(state.height/100,2);
+  return bmi < 18.5 ? '마른 편' : bmi < 25 ? '보통' : bmi < 30 ? '든든한 편' : '무거운 편';
+}
+function careNote(m){
+  const s=state;
+  const petBed = s.pet==='bed';
+  const petAny = petBed || s.pet==='indoor';
+  const sweatK = (s.heat==='hot'||s.heat==='sweat'||s.persons==='kids');
+  let base;
+  if(m.type==='massage') base = `<div class="note-box"><b>관리 구성</b> — M시리즈는 프레임과 매트리스가 한 세트이며, 관리유형은 스페셜체인지·토탈케어 두 가지입니다. 커버·패드 교체가 포함되고, 토탈케어는 4개월 주기 방문 케어가 더해집니다.</div>`;
+  else if(m.type==='motion') base = `<div class="note-box"><b>관리 구성</b> — R시리즈는 프레임과 매트리스가 한 세트이고, 관리유형은 서비스프리·베이직케어·토탈케어 등에서 고릅니다. 표시 금액은 서비스프리 기준입니다.</div>`;
+  else if(petBed) base = sweatK
+    ? `<div class="note-box"><b>관리 팁</b> — 땀·열이 많은 편이라 흡습·배출이 좋은 커버와 방문 케어 주기를 함께 보시면 좋습니다.</div>`
+    : '';
+  else if(sweatK) base = `<div class="note-box"><b>관리 팁</b> — 땀·위생이 신경 쓰이면 커버 교체가 포함된 관리유형(토탈케어·스페셜체인지)이 유리합니다. 방문 케어 주기까지 상담에서 비교해 드립니다.</div>`;
+  else base = `<div class="note-box"><b>관리 팁</b> — 관리유형은 방문 케어 주기와 커버 교체 여부로 나뉩니다. 사용 패턴에 맞춰 상담에서 골라 드립니다.</div>`;
+  const petCareLabel = m.family==='rm'
+    ? '커버·패드 교체가 포함된 관리유형(토탈케어 등)'
+    : '커버 교체형 관리유형(스페셜체인지·토탈케어)';
+  const petLine = petBed
+    ? `<div class="note-box"><b>반려동물 위생 관리</b> — 함께 주무시면 ${petCareLabel}을 권합니다. 커버·패드 교체가 포함되어 털·오염 부담이 줄어듭니다. 함께 쓰는 침구는 자주 세탁하고 털을 털어내 주세요.</div>`
+    : petAny
+      ? `<div class="note-box"><b>반려동물 위생 관리</b> — 침대에 올라오지 않아도 털·먼지는 침구에 쌓입니다. 커버 세탁 주기와 커버 교체형 관리유형을 상담에서 함께 비교해 드립니다.</div>`
+      : '';
+  return base + petLine;
+}
+function petBlock(plan, m){
+  if(state.pet!=='bed') return '';
+  const ss = m.prices && m.prices.SS;
+  const q = m.prices && m.prices.Q;
+  let sizeLine;
+  if(plan.size==='SS'){
+    sizeLine = (ss && q)
+      ? `반려동물과 함께 주무시면 1인이라도 Q(1,500mm) 이상 여유 폭을 권합니다. SS(1,100mm)는 함께 눕기엔 좁습니다. 이 모델은 Q가 월 ${won(q)}원(SS 대비 +${won(q-ss)}원)입니다.`
+      : `반려동물과 함께 주무시면 1인이라도 Q(1,500mm) 이상 여유 폭을 권합니다. SS(1,100mm)는 함께 눕기엔 좁습니다.`;
+  } else if(plan.size==='Q'){
+    sizeLine = `Q(1,500mm) 폭이면 반려동물이 함께 눕기에도 여유가 있습니다.`;
+  } else {
+    sizeLine = `${SIZE_LABEL[plan.size]}(${plan.size}) 폭이라 반려동물과 함께 눕기에 충분합니다.`;
+  }
+  const frameLine = m.family==='rm'
+    ? `R·M시리즈는 프레임이 세트로 포함되어 높이·구성은 모델별로 상담에서 확인해 드립니다.`
+    : (state.frame==='yes'
+        ? `프레임은 낮은 모던 파운데이션이라 반려동물이 오르내리기 편하고 커버를 들어내 관리하기도 쉽습니다. 아래 프레임 구성에 포함되어 있습니다.`
+        : `프레임을 함께 쓰신다면 낮은 모던 파운데이션(SS 월 ${won(FRAMES.foundation.prices.SS)}원)이 반려동물이 오르내리기 편하고 커버 관리도 수월합니다.`);
+  return `<div class="note-box pet-tip">
+    <b>${ICONS.pet}반려동물과 함께 쓰는 침대 팁</b>
+    <p>${sizeLine}</p>
+    <p>${frameLine}</p>
+  </div>`;
+}
+function frameBlock(plan, price, m){
+  if(m.family==='rm'){
+    if(m.type==='motion') return `<div class="frame-box"><b>프레임 구성</b><p>R시리즈는 모션베드 프레임과 매트리스가 한 세트입니다. 표시 금액은 무헤드 기준이며, 헤드보드 선택과 사이즈별 금액은 상담에서 확인해 드립니다.</p></div>`;
+    return `<div class="frame-box"><b>프레임 구성</b><p>M시리즈는 프레임과 매트리스가 한 세트입니다. 무헤드(CFQ-FRAME01)가 기본이고, 코지·볼륨·모던라운드 헤드보드는 월 13,000~19,000원이 더해집니다.</p></div>`;
+  }
+  if(state.frame!=='yes') return '';
+  const f = FRAMES.foundation;
+  const fp = f.prices[plan.size] || f.prices.Q;
+  const total = price.exact ? price.value + fp : null;
+  return `<div class="frame-box">
+    <b>프레임 포함 구성</b>
+    <p>${f.name}(${plan.size}) 월 ${won(fp)}원을 더하면 매트리스와 같은 색감으로 맞출 수 있습니다. 헤드보드가 있는 볼륨 프레임은 월 ${won(FRAMES.volume.prices[plan.size]||FRAMES.volume.prices.Q)}원입니다.</p>
+    ${total ? `<div class="sum">합산 예시 · 월 ${won(total)}원 (매트리스 ${won(price.value)} + 프레임 ${won(fp)})</div>` : ''}
+  </div>`;
+}
+function altCard(a, plan){
+  const p = priceOf(a, plan.size);
+  const reason = altReason(a, plan, p);
+  return `<div class="alt">
+    <div class="thumb"><img src="${a.img}" alt="${a.name}"></div>
+    <div class="body">
+      <b>${a.name}</b>
+      <p>${reason}</p>
+      <div class="p">월 ${won(p.value)}원${p.exact?'':'~'} <span class="psize">· ${p.exact?plan.size+' 기준':p.baseKey+' 기준'}</span></div>
+    </div>
+  </div>`;
+}
+function altReason(a, plan, p){
+  const s=state;
+  if(a.sleepSync) return `수면을 기록하고 분석하는 슬립 싱크 구성도 있습니다.`;
+  if(a.family==='smart' && state.family!=='smart'){
+    if(s.firm==='auto'||s.back!=='healthy') return '경도가 고민되거나 허리 관리가 필요하면 9단계 조절형도 비교해 보세요.';
+    return '경도를 직접 바꿔 보고 싶다면 스마트 매트리스가 대안입니다.';
+  }
+  if(a.family==='general' && state.family==='smart') return `${a.firm[0].label} 고정 경도로 월 ${won(p.value)}원${p.exact?'':'~'} — 예산을 낮춘 대안입니다.`;
+  if(a.id==='s6') return '9단계 경도 조절은 같고 스트레칭셀·자세 조절을 덜어낸 구성입니다.';
+  if(a.id==='s8') return '스트레칭셀과 스마트 자세 조절까지 더한 상위 구성입니다.';
+  if(a.id==='s6-sync') return '경도 조절에 수면 기록까지 더한 구성입니다.';
+  if(a.id==='s8-sync') return '수면 기록과 자세 조절을 함께 갖춘 구성입니다.';
+  if(a.type==='massage') return '안마·온열까지 원하면 같은 퀸 기준으로 비교해 볼 수 있습니다.';
+  if(a.type==='motion') return '허리 스트레칭과 리클라이닝을 함께 원하면 모션베드가 대안입니다.';
+  if(a.id==='signature'||a.id==='signature-fire') return '더 부드럽고 감싸는 촉감을 원하면 프리미엄 소프트 라인도 있습니다.';
+  if(a.id==='hybrid3') return '땀이 많은 편이라면 라텍스 통기 구조도 함께 비교해 보세요.';
+  if(a.id==='rounaire') return '7존 지지에 메모리폼 감싸움을 더한 모델입니다.';
+  if(a.id==='prime') return '5존 폼 탑퍼로 허리·골반을 나눠 받치는 모델입니다.';
+  if(a.id==='modi') return '하드·미디엄을 같은 값으로 고를 수 있습니다.';
+  if(a.id==='elite') return '가장 단단한 지지력을 원할 때 비교할 수 있습니다.';
+  return '체형과 예산에 따라 함께 비교해 볼 만한 모델입니다.';
+}
+
+/* ---------- 요약 복사 ---------- */
+function buildSummaryText(){
+  const plan = currentPlan;
+  const m = plan.primary;
+  const price = priceOf(m, plan.size);
+  const fo = bestFirmOption(m, plan.target).opt;
+  const code = codeOf(m, plan.size, fo);
+  const L=[];
+  L.push('[BEREX 수면·매트리스 맞춤 진단]');
+  L.push(`· 사용: ${personChip()} / 희망 사이즈: ${SIZE_LABEL[plan.size]}(${plan.size})`);
+  L.push(`· 체격: ${state.height}cm · ${state.weight}kg`);
+  L.push(`· 허리: ${BACK_LABEL[state.back]}`);
+  L.push(`· 수면 자세: ${POSTURE_LABEL[state.posture]}`);
+  L.push(`· 열감·땀: ${HEAT_LABEL[state.heat]}`);
+  L.push(`· 반려동물: ${PET_LABEL[state.pet]||'없음'}`);
+  L.push(`· 선호 쿠션: ${firmPrefLabel()}`);
+  L.push(`· 구성: ${FAMILY_LABEL[state.family]}${state.family==='rm'?'':(state.frame==='yes'?' + 프레임 포함':' (매트리스만)')}`);
+  L.push('');
+  L.push((state.pet==='bed' && plan.size==='SS')
+    ? `▶ 권장: ${plan.targetLabel} · 퀸(Q) 이상 (선택: ${SIZE_LABEL[plan.size]} ${plan.size})`
+    : `▶ 권장: ${plan.targetLabel} · ${SIZE_LABEL[plan.size]}(${plan.size})`);
+  L.push(`▶ 1순위: ${m.name} (${code})`);
+  L.push(`   월 ${won(price.value)}원${price.exact?'':'~'} · ${price.exact?SIZE_LABEL[plan.size]+' 기준':SIZE_LABEL[price.baseKey]+' 기준 시작가'}`);
+  L.push(`   - ${firmLabelOf(m, plan)} / ${m.spec}`);
+  buildReasons(m, plan).slice(0,2).forEach(r=>L.push(`   - ${r}`));
+  if(state.pet==='bed'){
+    L.push(`   - 관리: ${m.family==='rm' ? '토탈케어 등 커버·패드 교체 포함 관리유형 권장' : '커버 교체형(스페셜체인지·토탈케어) 권장'} · 털·오염 위생 관리`);
+    if(plan.size==='SS') L.push(`   - 사이즈 참고: SS(1,100mm)보다 Q(1,500mm) 이상 권장 (반려동물 동반)`);
+  }
+  L.push('▶ 대안:');
+  plan.alts.forEach(a=>{
+    const p=priceOf(a, plan.size);
+    L.push(`   - ${a.name} · 월 ${won(p.value)}원${p.exact?'':'~'}`);
+  });
+  L.push('');
+  L.push('※ 코웨이 공식몰 ' + (m.asOf||'2026-11-26') + ' 조회 표시가 기준. 실제 조건에 따라 달라질 수 있습니다.');
+  return L.join('\n');
+}
+function firmPrefLabel(){
+  return {hard:'탄탄한 하드',medium:'적당한 미디엄',soft:'폭신한 소프트',auto:'전문가 추천'}[state.firm]||'—';
+}
+async function copySummary(){
+  const text = buildSummaryText();
+  let ok = false;
+  try{
+    if(navigator.clipboard && window.isSecureContext){
+      await navigator.clipboard.writeText(text);
+      ok = true;
+    }
+  }catch(e){ ok = false; }
+  if(!ok){
+    try{
+      const ta=document.createElement('textarea');
+      ta.value=text; ta.setAttribute('readonly','');
+      ta.style.position='fixed'; ta.style.left='-9999px'; ta.style.top='0';
+      document.body.appendChild(ta);
+      ta.focus(); ta.select(); ta.setSelectionRange(0, text.length);
+      ok = document.execCommand('copy');
+      ta.remove();
+    }catch(e){ ok = false; }
+  }
+  if(ok){ toast('상담 요약을 복사했어요'); }
+  else { openSummarySheet(text); }
+}
+function openSummarySheet(text){
+  let wrap = $('#summary-sheet');
+  if(!wrap){
+    wrap = document.createElement('div');
+    wrap.className = 'sheet-wrap';
+    wrap.id = 'summary-sheet';
+    wrap.innerHTML = `
+      <div class="sheet">
+        <div class="sheet-head"><b>상담 결과 요약</b><button id="sheet-close">닫기</button></div>
+        <p class="sheet-hint">아래 내용을 길게 눌러 전체 선택한 뒤 복사해 주세요.</p>
+        <div class="sheet-text" id="sheet-text"></div>
+        <button class="btn btn-primary" id="sheet-copy">다시 복사 시도</button>
+      </div>`;
+    document.body.appendChild(wrap);
+    wrap.addEventListener('click', e=>{
+      if(e.target===wrap || e.target.id==='sheet-close') wrap.classList.remove('on');
+    });
+    $('#sheet-copy').addEventListener('click', async ()=>{
+      const el = $('#sheet-text');
+      const range = document.createRange(); range.selectNodeContents(el);
+      const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
+      let done=false;
+      try{ done = document.execCommand('copy'); }catch(e){ done=false; }
+      if(!done && navigator.clipboard){ try{ await navigator.clipboard.writeText(el.textContent); done=true; }catch(e){} }
+      toast(done ? '복사했어요' : '길게 눌러 직접 복사해 주세요');
+    });
+  }
+  $('#sheet-text').textContent = text;
+  wrap.classList.add('on');
+  $('#sheet-text').scrollTop = 0;
+}
+let toastTimer=null;
+function toast(msg){
+  const t=$('#toast'); t.textContent=msg; t.classList.add('on');
+  clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove('on'),1900);
+}
+
+/* ---------- PWA ---------- */
+if('serviceWorker' in navigator && location.protocol.startsWith('http')){
+  window.addEventListener('load',()=>{ navigator.serviceWorker.register('sw.js').catch(()=>{}); });
+}
+</script>
+</body>
+</html>

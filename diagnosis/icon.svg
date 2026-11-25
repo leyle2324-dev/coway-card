@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="BEREX 수면 진단">
+  <rect width="512" height="512" rx="112" fill="#153B31"/>
+  <rect x="52" y="52" width="408" height="408" rx="76" fill="none" stroke="#B08A54" stroke-width="2.5" opacity="0.5"/>
+  <text x="256" y="286" font-family="Georgia, 'Times New Roman', serif" font-size="206" font-weight="600" fill="#F7F3E8" text-anchor="middle" letter-spacing="4">B</text>
+  <g stroke="#B08A54" stroke-width="7" stroke-linecap="round">
+    <line x1="176" y1="342" x2="336" y2="342"/>
+    <line x1="196" y1="368" x2="316" y2="368" opacity="0.8"/>
+    <line x1="216" y1="394" x2="296" y2="394" opacity="0.55"/>
+  </g>
+</svg>
