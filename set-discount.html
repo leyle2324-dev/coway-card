@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#0e2c4a">
+<title>세트 구성 · 월 합산 금액 확인</title>
+<meta name="description" content="코웨이 제품 167종 중 원하는 제품을 골라 월 렌탈료 합산 금액을 바로 확인하세요. 세부 세트 할인과 최종 조건은 전문상담사와 상의해 주세요.">
+<meta property="og:title" content="세트 구성 · 월 합산 금액 확인">
+<meta property="og:description" content="원하는 제품들을 골라 월 합산 금액을 확인하세요. 세부 세트 할인은 전문상담사와 상의해 주세요.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<style>
+  :root{
+    --navy:#0e2c4a;
+    --navy-deep:#0a2036;
+    --navy-soft:#1b4a75;
+    --accent:#0a7ac2;
+    --green:#12816d;
+    --ink:#14212e;
+    --muted:#5e6f80;
+    --line:#e3e9f0;
+    --bg:#f4f7fa;
+    --card:#ffffff;
+    --radius:16px;
+    --shadow:0 5px 16px rgba(14,44,74,.08);
+    --bar-h:74px;
+    --tb:54px;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", "Helvetica Neue", Arial, sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    padding-bottom:calc(var(--bar-h) + env(safe-area-inset-bottom) + 14px);
+    word-break:keep-all;
+    overflow-wrap:anywhere;
+  }
+  a{color:inherit;}
+  .wrap{max-width:520px;margin:0 auto;padding:0 0 20px;}
+
+  /* ── 상단 바 ── */
+  .topbar{
+    position:sticky;top:0;z-index:30;
+    display:flex;align-items:center;gap:8px;
+    padding:calc(8px + env(safe-area-inset-top)) 14px 8px;
+    background:rgba(255,255,255,.95);
+    -webkit-backdrop-filter:blur(10px);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-back{
+    display:inline-flex;align-items:center;gap:4px;
+    min-height:38px;padding:0 8px 0 2px;
+    font-size:14.5px;font-weight:700;color:var(--navy);
+    text-decoration:none;
+  }
+  .topbar-title{font-size:14.5px;font-weight:700;color:var(--ink);}
+  .topbar-sp{flex:1;}
+
+  /* ── 페이지 히어로 ── */
+  .phero{
+    margin:0 0 4px;
+    padding:22px 20px 20px;
+    background:linear-gradient(160deg, var(--navy-soft) 0%, var(--navy) 52%, var(--navy-deep) 100%);
+    color:#fff;
+    border-radius:0 0 22px 22px;
+  }
+  .phero .eyebrow{
+    margin:0 0 8px;
+    font-size:11.5px;letter-spacing:.12em;font-weight:700;
+    color:rgba(255,255,255,.72);text-transform:uppercase;
+  }
+  .phero h1{
+    margin:0;
+    font-size:24px;line-height:1.34;font-weight:800;letter-spacing:-.01em;
+  }
+  .phero p.lead{
+    margin:9px 0 0;
+    font-size:13.5px;line-height:1.62;color:rgba(255,255,255,.86);
+  }
+  .phero-chips{display:flex;flex-wrap:wrap;gap:6px;margin:13px 0 0;}
+  .phero-chips span{
+    display:inline-flex;align-items:center;
+    padding:4px 10px;border-radius:999px;
+    background:rgba(255,255,255,.13);
+    border:1px solid rgba(255,255,255,.22);
+    font-size:12px;font-weight:700;color:#fff;
+  }
+  .phero-note{
+    margin:12px 0 0;padding:8px 10px;
+    border-radius:9px;
+    background:rgba(0,0,0,.16);
+    border:1px solid rgba(255,255,255,.14);
+    font-size:11.5px;line-height:1.55;color:rgba(255,255,255,.82);
+  }
+
+  /* ── 합산 요약 (상단 고정) ── */
+  .sumbar{
+    position:sticky;top:var(--tb,54px);z-index:18;
+    display:flex;align-items:center;gap:10px;
+    padding:10px 16px;
+    background:var(--card);
+    border-bottom:1px solid var(--line);
+    box-shadow:0 4px 12px rgba(14,44,74,.06);
+  }
+  .sumbar-in{flex:1;min-width:0;display:flex;align-items:baseline;gap:7px;flex-wrap:wrap;}
+  .sumbar-label{
+    font-size:12px;font-weight:800;color:var(--muted);letter-spacing:.01em;
+    font-variant-numeric:tabular-nums;
+  }
+  .sumbar-label b{color:var(--navy);font-size:13px;}
+  .sumbar-total{
+    font-size:19px;font-weight:800;color:var(--accent);
+    letter-spacing:-.02em;line-height:1.2;
+    font-variant-numeric:tabular-nums;
+  }
+  .sumbar.is-empty .sumbar-total{font-size:13px;font-weight:700;color:var(--muted);letter-spacing:0;}
+  .sumbar-go{
+    flex:0 0 auto;
+    display:inline-flex;align-items:center;gap:3px;
+    min-height:36px;padding:0 11px;border-radius:10px;
+    background:#eef7ff;border:1px solid #cfe3f3;
+    color:#0869a8;font-size:12.5px;font-weight:800;text-decoration:none;
+    white-space:nowrap;
+  }
+
+  /* ── 섹션 ── */
+  .sec{padding:22px 16px 0;}
+  .sec-head{margin:0 0 11px;}
+  .sec-head h2{
+    margin:0;font-size:19px;color:var(--navy);letter-spacing:-.01em;
+    display:flex;align-items:baseline;gap:7px;
+  }
+  .sec-head h2 span{font-size:12.5px;font-weight:700;color:var(--muted);}
+  .sec-head p{margin:4px 0 0;font-size:13px;color:var(--muted);line-height:1.55;}
+  .sec-head-row{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+  .reset{
+    flex:0 0 auto;
+    min-height:32px;padding:0 10px;border-radius:9px;
+    background:#fff;border:1px solid var(--line);
+    font-family:inherit;font-size:12px;font-weight:700;color:var(--muted);
+    cursor:pointer;-webkit-tap-highlight-color:transparent;
+  }
+  .reset:focus-visible{outline:3px solid #8fd0ff;outline-offset:2px;}
+
+  /* ── 선택 목록 + 합산 금액 ── */
+  .sumbox{
+    background:linear-gradient(180deg,#ffffff 0%,#f5faff 100%);
+    border:1px solid #cfe3f3;border-radius:var(--radius);
+    box-shadow:0 6px 20px rgba(10,122,194,.11);
+    padding:14px 15px 14px;
+  }
+  .sumbox-top{
+    display:flex;align-items:flex-end;justify-content:space-between;gap:10px;
+    padding:0 0 11px;border-bottom:1px solid #e4eefa;
+  }
+  .sumbox-top .t{font-size:13px;font-weight:800;color:#3f5d75;line-height:1.5;}
+  .sumbox-top .t b{display:block;font-size:19px;font-weight:800;color:var(--navy);letter-spacing:-.02em;font-variant-numeric:tabular-nums;}
+  .sumbox-amount{
+    flex:0 0 auto;text-align:right;
+    font-size:25px;font-weight:800;color:var(--accent);
+    letter-spacing:-.03em;line-height:1.15;
+    font-variant-numeric:tabular-nums;
+  }
+  .sumbox-amount small{display:block;font-size:10.5px;font-weight:700;color:#7b93a8;letter-spacing:0;line-height:1.4;}
+  .sumbox-amount.is-zero{color:#9aabb9;}
+  .selist{list-style:none;margin:0;padding:0;}
+  .selist li{
+    display:flex;align-items:center;gap:10px;
+    padding:9px 0;border-bottom:1px dashed #dbe8f4;
+  }
+  .selist li:last-child{border-bottom:0;padding-bottom:2px;}
+  .selist img{
+    flex:0 0 auto;width:44px;height:44px;border-radius:10px;
+    background:#fff;border:1px solid #e3edf6;object-fit:contain;
+  }
+  .selist .info{flex:1;min-width:0;}
+  .selist .nm{font-size:13px;font-weight:800;color:var(--ink);line-height:1.4;}
+  .selist .md{font-size:11px;color:var(--muted);line-height:1.4;margin-top:1px;}
+  .selist .pr{
+    flex:0 0 auto;font-size:13px;font-weight:800;color:var(--navy);
+    font-variant-numeric:tabular-nums;letter-spacing:-.01em;
+  }
+  .selist .pr.is-ask{color:#a8501c;font-size:11.5px;}
+  .selist .rm{
+    flex:0 0 auto;display:flex;align-items:center;justify-content:center;
+    width:30px;height:30px;border-radius:9px;
+    background:#fff;border:1px solid var(--line);color:#8296a8;
+    cursor:pointer;-webkit-tap-highlight-color:transparent;
+  }
+  .selist .rm:focus-visible{outline:3px solid #8fd0ff;outline-offset:2px;}
+  .selist-empty{
+    margin:0;padding:12px 0 2px;
+    font-size:12.5px;color:var(--muted);line-height:1.6;text-align:center;
+  }
+  .sum-ask{
+    margin:9px 0 0;padding:8px 10px;border-radius:9px;
+    background:#fdf6ec;border:1px solid #f0ddc8;
+    font-size:11.5px;font-weight:700;color:#8a5a24;line-height:1.55;
+  }
+
+  /* ── 필수 안내 문구 ── */
+  .deal-note{
+    margin:12px 0 0;padding:11px 12px 11px 13px;
+    border-radius:11px;
+    background:#eaf4ff;
+    border:1px solid #cbe3f7;
+    border-left:4px solid var(--accent);
+    font-size:12.5px;font-weight:700;color:#1d4e74;line-height:1.62;
+  }
+  .deal-note b{color:#083f66;font-weight:800;}
+
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:11px 0 0;}
+  .dbtn{
+    display:flex;align-items:center;justify-content:center;gap:6px;
+    min-height:48px;padding:0 8px;border-radius:11px;
+    background:#eef5fb;border:1px solid #cfe3f3;color:var(--navy);
+    font-size:14.5px;font-weight:800;text-decoration:none;text-align:center;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .dbtn:active{background:#e2eefa;}
+  .dbtn:focus-visible{outline:3px solid #8fd0ff;outline-offset:2px;}
+  .dbtn-call{background:var(--navy);border-color:var(--navy);color:#fff;}
+  .dbtn-call:active{background:#0a2238;}
+
+  /* ── 검색 · 카테고리 ── */
+  .toolbar{margin:0 0 10px;}
+  .searchbox{
+    display:flex;align-items:center;gap:8px;
+    height:48px;padding:0 13px;
+    background:#fff;border:1.5px solid #cbe0f2;border-radius:12px;
+  }
+  .searchbox:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px rgba(10,122,194,.12);}
+  .searchbox svg{flex:0 0 auto;color:#8aa2b6;}
+  .searchbox input{
+    flex:1;min-width:0;border:0;outline:none;background:transparent;
+    font-family:inherit;font-size:15px;font-weight:600;color:var(--ink);
+    padding:0;
+  }
+  .searchbox input::placeholder{color:#9aabb9;font-weight:500;}
+  .tabs{
+    display:flex;gap:6px;margin:10px -16px 0;padding:0 16px 3px;
+    overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;
+  }
+  .tabs::-webkit-scrollbar{display:none;}
+  .tab{
+    flex:0 0 auto;
+    display:inline-flex;align-items:center;gap:4px;
+    min-height:38px;padding:0 12px;border-radius:999px;
+    background:#fff;border:1px solid var(--line);
+    font-family:inherit;font-size:13px;font-weight:700;color:#3f4e5e;
+    white-space:nowrap;cursor:pointer;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .tab i{
+    font-style:normal;font-size:11px;font-weight:800;color:#8ba0b2;
+    font-variant-numeric:tabular-nums;
+  }
+  .tab.is-active{background:var(--navy);border-color:var(--navy);color:#fff;}
+  .tab.is-active i{color:rgba(255,255,255,.72);}
+  .tab:focus-visible{outline:3px solid #8fd0ff;outline-offset:2px;}
+  .countline{
+    margin:12px 0 8px;font-size:12px;font-weight:700;color:var(--muted);
+    font-variant-numeric:tabular-nums;
+  }
+
+  /* ── 제품 목록 ── */
+  .plist{list-style:none;margin:0;padding:0;display:grid;gap:8px;}
+  .pitem{
+    display:grid;grid-template-columns:60px 1fr auto;align-items:center;gap:11px;
+    padding:10px 11px;
+    background:var(--card);border:1px solid var(--line);border-radius:13px;
+    box-shadow:0 3px 10px rgba(14,44,74,.05);
+  }
+  .pitem[hidden]{display:none;}
+  .pitem.is-on{border-color:#9dcbf0;background:#f7fbff;box-shadow:0 4px 14px rgba(10,122,194,.12);}
+  .pitem .th{
+    width:60px;height:60px;border-radius:11px;object-fit:contain;
+    background:#f7fafd;border:1px solid #eaf1f8;
+  }
+  .pitem .bd{min-width:0;}
+  .pitem .nm{
+    margin:0;font-size:13.5px;font-weight:800;color:var(--ink);
+    line-height:1.4;letter-spacing:-.01em;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  }
+  .pitem .md{margin:2px 0 0;font-size:11px;color:var(--muted);line-height:1.4;}
+  .pitem .pr{
+    margin:3px 0 0;font-size:13px;font-weight:800;color:var(--navy);
+    font-variant-numeric:tabular-nums;letter-spacing:-.01em;
+  }
+  .pitem .pr.is-ask{
+    display:inline-block;font-size:10.5px;font-weight:800;color:#a8501c;
+    background:#fdf6ec;border:1px solid #f0ddc8;border-radius:6px;
+    padding:0 6px;line-height:1.75;
+  }
+
+  .noresult{
+    margin:0;padding:18px 14px;border-radius:13px;
+    background:var(--card);border:1px dashed #cfdde9;
+    font-size:12.5px;color:var(--muted);line-height:1.65;text-align:center;
+  }
+  .noresult b{color:var(--navy);font-weight:800;}
+  .noresult[hidden]{display:none;}
+
+  /* ── 담기 버튼 ── */
+  .addbtn{
+    flex:0 0 auto;
+    display:inline-flex;align-items:center;justify-content:center;gap:3px;
+    min-width:64px;height:36px;padding:0 10px;border-radius:10px;
+    background:#eef7ff;border:1px solid #bcdcf5;color:#0869a8;
+    font-family:inherit;font-size:12.5px;font-weight:800;
+    cursor:pointer;-webkit-tap-highlight-color:transparent;
+    font-variant-numeric:tabular-nums;
+  }
+  .addbtn:active{background:#e0f0fd;}
+  .addbtn:focus-visible{outline:3px solid #8fd0ff;outline-offset:2px;}
+  .addbtn.is-on{background:var(--navy);border-color:var(--navy);color:#fff;}
+
+  /* ── 안내 카드 ── */
+  .notecard{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:15px 16px 14px;
+  }
+  .notecard h3{margin:0 0 8px;font-size:15.5px;font-weight:800;color:var(--navy);line-height:1.5;}
+  .notecard ul{margin:0;padding:0;list-style:none;}
+  .notecard li{
+    position:relative;padding-left:13px;margin:6px 0;
+    font-size:13px;line-height:1.62;color:#3f4e5e;
+  }
+  .notecard li::before{
+    content:"";position:absolute;left:2px;top:.62em;
+    width:5px;height:5px;border-radius:50%;background:#b9cfe2;
+  }
+  .notecard li b{color:var(--navy);font-weight:800;}
+  .fine{font-size:11.5px;color:var(--muted);margin:9px 0 0;line-height:1.62;}
+
+  .src{
+    margin:14px 4px 0;font-size:11.5px;color:var(--muted);
+    text-align:center;line-height:1.6;
+  }
+
+  /* ── 하단 안내 ── */
+  .foot{
+    margin:22px 16px 0;padding:18px 16px;
+    background:var(--card);border:1px solid var(--line);
+    border-radius:var(--radius);text-align:center;
+  }
+  .foot-title{margin:0 0 9px;font-size:15.5px;font-weight:800;color:var(--navy);line-height:1.55;}
+  .foot a{display:inline-block;min-height:40px;line-height:30px;padding:5px 4px;color:var(--navy);text-decoration:none;font-weight:800;}
+  .foot-note{margin:0 0 6px;font-size:12.5px;color:var(--muted);line-height:1.65;}
+  .foot-note:last-child{margin-bottom:0;}
+
+  /* ── 하단 상담 바 ── */
+  .callbar{
+    position:fixed;left:0;right:0;bottom:0;z-index:25;
+    display:grid;grid-template-columns:1fr 1fr;gap:8px;
+    padding:9px 12px calc(9px + env(safe-area-inset-bottom));
+    background:rgba(255,255,255,.94);
+    -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+    border-top:1px solid var(--line);
+  }
+  .cbtn{
+    display:flex;align-items:center;justify-content:center;gap:7px;
+    min-height:52px;border-radius:12px;
+    font-size:16px;font-weight:800;text-decoration:none;
+    border:1px solid transparent;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .cbtn-call{background:var(--navy);color:#fff;}
+  .cbtn-sms{background:#fff;color:var(--navy);border-color:#b9d2e6;}
+
+  @media (min-width:600px){
+    .callbar{max-width:520px;margin:0 auto;border-radius:16px 16px 0 0;border:1px solid var(--line);border-bottom:0;}
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ink:#e9f0f7;--muted:#9fb0c1;--line:#243446;--bg:#0b131c;--card:#121d29;
+    }
+    body{background:var(--bg);color:var(--ink);}
+    .topbar{background:rgba(13,22,32,.95);}
+    .topbar-title{color:#dce9f6;}
+    .topbar-back{color:#cfe3f5;}
+    .phero{background:linear-gradient(160deg,#16456e 0%,#0d2b47 50%,#081a2b 100%);}
+    .sumbar{background:var(--card);border-bottom-color:var(--line);box-shadow:none;}
+    .sumbar-label b{color:#dce9f6;}
+    .sumbar-total{color:#8ccbf7;}
+    .sumbar.is-empty .sumbar-total{color:#9fb0c1;}
+    .sumbar-go{background:#12304a;border-color:#23516f;color:#8ccbf7;}
+    .sec-head h2,.notecard h3{color:#dce9f6;}
+    .reset{background:#121d29;border-color:var(--line);color:#9fb0c1;}
+    .sumbox{background:linear-gradient(180deg,#121d29 0%,#0f1a26 100%);border-color:#23516f;}
+    .sumbox-top{border-bottom-color:#243446;}
+    .sumbox-top .t{color:#a9bccd;}
+    .sumbox-top .t b{color:#dce9f6;}
+    .sumbox-amount{color:#8ccbf7;}
+    .sumbox-amount small{color:#8fa3b5;}
+    .selist li{border-bottom-color:#243446;}
+    .selist img{background:#0b1b28;border-color:#243446;}
+    .selist .nm{color:#eef5fb;}
+    .selist .pr{color:#dce9f6;}
+    .selist .rm{background:#121d29;border-color:#243446;color:#94a8ba;}
+    .sum-ask{background:#241a12;border-color:#3d2c1e;color:#d5ab86;}
+    .deal-note{background:#12304a;border-color:#23516f;border-left-color:#3a86bd;color:#bfe0f8;}
+    .deal-note b{color:#eaf5ff;}
+    .dbtn{background:#1a3247;border-color:#2a4a66;color:#e9f0f7;}
+    .dbtn-call{background:#1b4a75;border-color:#1b4a75;}
+    .searchbox{background:#0b1b28;border-color:#23516f;}
+    .searchbox input{color:#e9f0f7;}
+    .tab{background:#121d29;border-color:var(--line);color:#c3d1de;}
+    .tab i{color:#8296a8;}
+    .tab.is-active{background:#1b4a75;border-color:#2f6f9f;color:#f2f8ff;}
+    .pitem{background:var(--card);border-color:var(--line);box-shadow:none;}
+    .pitem.is-on{background:#0f1f2d;border-color:#3a86bd;}
+    .pitem .th{background:#0b1b28;border-color:#243446;}
+    .pitem .nm{color:#eef5fb;}
+    .pitem .pr{color:#dce9f6;}
+    .pitem .pr.is-ask{background:#241a12;border-color:#3d2c1e;color:#d5ab86;}
+    .noresult{background:var(--card);border-color:#2b3f52;color:#9fb0c1;}
+    .noresult b{color:#dce9f6;}
+    .addbtn{background:#12304a;border-color:#23516f;color:#8ccbf7;}
+    .addbtn.is-on{background:#1b4a75;border-color:#3a86bd;color:#f2f8ff;}
+    .notecard li,.notecard p{color:#c3d1de;}
+    .notecard li b{color:#dce9f6;}
+    .foot-title{color:#dce9f6;}
+    .foot a{color:#cfe3f5;}
+    .callbar{background:rgba(13,22,32,.96);}
+    .cbtn-sms{background:#16232f;color:#dce9f6;border-color:#2a4a66;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="topbar" aria-label="페이지 이동">
+  <a class="topbar-back" href="index.html">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+    명함
+  </a>
+  <span class="topbar-sp"></span>
+  <span class="topbar-title">세트 구성</span>
+  <span class="topbar-sp"></span>
+  <a class="topbar-back" href="tel:01094228307" aria-label="전화 상담">상담</a>
+</nav>
+
+<main class="wrap">
+
+  <header class="phero">
+    <p class="eyebrow">세트 구성</p>
+    <h1>원하는 제품을 골라<br>월 합산 금액을 확인하세요</h1>
+    <p class="lead">정수기·공기청정기·비데·침대·안마의자까지 코웨이 제품 167종 중에서 필요한 제품을 담으면, 선택한 제품의 월 렌탈료가 바로 합산됩니다.</p>
+    <div class="phero-chips">
+      <span>제품 167종</span>
+      <span>실시간 합산</span>
+      <span>상담으로 최종 확인</span>
+    </div>
+    <p class="phero-note">표시 금액은 코웨이닷컴 기준 월 렌탈료입니다 · 세부 세트 할인은 상담으로 안내해 드립니다</p>
+  </header>
+
+  <div class="sumbar is-empty" id="sumbar" aria-live="polite">
+    <div class="sumbar-in">
+      <span class="sumbar-label" id="sumbar-label">담은 제품 <b>0</b>개</span>
+      <span class="sumbar-total" id="sumbar-total">제품을 담으면 합산 금액이 표시됩니다</span>
+    </div>
+    <a class="sumbar-go" href="#pick">제품 고르기</a>
+  </div>
+
+  <section class="sec" id="selected" aria-labelledby="sel-h">
+    <div class="sec-head sec-head-row">
+      <div>
+        <h2 id="sel-h">선택한 제품 <span id="sel-count">0개</span></h2>
+        <p>담은 제품의 월 렌탈료를 합산한 금액입니다.</p>
+      </div>
+      <button class="reset" type="button" id="reset-btn" hidden>전체 삭제</button>
+    </div>
+
+    <div class="sumbox">
+      <div class="sumbox-top">
+        <span class="t">
+          <b id="sum-people">0개 선택</b>
+          선택한 제품 월 합산
+        </span>
+        <span class="sumbox-amount" id="sum-total">0원<small>월 기준</small></span>
+      </div>
+
+      <ul class="selist" id="selist" aria-live="polite"></ul>
+      <p class="selist-empty" id="selist-empty">아직 담은 제품이 없습니다.<br>아래에서 제품을 골라 <b>담기</b>를 눌러 보세요.</p>
+      <p class="sum-ask" id="sum-ask" hidden></p>
+
+      <p class="deal-note" id="deal-note">세부 세트 구성 할인 및 최종 조건은 확인 시 <b>전문상담사와 상의</b>해 주세요.</p>
+
+      <div class="duo">
+        <a class="dbtn dbtn-call" href="tel:01094228307">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6.4 6.4l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg>
+          전화 상담
+        </a>
+        <a class="dbtn" href="sms:01094228307">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.9 9.9 0 0 1-3.8-.8L3 21l1.9-4.6a8.2 8.2 0 0 1-1-3.9 8.4 8.4 0 0 1 8.5-8.4 8.4 8.4 0 0 1 8.6 7.4Z"/></svg>
+          문자 상담
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="pick" aria-labelledby="pick-h">
+    <div class="sec-head">
+      <div>
+        <h2 id="pick-h">제품 고르기 <span>167종</span></h2>
+        <p>카테고리나 검색으로 찾아 여러 개를 담아 보세요.</p>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <div class="searchbox">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.3-4.3"/></svg>
+        <input id="q" type="search" inputmode="search" autocomplete="off" placeholder="제품명·모델명 검색 (예: 아이콘 정수기)">
+      </div>
+      <div class="tabs" id="tabs" role="tablist" aria-label="제품 카테고리"></div>
+    </div>
+
+    <p class="countline" id="countline">전체 167종</p>
+    <p class="noresult" id="noresult" hidden>조건에 맞는 제품이 없습니다.<br><b>다른 카테고리</b>를 고르거나 <b>검색어를 줄여</b> 다시 찾아보세요.</p>
+    <ul class="plist" id="plist"></ul>
+  </section>
+
+  <section class="sec" aria-labelledby="guide-h">
+    <div class="sec-head">
+      <h2 id="guide-h">합산 금액 안내</h2>
+    </div>
+    <div class="notecard">
+      <h3>세부 세트 구성 할인 및 최종 조건은<br>확인 시 전문상담사와 상의해 주세요</h3>
+      <ul>
+        <li>위 <b>월 합산 금액</b>은 각 제품에 표시된 <b>월 렌탈료를 그대로 더한 금액</b>입니다. 세트로 함께 구성할 때의 세부 할인은 조합·시점에 따라 달라서 이 화면에서는 계산하지 않습니다.</li>
+        <li>할인 적용 여부와 <b>최종 월 납부액</b>은 상담할 때 제품 조합과 설치 조건을 함께 확인해 안내해 드립니다.</li>
+        <li>자동이체·제휴카드 할인, 설치비, 관리 주기 등은 상담에서 함께 정리해 드립니다.</li>
+        <li>표시 금액이 <b>‘상담 확인’</b>인 제품은 월 렌탈료 대신 구매가로 안내되는 제품이라 합산에서 빠져 있습니다. 이 제품들도 상담으로 견적을 확인하실 수 있습니다.</li>
+      </ul>
+      <p class="fine">표시 금액은 2026-11-25 코웨이닷컴 기준이며, 프로모션에 따라 달라질 수 있습니다.</p>
+      <div class="duo">
+        <a class="dbtn dbtn-call" href="tel:01094228307">전화 상담</a>
+        <a class="dbtn" href="sms:01094228307">문자 상담</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p class="foot-title">우리 집에 맞는 세트 구성,<br>상담으로 확인하세요</p>
+    <p class="foot-note">전화 <a href="tel:01094228307">010-9422-8307</a> · 문자 <a href="sms:01094228307">010-9422-8307</a></p>
+    <p class="foot-note">이 페이지는 코웨이 렌탈 상담 안내 페이지입니다. 최종 금액과 설치 가능 여부는 상담할 때 확인해 드립니다.</p>
+  </footer>
+
+  <p class="src">2026-11-25 코웨이닷컴(coway.com) 제품 페이지 표시 금액 기준<br>프로모션에 따라 변동될 수 있으며, 최종 금액은 상담으로 확인해 주세요.</p>
+</main>
+
+<nav class="callbar" aria-label="빠른 상담">
+  <a class="cbtn cbtn-call" href="tel:01094228307" aria-label="전화 상담 010-9422-8307">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6.4 6.4l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg>
+    전화 상담
+  </a>
+  <a class="cbtn cbtn-sms" href="sms:01094228307" aria-label="문자 상담 010-9422-8307">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.9 9.9 0 0 1-3.8-.8L3 21l1.9-4.6a8.2 8.2 0 0 1-1-3.9 8.4 8.4 0 0 1 8.5-8.4 8.4 8.4 0 0 1 8.6 7.4Z"/></svg>
+    문자 상담
+  </a>
+</nav>
+
+<script>
+(function () {
+  "use strict";
+
+  var PRODUCTS = [{"id":"1544","cat":"water","name":"카페 얼음정수기","model":"CHPCI-8400N_WT","img":"img/1544.webp","monthly":53900},{"id":"1494","cat":"water","name":"아이콘 정수기 2","model":"CP-7211N_V2/WT","img":"img/1494.webp","monthly":10000},{"id":"1427","cat":"water","name":"아이스 스탠드 3.0","model":"CHPI-5820L","img":"img/1427.webp","monthly":53400},{"id":"1384","cat":"water","name":"아이콘 정수기 3","model":"CP-7220N_BG","img":"img/1384.webp","monthly":10000},{"id":"1370","cat":"water","name":"아이스 스탠드 5.2","model":"CHPI-5830L","img":"img/1370.webp","monthly":58900},{"id":"1299","cat":"water","name":"워터 스탠드 12 플러스","model":"CHP-5730L","img":"img/1299.webp","monthly":12950},{"id":"1248","cat":"water","name":"스위치 정수기","model":"P-2200N","img":"img/1248.webp","monthly":15900},{"id":"1288","cat":"water","name":"아이콘 얼음정수기 맥스","model":"CHPI-7420N","img":"img/1288.webp","monthly":24450},{"id":"1272","cat":"water","name":"아이콘 얼음정수기 스탠다드","model":"CPI-7410N","img":"img/1272.webp","monthly":20950},{"id":"1527","cat":"water","name":"아이콘 얼음정수기 미니","model":"CHPI-7430N","img":"img/1527.webp","monthly":20450},{"id":"1253","cat":"water","name":"아이콘 프로 정수기","model":"CHP-7212N","img":"img/1253.webp","monthly":14950},{"id":"1252","cat":"water","name":"엘리트 빌트인 정수기","model":"CHP-1111N","img":"img/1252.webp","monthly":30900},{"id":"1220","cat":"water","name":"엘리트 얼음정수기 RO","model":"CHPI-7521L","img":"img/1220.webp","monthly":20200},{"id":"1148","cat":"water","name":"아이콘 얼음정수기 오리지널","model":"CPI-7400N","img":"img/1148.webp","monthly":20700},{"id":"1137","cat":"water","name":"워터 스탠드 12","model":"CHP-5711L","img":"img/1137.webp","monthly":12950},{"id":"1055","cat":"water","name":"엘리트 정수기","model":"CP-6340L","img":"img/1055.webp","monthly":28900},{"id":"1045","cat":"water","name":"워터 스탠드 21","model":"CHP-5720L","img":"img/1045.webp","monthly":44900},{"id":"1010","cat":"water","name":"아이스 스탠드 3.8","model":"CHPI-5810L","img":"img/1010.webp","monthly":55900},{"id":"235","cat":"water","name":"노블 정수기 RO","model":"CHP-8310L","img":"img/235.webp","monthly":33400},{"id":"233","cat":"water","name":"노블 정수기 가로","model":"CHP-8210N","img":"img/233.webp","monthly":33400},{"id":"211","cat":"water","name":"노블 정수기 세로","model":"CP-8200N","img":"img/211.webp","monthly":31400},{"id":"212","cat":"water","name":"노블 빌트인 정수기","model":"CHP-3140N","img":"img/212.webp","monthly":36400},{"id":"109","cat":"water","name":"프라임 베이직","model":"P-6320L","img":"img/109.webp","monthly":20900},{"id":"3","cat":"water","name":"AIS(아이스) 3.0","model":"CPI-7511L","img":"img/3.webp","monthly":19200},{"id":"87","cat":"water","name":"AIS(아이스) 3.0 스파클링","model":"CPSI-8510L","img":"img/87.webp","monthly":24450},{"id":"240","cat":"water","name":"나노직수 정수기 미니","model":"P-350N","img":"img/240.webp","monthly":15900},{"id":"101","cat":"water","name":"워터 스탠드 10 RO직수","model":"CHP-5700R","img":"img/101.webp","monthly":51900},{"id":"2","cat":"water","name":"아이스 스탠드","model":"CHPI-5801L","img":"img/2.webp","monthly":55900},{"id":"100","cat":"water","name":"아이스 스탠드 1.0","model":"CHPI-620L","img":"img/100.webp","monthly":48900},{"id":"110","cat":"water","name":"프라임 1.0","model":"CHP-264L","img":"img/110.webp","monthly":28900},{"id":"104","cat":"water","name":"워터 스탠드 33","model":"CHP-700L","img":"img/104.webp","monthly":60100},{"id":"1568","cat":"air","name":"노블 공기청정기 플러스 (57㎡)","model":"AP-1726J","img":"img/1568.webp","monthly":10000},{"id":"1567","cat":"air","name":"노블 공기청정기 플러스 (70㎡)","model":"AP-2126I","img":"img/1567.webp","monthly":10000},{"id":"1518","cat":"air","name":"인버터 제습기 25L","model":"AD-2526N","img":"img/1518.webp","monthly":18900},{"id":"1491","cat":"air","name":"듀얼클린 가습공기청정기2","model":"APM-1226H","img":"img/1491.webp","monthly":10000},{"id":"1488","cat":"air","name":"벽걸이에어컨","model":"ACAH-065AA","img":"img/1488.webp","monthly":17900},{"id":"1437","cat":"air","name":"스퀘어핏 공기청정기 (50㎡)","model":"AP-1526A","img":"img/1437.webp","monthly":10000},{"id":"1438","cat":"air","name":"스퀘어핏 공기청정기 (66㎡)","model":"AP-2026B","img":"img/1438.webp","monthly":10000},{"id":"1479","cat":"air","name":"인버터 제습기 20L","model":"AD-2026C","img":"img/1479.webp","monthly":16400},{"id":"1255","cat":"air","name":"인버터 제습기 23L","model":"AD-2325C","img":"img/1255.webp","monthly":17900},{"id":"1374","cat":"air","name":"플로우360 공기청정기 (63㎡)","model":"AP-1924A","img":"img/1374.webp","monthly":null},{"id":"1375","cat":"air","name":"플로우360 공기청정기 (76㎡)","model":"AP-2524B","img":"img/1375.webp","monthly":null},{"id":"1343","cat":"air","name":"히티브 온풍공기청정기","model":"APH-0525F","img":"img/1343.webp","monthly":10000},{"id":"1284","cat":"air","name":"스퀘어핏 공기청정기 (38㎡)","model":"AP-1125G","img":"img/1284.webp","monthly":10000},{"id":"1285","cat":"air","name":"스퀘어핏 공기청정기 (82㎡)","model":"AP-2425H","img":"img/1285.webp","monthly":10000},{"id":"1254","cat":"air","name":"노블 제습공기청정기","model":"APD-1025E","img":"img/1254.webp","monthly":10000},{"id":"1251","cat":"air","name":"파워업 공기청정기 2","model":"AP-3525I","img":"img/1251.webp","monthly":10000},{"id":"1219","cat":"air","name":"노블 공기청정기2 (133㎡)","model":"AP-4025D","img":"img/1219.webp","monthly":10000},{"id":"1186","cat":"air","name":"노블 공기청정기2 (100㎡)","model":"AP-3024H","img":"img/1186.webp","monthly":10000},{"id":"1212","cat":"air","name":"벽걸이 공기청정기2","model":"AP-1225F","img":"img/1212.webp","monthly":10000},{"id":"1138","cat":"air","name":"파워업 공기청정기","model":"AP-3522F","img":"img/1138.webp","monthly":10000},{"id":"1068","cat":"air","name":"노블 공기청정기2 (53㎡)","model":"AP-1623M","img":"img/1068.webp","monthly":10000},{"id":"1056","cat":"air","name":"노블 공기청정기2 (67㎡)","model":"AP-2023K","img":"img/1056.webp","monthly":10000},{"id":"1051","cat":"air","name":"멀티액션 공기청정기2","model":"AP-1523D","img":"img/1051.webp","monthly":10000},{"id":"1049","cat":"air","name":"듀얼클린 제습공기청정기","model":"APD-1023A","img":"img/1049.webp","monthly":10000},{"id":"1047","cat":"air","name":"싱글파워 공기청정기","model":"AP-1023F","img":"img/1047.webp","monthly":10000},{"id":"1605","cat":"air","name":"공기청정기S (45㎡)","model":"AP-1522C","img":"img/1605.webp","monthly":null},{"id":"4","cat":"air","name":"노블 공기청정기(100㎡)","model":"AP-3021D","img":"img/4.webp","monthly":10000},{"id":"157","cat":"air","name":"노블 제습기","model":"AD-1221E","img":"img/157.webp","monthly":14900},{"id":"6","cat":"air","name":"에어카트리지 공기청정기 (33㎡)","model":"AP-1019C","img":"img/6.webp","monthly":null},{"id":"247","cat":"air","name":"에어카트리지 공기청정기 (60㎡)","model":"AP-1821F","img":"img/247.webp","monthly":null},{"id":"215","cat":"air","name":"노블 가습기 (자연기화식)","model":"AM-1421G","img":"img/215.webp","monthly":null},{"id":"7","cat":"air","name":"아이콘 공기청정기","model":"AP-1019D","img":"img/7.webp","monthly":10000},{"id":"149","cat":"air","name":"벽걸이 공기청정기 (AP-3519A)","model":"AP-3519A","img":"img/149.webp","monthly":10000},{"id":"32","cat":"air","name":"사계절 의류청정기 더블케어(FAD-01S)","model":"FAD-01S","img":"img/32.webp","monthly":42900},{"id":"254","cat":"air","name":"사계절 의류청정기 더블케어(FAD-02S)","model":"FAD-02S","img":"img/254.webp","monthly":40900},{"id":"129","cat":"air","name":"콰트로파워 공기청정기","model":"AP-3018B","img":"img/129.webp","monthly":10000},{"id":"1594","cat":"bidet","name":"더블케어 비데","model":"BAS37-D","img":"img/1594.webp","monthly":10000},{"id":"1593","cat":"bidet","name":"더매너 비데","model":"BAS50-A","img":"img/1593.webp","monthly":10000},{"id":"1547","cat":"bidet","name":"컴팩트 비데 1","model":"BAS25-C","img":"img/1547.webp","monthly":10000},{"id":"1525","cat":"bidet","name":"컴팩트 비데2","model":"BAS47-BE","img":"img/1525.webp","monthly":10000},{"id":"1522","cat":"bidet","name":"스타일 비데","model":"BAS40-B","img":"img/1522.webp","monthly":10000},{"id":"1523","cat":"bidet","name":"스타일 비데 플러스","model":"BAS41-B_PK","img":"img/1523.webp","monthly":10000},{"id":"1524","cat":"bidet","name":"프라임 비데","model":"BA52-A","img":"img/1524.webp","monthly":10000},{"id":"1477","cat":"bidet","name":"더매너 비데 플러스","model":"BAS51-A","img":"img/1477.webp","monthly":10000},{"id":"1351","cat":"bidet","name":"슬리믹 비데","model":"BAS49-A","img":"img/1351.webp","monthly":10000},{"id":"1249","cat":"bidet","name":"컴팩트 비데2","model":"BAS47-AE","img":"img/1249.webp","monthly":null},{"id":"1205","cat":"bidet","name":"더블케어 비데","model":"BAS37-C","img":"img/1205.webp","monthly":10000},{"id":"1206","cat":"bidet","name":"더블케어 비데 플러스","model":"BAS38-C","img":"img/1206.webp","monthly":10000},{"id":"1114","cat":"bidet","name":"스타일 비데 플러스","model":"BAS41-A_PK","img":"img/1114.webp","monthly":null},{"id":"1048","cat":"bidet","name":"저수압용 비데","model":"BAS39-A","img":"img/1048.webp","monthly":10000},{"id":"1017","cat":"bidet","name":"스킨플러스 연수기(수전일체형)","model":"BB17-A_WT","img":"img/1017.webp","monthly":30900},{"id":"1016","cat":"bidet","name":"스킨플러스 연수기(일반형)","model":"BB16-A_WT","img":"img/1016.webp","monthly":27900},{"id":"43","cat":"bidet","name":"프라임 비데(건조기능 미포함)","model":"BA20-D","img":"img/43.webp","monthly":10000},{"id":"9","cat":"bidet","name":"연수기(BB15-A)","model":"BB15-A","img":"img/9.webp","monthly":26900},{"id":"1564","cat":"bed","name":"BEREX 스마트 매트리스 S6+ 슬립 싱크","model":"CMSS-AS04SD_BG","img":"img/1564.webp","monthly":72900},{"id":"1563","cat":"bed","name":"BEREX 스마트 매트리스 S8+ 슬립 싱크","model":"CMSS-AS05SD_BG","img":"img/1563.webp","monthly":86900},{"id":"1565","cat":"bed","name":"BEREX 시그니처 파이어쉴드 매트리스 슬립 싱크","model":"CMSS-SP02SD","img":"img/1565.webp","monthly":68900},{"id":"1506","cat":"bed","name":"BEREX 더블사이드&볼륨 침대","model":"","img":"img/1506.webp","monthly":32970},{"id":"1507","cat":"bed","name":"BEREX 루네어&컴포트 침대","model":"","img":"img/1507.webp","monthly":35520},{"id":"1505","cat":"bed","name":"BEREX 스마트&코지 침대","model":"","img":"img/1505.webp","monthly":63570},{"id":"1504","cat":"bed","name":"BEREX 시그니처&모던라운드 침대","model":"","img":"img/1504.webp","monthly":55070},{"id":"1509","cat":"bed","name":"BEREX 시그니처&스위트호텔 침대","model":"","img":"img/1509.webp","monthly":57620},{"id":"1508","cat":"bed","name":"BEREX 하이브리드4&소프트쿠션 침대","model":"","img":"img/1508.webp","monthly":38070},{"id":"1435","cat":"bed","name":"BEREX 모던 플러스 파운데이션","model":"CFSS-F05_BG","img":"img/1435.webp","monthly":15900},{"id":"1454","cat":"bed","name":"BEREX 모디&볼륨 침대","model":"","img":"img/1454.webp","monthly":30420},{"id":"1434","cat":"bed","name":"BEREX 스위트 호텔 프레임","model":"CFSS-HT01_BG","img":"img/1434.webp","monthly":23900},{"id":"1455","cat":"bed","name":"BEREX 시그니처&소프트쿠션 침대","model":"","img":"img/1455.webp","monthly":52520},{"id":"1456","cat":"bed","name":"BEREX 엘리트&볼륨 침대","model":"","img":"img/1456.webp","monthly":29570},{"id":"1448","cat":"bed","name":"BEREX 더블사이드&컴포트 침대","model":"","img":"img/1448.webp","monthly":35520},{"id":"1442","cat":"bed","name":"BEREX 루네어&루나 침대","model":"","img":"img/1442.webp","monthly":30420},{"id":"1439","cat":"bed","name":"BEREX 모디&마이 침대","model":"","img":"img/1439.webp","monthly":30420},{"id":"1443","cat":"bed","name":"BEREX 모디&수납형 침대","model":"","img":"img/1443.webp","monthly":28720},{"id":"1446","cat":"bed","name":"BEREX 스마트&모던라운드 침대","model":"","img":"img/1446.webp","monthly":70370},{"id":"1444","cat":"bed","name":"BEREX 스마트&볼륨 침대","model":"","img":"img/1444.webp","monthly":66970},{"id":"1447","cat":"bed","name":"BEREX 스마트&소프트쿠션 침대","model":"","img":"img/1447.webp","monthly":79720},{"id":"1445","cat":"bed","name":"BEREX 시그니처&코지 침대","model":"","img":"img/1445.webp","monthly":48270},{"id":"1441","cat":"bed","name":"BEREX 엘리트&우디 침대","model":"","img":"img/1441.webp","monthly":25320},{"id":"1451","cat":"bed","name":"BEREX 하이브리드4&모던라운드 침대","model":"","img":"img/1451.webp","monthly":40620},{"id":"1440","cat":"bed","name":"BEREX 하이브리드4&코지 침대","model":"","img":"img/1440.webp","monthly":33820},{"id":"1425","cat":"bed","name":"BEREX M시리즈 안마매트리스","model":"","img":"img/1425.webp","monthly":124430},{"id":"1393","cat":"bed","name":"BEREX R시리즈 R3 모션베드","model":"","img":"img/1393.webp","monthly":84820},{"id":"1392","cat":"bed","name":"BEREX R시리즈 R5 스트레칭 베드","model":"","img":"img/1392.webp","monthly":94170},{"id":"1391","cat":"bed","name":"BEREX R시리즈 R7 스트레칭 모션베드","model":"","img":"img/1391.webp","monthly":104370},{"id":"1354","cat":"bed","name":"BEREX 루나 프레임","model":"CFSS-TM14_IV","img":"img/1354.webp","monthly":17900},{"id":"1352","cat":"bed","name":"BEREX 루네어 매트리스","model":"CMSS-SE03H","img":"img/1352.webp","monthly":17900},{"id":"1113","cat":"bed","name":"BEREX 모던 파운데이션","model":"CFSS-F04_BG","img":"img/1113.webp","monthly":12900},{"id":"1353","cat":"bed","name":"BEREX 코지 프레임","model":"CFSS-TM13_IV","img":"img/1353.webp","monthly":16900},{"id":"1309","cat":"bed","name":"BEREX 모던 라운드 프레임","model":"CFSS-CB02_BG/HC","img":"img/1309.webp","monthly":24900},{"id":"1300","cat":"bed","name":"BEREX 모디 매트리스","model":"CMSS-SE02H","img":"img/1300.webp","monthly":14900},{"id":"1341","cat":"bed","name":"BEREX 모디&모던 침대","model":"","img":"img/1341.webp","monthly":23620},{"id":"1111","cat":"bed","name":"BEREX 시그니처 매트리스","model":"CMSS-SP01S","img":"img/1111.webp","monthly":39900},{"id":"1311","cat":"bed","name":"BEREX 시그니처 파이어쉴드 매트리스","model":"CMSS-SP02S","img":"img/1311.webp","monthly":43900},{"id":"26","cat":"bed","name":"BEREX 하이브리드 4 매트리스","model":"CMSS-PR04M_V2","img":"img/26.webp","monthly":22900},{"id":"1241","cat":"bed","name":"BEREX 스마트&그레이스 침대","model":"","img":"img/1241.webp","monthly":72920},{"id":"1204","cat":"bed","name":"BEREX 그레이스 프레임","model":"CFQ-CB04_GR/HB","img":"img/1204.webp","monthly":27900},{"id":"1195","cat":"bed","name":"BEREX 수납형 프레임","model":"CFS-SB01_BG","img":"img/1195.webp","monthly":18900},{"id":"1189","cat":"bed","name":"BEREX 스마트 매트리스 S6+","model":"CMSS-AS04_BG","img":"img/1189.webp","monthly":57900},{"id":"1188","cat":"bed","name":"BEREX 스마트 매트리스 S8+","model":"CMSS-AS05_BG","img":"img/1188.webp","monthly":71900},{"id":"1190","cat":"bed","name":"BEREX 소프트 쿠션 프레임","model":"CFSS-CB03_IV","img":"img/1190.webp","monthly":21900},{"id":"1134","cat":"bed","name":"BEREX 볼륨 프레임","model":"CFSS-TM12_BG","img":"img/1134.webp","monthly":20900},{"id":"1112","cat":"bed","name":"BEREX 더블 사이드 매트리스","model":"CMSS-SE01","img":"img/1112.webp","monthly":17900},{"id":"1099","cat":"bed","name":"BEREX 우디 프레임","model":"CFSS-TM11_NT","img":"img/1099.webp","monthly":15900},{"id":"1082","cat":"bed","name":"BEREX 엘리트 매트리스","model":"CMS-ST01EH","img":"img/1082.webp","monthly":12900},{"id":"1057","cat":"bed","name":"BEREX 컴포트 프레임","model":"CFSS-CB01_IV","img":"img/1057.webp","monthly":23900},{"id":"1000","cat":"bed","name":"BEREX 마이 프레임 기본형 (플랫/볼륨)","model":"CFSS-FP01_GN","img":"img/1000.webp","monthly":17900},{"id":"1001","cat":"bed","name":"BEREX 마이 프레임 사이드형 (플랫/볼륨)","model":"CFSS-FP02S_IV","img":"img/1001.webp","monthly":20900},{"id":"1026","cat":"bed","name":"BEREX 원바디 2 매트리스","model":"CMSS-OB03_BG","img":"img/1026.webp","monthly":16900},{"id":"1027","cat":"bed","name":"BEREX 프라임 플러스 2 매트리스","model":"CMK-S05","img":"img/1027.webp","monthly":23900},{"id":"176","cat":"bed","name":"BEREX 컴팩트 메모리폼 매트리스","model":"CMSS-M01M","img":"img/176.webp","monthly":16900},{"id":"181","cat":"bed","name":"BEREX 하이브리드 3 매트리스","model":"CMSS-PR03","img":"img/181.webp","monthly":21900},{"id":"179","cat":"bed","name":"BEREX 프라임 매트리스","model":"CMQ-S03H","img":"img/179.webp","monthly":17900},{"id":"194","cat":"bed","name":"BEREX 원목 프레임","model":"CFK-TM09N","img":"img/194.webp","monthly":19900},{"id":"10","cat":"bed","name":"BEREX 패밀리 프레임 (결합형)","model":"CFSS-LM02G","img":"img/10.webp","monthly":24900},{"id":"192","cat":"bed","name":"BEREX 패밀리 프레임 (단독형)","model":"CFSS-LM01G","img":"img/192.webp","monthly":24900},{"id":"229","cat":"bed","name":"BEREX 모던 어반 프레임","model":"CFK-L01","img":"img/229.webp","monthly":28900},{"id":"177","cat":"bed","name":"BEREX 더블체인지 매트리스","model":"CMSS-SL01","img":"img/177.webp","monthly":14900},{"id":"1553","cat":"massage","name":"BEREX 트리플체어2 슬림","model":"MC-R03S_RD","img":"img/1553.webp","monthly":60900},{"id":"1426","cat":"massage","name":"BEREX 안마의자 페블체어2","model":"MC-C02AT_BU","img":"img/1426.webp","monthly":58900},{"id":"1358","cat":"massage","name":"BEREX 리클라이닝 마사지셋","model":"MB-M05M_WT","img":"img/1358.webp","monthly":84600},{"id":"1359","cat":"massage","name":"BEREX 리클라이닝 코어셋","model":"MB-R05M_BK","img":"img/1359.webp","monthly":78300},{"id":"1356","cat":"massage","name":"BEREX 마사지셋","model":"MB-M03M_BR","img":"img/1356.webp","monthly":77400},{"id":"1357","cat":"massage","name":"BEREX 코어셋","model":"MB-R03M_BG","img":"img/1357.webp","monthly":71100},{"id":"1207","cat":"massage","name":"BEREX 트리플체어","model":"MC-R01","img":"img/1207.webp","monthly":null},{"id":"1169","cat":"massage","name":"BEREX 안마의자 마인","model":"MC-B03","img":"img/1169.webp","monthly":42900},{"id":"1149","cat":"massage","name":"BEREX 안마의자 마인 플러스","model":"MC-B02","img":"img/1149.webp","monthly":44900},{"id":"1059","cat":"massage","name":"BEREX 안마의자 페블체어","model":"MC-C01_GR","img":"img/1059.webp","monthly":53900},{"id":"234","cat":"massage","name":"BEREX 안마의자 시그니처","model":"MC-SC01","img":"img/234.webp","monthly":109000},{"id":"1566","cat":"kitchen","name":"제로 음식물처리기 미생물형 미니","model":"WMB-0703_WT","img":"img/1566.webp","monthly":13950},{"id":"1480","cat":"kitchen","name":"W 인덕션 프로","model":"CIP-31WWS","img":"img/1480.webp","monthly":23900},{"id":"1493","cat":"kitchen","name":"제로 음식물 처리기 분쇄형 2L","model":"WMG-2005_WT","img":"img/1493.webp","monthly":9450},{"id":"1492","cat":"kitchen","name":"제로 음식물 처리기 분쇄형 3L","model":"WMG-3004_WT","img":"img/1492.webp","monthly":10450},{"id":"1071","cat":"kitchen","name":"프라임 인덕션 (3구)","model":"NIP-31KE","img":"img/1071.webp","monthly":16400},{"id":"1072","cat":"kitchen","name":"프라임 하이브리드 (인덕션 2구+ 하이라이트 1구)","model":"NHP-31KE","img":"img/1072.webp","monthly":12900},{"id":"1058","cat":"kitchen","name":"프라임S 하이라이트 (3구)","model":"CER-04","img":"img/1058.webp","monthly":14400},{"id":"246","cat":"kitchen","name":"노블 인덕션 All-Free (4구)","model":"CIR-F41PS","img":"img/246.webp","monthly":27900},{"id":"244","cat":"kitchen","name":"노블 인덕션 All-Free 와이드 (6구,전기공사형)","model":"CIR-F60GS","img":"img/244.webp","monthly":55900}];
+  var CATS = [
+    { key: "all",     label: "전체" },
+    { key: "water",   label: "정수기" },
+    { key: "air",     label: "공기청정기" },
+    { key: "bidet",   label: "비데" },
+    { key: "bed",     label: "침대" },
+    { key: "massage", label: "안마의자" },
+    { key: "kitchen", label: "주방/생활" }
+  ];
+
+  var byId = {};
+  PRODUCTS.forEach(function (p) { byId[p.id] = p; });
+
+  var selected = [];          // product ids, in the order they were added
+  var activeCat = "all";
+  var query = "";
+
+  var elTabs = document.getElementById("tabs");
+  var elList = document.getElementById("plist");
+  var elCount = document.getElementById("countline");
+  var elQ = document.getElementById("q");
+  var elSelList = document.getElementById("selist");
+  var elSelEmpty = document.getElementById("selist-empty");
+  var elSelCount = document.getElementById("sel-count");
+  var elSumPeople = document.getElementById("sum-people");
+  var elSumTotal = document.getElementById("sum-total");
+  var elSumAsk = document.getElementById("sum-ask");
+  var elBar = document.getElementById("sumbar");
+  var elBarLabel = document.getElementById("sumbar-label");
+  var elBarTotal = document.getElementById("sumbar-total");
+  var elReset = document.getElementById("reset-btn");
+  var btnMap = {};
+
+  function comma(n) { return n.toLocaleString("ko-KR"); }
+  function won(n) { return comma(n) + "원"; }
+
+  /* ── 카테고리 탭 ── */
+  var counts = {};
+  PRODUCTS.forEach(function (p) { counts[p.cat] = (counts[p.cat] || 0) + 1; });
+
+  function buildTabs() {
+    CATS.forEach(function (c) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "tab" + (c.key === "all" ? " is-active" : "");
+      b.setAttribute("role", "tab");
+      b.setAttribute("aria-selected", c.key === "all" ? "true" : "false");
+      b.dataset.cat = c.key;
+      b.appendChild(document.createTextNode(c.label + " "));
+      var i = document.createElement("i");
+      i.textContent = c.key === "all" ? PRODUCTS.length : (counts[c.key] || 0);
+      b.appendChild(i);
+      b.addEventListener("click", function () {
+        activeCat = c.key;
+        Array.prototype.forEach.call(elTabs.children, function (t) {
+          var on = t === b;
+          t.classList.toggle("is-active", on);
+          t.setAttribute("aria-selected", on ? "true" : "false");
+        });
+        applyFilter();
+      });
+      elTabs.appendChild(b);
+    });
+  }
+
+  /* ── 제품 목록 ── */
+  function buildList() {
+    var frag = document.createDocumentFragment();
+    PRODUCTS.forEach(function (p) {
+      var li = document.createElement("li");
+      li.className = "pitem";
+      li.dataset.id = p.id;
+      li.dataset.cat = p.cat;
+      li.dataset.hay = (p.name + " " + p.model).toLowerCase();
+
+      var img = document.createElement("img");
+      img.className = "th";
+      img.src = p.img;
+      img.alt = p.name + " 제품 사진";
+      img.width = 60;
+      img.height = 60;
+      img.loading = "lazy";
+      img.decoding = "async";
+
+      var bd = document.createElement("div");
+      bd.className = "bd";
+
+      var nm = document.createElement("p");
+      nm.className = "nm";
+      nm.textContent = p.name;
+
+      var md = document.createElement("p");
+      md.className = "md";
+      md.textContent = p.model;
+
+      var pr = document.createElement("p");
+      pr.className = "pr" + (p.monthly === null ? " is-ask" : "");
+      pr.textContent = p.monthly === null ? "상담 확인" : "월 " + won(p.monthly);
+
+      bd.appendChild(nm);
+      bd.appendChild(md);
+      bd.appendChild(pr);
+
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "addbtn";
+      btn.setAttribute("aria-pressed", "false");
+      btn.setAttribute("aria-label", p.name + " 담기");
+      btn.textContent = "＋ 담기";
+      btn.addEventListener("click", function () { toggle(p.id); });
+      btnMap[p.id] = btn;
+
+      li.appendChild(img);
+      li.appendChild(bd);
+      li.appendChild(btn);
+      frag.appendChild(li);
+    });
+    elList.appendChild(frag);
+  }
+
+  function applyFilter() {
+    var q = query.trim().toLowerCase();
+    var shown = 0;
+    Array.prototype.forEach.call(elList.children, function (li) {
+      var okCat = activeCat === "all" || li.dataset.cat === activeCat;
+      var okQ = !q || li.dataset.hay.indexOf(q) !== -1;
+      var show = okCat && okQ;
+      if (show) { li.removeAttribute("hidden"); shown++; }
+      else { li.setAttribute("hidden", ""); }
+    });
+    var label = "전체";
+    for (var i = 0; i < CATS.length; i++) { if (CATS[i].key === activeCat) label = CATS[i].label; }
+    elCount.textContent = label + " " + shown + "종" + (q ? " · ‘" + query.trim() + "’ 검색" : "");
+    var nr = document.getElementById("noresult");
+    if (nr) { if (shown === 0) { nr.removeAttribute("hidden"); } else { nr.setAttribute("hidden", ""); } }
+  }
+
+  /* ── 선택/해제 ── */
+  function toggle(id) {
+    var i = selected.indexOf(id);
+    if (i === -1) { selected.push(id); } else { selected.splice(i, 1); }
+    renderSelected();
+  }
+
+  function removeItem(id) {
+    var i = selected.indexOf(id);
+    if (i !== -1) { selected.splice(i, 1); renderSelected(); }
+  }
+
+  function renderSelected() {
+    var sum = 0;
+    var askCount = 0;
+
+    // 제품 목록의 담기 버튼 상태
+    PRODUCTS.forEach(function (p) {
+      var on = selected.indexOf(p.id) !== -1;
+      var b = btnMap[p.id];
+      if (!b) return;
+      b.classList.toggle("is-on", on);
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+      b.textContent = on ? "✓ 담음" : "＋ 담기";
+      b.setAttribute("aria-label", p.name + (on ? " 빼기" : " 담기"));
+      var li = b.parentNode;
+      if (li) { li.classList.toggle("is-on", on); }
+    });
+
+    // 선택 목록
+    elSelList.textContent = "";
+    selected.forEach(function (id) {
+      var p = byId[id];
+      if (!p) return;
+      if (p.monthly === null) { askCount++; } else { sum += p.monthly; }
+
+      var li = document.createElement("li");
+
+      var img = document.createElement("img");
+      img.src = p.img;
+      img.alt = "";
+      img.width = 44;
+      img.height = 44;
+      img.loading = "lazy";
+
+      var info = document.createElement("div");
+      info.className = "info";
+      var nm = document.createElement("p");
+      nm.className = "nm";
+      nm.textContent = p.name;
+      var md = document.createElement("p");
+      md.className = "md";
+      md.textContent = p.model;
+      info.appendChild(nm);
+      info.appendChild(md);
+
+      var pr = document.createElement("span");
+      pr.className = "pr" + (p.monthly === null ? " is-ask" : "");
+      pr.textContent = p.monthly === null ? "상담 확인" : "월 " + won(p.monthly);
+
+      var rm = document.createElement("button");
+      rm.type = "button";
+      rm.className = "rm";
+      rm.setAttribute("aria-label", p.name + " 빼기");
+      rm.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+      rm.addEventListener("click", function () { removeItem(p.id); });
+
+      li.appendChild(img);
+      li.appendChild(info);
+      li.appendChild(pr);
+      li.appendChild(rm);
+      elSelList.appendChild(li);
+    });
+
+    // 요약 값
+    elSelCount.textContent = selected.length + "개";
+    elSumPeople.textContent = selected.length + "개 선택";
+    elSumTotal.innerHTML = won(sum) + "<small>월 기준</small>";
+    elSumTotal.classList.toggle("is-zero", selected.length === 0);
+    elSelEmpty.hidden = selected.length > 0;
+    elReset.hidden = selected.length === 0;
+
+    if (askCount > 0) {
+      elSumAsk.hidden = false;
+      elSumAsk.textContent = "‘상담 확인’ 제품 " + askCount + "개는 월 렌탈료가 표시되지 않아 합산에서 빠져 있습니다. 상담으로 견적을 확인해 주세요.";
+    } else {
+      elSumAsk.hidden = true;
+      elSumAsk.textContent = "";
+    }
+
+    elBarLabel.innerHTML = "선택 <b>" + selected.length + "</b>개 · 월 합산";
+    if (selected.length === 0) {
+      elBar.classList.add("is-empty");
+      elBarTotal.textContent = "0원";
+    } else {
+      elBar.classList.remove("is-empty");
+      elBarTotal.textContent = won(sum);
+    }
+  }
+
+  elQ.addEventListener("input", function () {
+    query = elQ.value || "";
+    applyFilter();
+  });
+
+  elReset.addEventListener("click", function () {
+    selected = [];
+    renderSelected();
+  });
+
+  /* 상단 고정 바 위치: 실제 topbar 높이만큼 아래에 붙인다 */
+  function syncTop() {
+    var tb = document.querySelector(".topbar");
+    if (!tb) return;
+    var h = Math.round(tb.getBoundingClientRect().height);
+    document.documentElement.style.setProperty("--tb", h + "px");
+  }
+  window.addEventListener("resize", syncTop);
+  window.addEventListener("orientationchange", syncTop);
+
+  buildTabs();
+  buildList();
+  applyFilter();
+  renderSelected();
+  syncTop();
+})();
+</script>
+
+</body>
+</html>
