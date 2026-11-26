@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>390px 확인용</title>
+<style>
+  html,body{margin:0;padding:0;background:#e9eef3;font:12px/1.4 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;}
+  #wrap{width:390px;height:100vh;overflow:hidden;box-shadow:0 0 0 1px #c9d6e2;}
+  iframe{width:390px;height:100vh;border:0;display:block;background:#fff;}
+</style>
+</head>
+<body>
+<div id="wrap"><iframe id="f" src="index.html?v=1127d"></iframe></div>
+<script>
+  var m = location.hash.replace('#','') || '1393';
+  var f = document.getElementById('f');
+  f.addEventListener('load', function () {
+    var d = f.contentDocument;
+    var box = d.querySelector('.mopts[data-mid="' + m + '"]');
+    if (box) {
+      var card = box.closest('li');
+      var y = card.getBoundingClientRect().top + f.contentWindow.scrollY - 12;
+      f.contentWindow.scrollTo(0, y);
+      var t = card.querySelector('.pname');
+      if (t) t.style.outline = '2px solid #1b6fb8';
+    }
+  });
+</script>
+</body>
+</html>
