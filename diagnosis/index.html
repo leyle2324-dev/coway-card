@@ -242,6 +242,92 @@
     padding:11px 18px; border-radius:999px; opacity:0; pointer-events:none; transition:.25s ease; z-index:60; white-space:nowrap;
   }
   .toast.on{opacity:1; transform:translate(-50%, 0);}
+  /* ---------- start · 진단 선택 ---------- */
+  .mode-list{display:grid; gap:10px; margin-top:2px;}
+  .mode-card{
+    display:flex; align-items:center; gap:13px; width:100%; text-align:left;
+    padding:15px 15px; border-radius:16px; border:1.4px solid var(--line); background:var(--paper);
+    box-shadow:0 1px 2px rgba(24,32,28,.04); transition:transform .12s ease;
+  }
+  .mode-card:active{transform:scale(.99);}
+  .mode-card .m-ico{flex:0 0 auto; width:40px; height:40px; border-radius:12px; display:grid; place-items:center; background:#F0F5F1; color:var(--brand-3);}
+  .mode-card .m-txt{flex:1; min-width:0;}
+  .mode-card .m-txt b{display:block; font-size:15.5px; font-weight:800; letter-spacing:-0.02em;}
+  .mode-card .m-txt small{display:block; font-size:12px; color:var(--muted); margin-top:2px; line-height:1.5;}
+  .mode-card .m-go{flex:0 0 auto; color:#B7BDB7;}
+  .mode-card.primary{background:linear-gradient(135deg,#1B463A,#153B31); border-color:#153B31; box-shadow:0 10px 24px rgba(21,59,49,.2);}
+  .mode-card.primary .m-ico{background:rgba(255,255,255,.12); color:#E9DFC9;}
+  .mode-card.primary .m-txt b{color:#FBF8F1;}
+  .mode-card.primary .m-txt small{color:rgba(233,223,201,.82);}
+  .mode-card.primary .m-go{color:rgba(233,223,201,.7);}
+  .mode-tag{display:inline-block; margin-left:5px; padding:1px 6px; border-radius:5px; background:var(--gold-soft); color:var(--gold-2); font-size:9.5px; font-weight:800; letter-spacing:.06em; vertical-align:2px; font-style:normal;}
+
+  /* ---------- 위생 진단 · 사진 ---------- */
+  .photo-slot{
+    position:relative; margin:0 0 10px; border-radius:18px; border:1.6px dashed #C9C3B4;
+    background:#FBF8F1; overflow:hidden; min-height:168px; display:grid; place-items:center;
+  }
+  .photo-slot.has-photo{border-style:solid; border-color:var(--line); background:#0E1512; min-height:0;}
+  .photo-empty{padding:24px 18px; text-align:center;}
+  .photo-empty .p-ico{display:inline-grid; place-items:center; width:46px; height:46px; border-radius:14px; background:#F0F5F1; color:var(--brand-3); margin-bottom:10px;}
+  .photo-empty b{display:block; font-size:14px; font-weight:800; letter-spacing:-0.02em;}
+  .photo-empty small{display:block; margin-top:3px; font-size:11.5px; color:var(--muted); line-height:1.55;}
+  .photo-preview{display:block; width:100%; max-height:300px; object-fit:contain; background:#0E1512;}
+  .photo-actions{display:flex; gap:8px; margin-bottom:8px;}
+  .photo-btn{flex:1; min-height:40px; border-radius:11px; border:1px solid var(--line); background:var(--paper); font-size:12.5px; font-weight:700; color:var(--ink-2);}
+  .photo-btn:active{background:var(--cream);}
+  .privacy-note{display:flex; gap:6px; align-items:flex-start; margin:0 0 20px; padding:9px 11px; border-radius:10px; background:#F0F5F1; font-size:11.5px; line-height:1.55; color:#466052;}
+  .privacy-note svg{flex:0 0 auto; margin-top:2px; color:var(--brand-3);}
+  .check-list{display:grid; gap:8px;}
+  .check-item{
+    display:flex; gap:11px; align-items:flex-start; width:100%; text-align:left;
+    padding:13px 14px; border-radius:14px; border:1.4px solid var(--line); background:var(--paper);
+  }
+  .check-item .c-box{flex:0 0 auto; width:19px; height:19px; border-radius:6px; border:1.6px solid #CFCABE; display:grid; place-items:center; margin-top:1px; color:transparent;}
+  .check-item[aria-pressed="true"]{border-color:var(--brand); background:#F0F5F1;}
+  .check-item[aria-pressed="true"] .c-box{background:var(--brand); border-color:var(--brand); color:#FFFDF9;}
+  .check-item b{display:block; font-size:14px; font-weight:700; letter-spacing:-0.02em;}
+  .check-item small{display:block; font-size:11.5px; color:var(--muted); margin-top:2px; line-height:1.5;}
+
+  /* ---------- 위생 진단 · 문항/결과 ---------- */
+  .hq{font-size:15px; font-weight:800; letter-spacing:-0.02em; line-height:1.5; margin:22px 0 10px;}
+  .hq:first-of-type{margin-top:0;}
+  .hq span{display:block; margin-top:2px; font-size:11.5px; font-weight:600; color:var(--muted); letter-spacing:0;}
+  .hchip-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(84px,1fr)); gap:7px;}
+  .hchip{padding:11px 6px; border-radius:12px; border:1.4px solid var(--line); background:var(--paper); font-size:12.5px; font-weight:700; text-align:center; line-height:1.35; letter-spacing:-0.02em;}
+  .hchip[aria-pressed="true"]{border-color:var(--brand); background:var(--brand); color:#FFFDF9;}
+  .axis-badges{display:grid; grid-template-columns:repeat(3,1fr); gap:7px;}
+  .axis-badge{border-radius:12px; padding:8px 9px; background:rgba(255,255,255,.06); border:1px solid rgba(233,223,201,.22);}
+  .axis-badge small{display:block; font-size:9.5px; color:rgba(233,223,201,.8);}
+  .axis-badge b{display:block; font-size:14.5px; margin-top:2px; letter-spacing:-0.02em;}
+  .axis-badge.lv-low{border-color:rgba(140,200,170,.5);} .axis-badge.lv-low b{color:#C6EBD8;}
+  .axis-badge.lv-mid{background:rgba(176,138,84,.2); border-color:rgba(224,196,150,.5);} .axis-badge.lv-mid b{color:#F1DDBC;}
+  .axis-badge.lv-high{background:rgba(180,87,60,.22); border-color:rgba(240,170,150,.5);} .axis-badge.lv-high b{color:#F7CFC0;}
+  .axis-row{padding:15px 0; border-bottom:1px solid #EFEBE2;}
+  .axis-row:last-child{border-bottom:0;}
+  .axis-top{display:flex; align-items:center; justify-content:space-between; gap:10px;}
+  .axis-top .nm{font-size:13.5px; font-weight:800; letter-spacing:-0.02em; display:flex; align-items:center; gap:6px;}
+  .axis-top .nm svg{color:var(--brand-3);}
+  .axis-top .lv{font-size:11px; font-weight:800; padding:3px 9px; border-radius:999px;}
+  .lv.lv-low{background:#E6F1EA; color:#2E6B57;}
+  .lv.lv-mid{background:var(--gold-soft); color:var(--gold-2);}
+  .lv.lv-high{background:#F8E6E0; color:#A64B33;}
+  .axis-meter{height:6px; border-radius:3px; background:#EBE7DC; overflow:hidden; margin:9px 0 8px;}
+  .axis-meter i{display:block; height:100%; width:0; border-radius:3px; transition:width .5s ease;}
+  .axis-meter i.lv-low{background:#2E6B57;}
+  .axis-meter i.lv-mid{background:var(--gold);}
+  .axis-meter i.lv-high{background:#B4573C;}
+  .axis-why{margin:0; font-size:12.5px; line-height:1.62; color:var(--ink-2);}
+  .evi-chips{display:flex; flex-wrap:wrap; gap:5px; margin-top:8px;}
+  .evi-chips span{font-size:11px; padding:3px 8px; border-radius:7px; background:#F4F1E8; color:#5E5748;}
+  .care-list{display:grid; gap:9px;}
+  .care-item{display:flex; gap:11px; padding:14px 15px; background:var(--paper); border:1px solid var(--line); border-radius:15px;}
+  .care-num{flex:0 0 auto; width:24px; height:24px; border-radius:8px; background:var(--brand); color:#F7F3E8; font-size:11.5px; font-weight:800; display:grid; place-items:center; margin-top:1px;}
+  .care-item b{display:block; font-size:13.5px; font-weight:800; letter-spacing:-0.02em; line-height:1.45;}
+  .care-item p{margin:3px 0 0; font-size:12.5px; line-height:1.62; color:var(--ink-2);}
+  .care-item .when{display:inline-block; margin-top:7px; font-size:11px; font-weight:700; color:var(--gold-2); background:var(--gold-soft); padding:2px 7px; border-radius:6px;}
+  .care-flag{display:inline-block; margin-left:5px; padding:1px 6px; border-radius:5px; background:#F8E6E0; color:#A64B33; font-size:9.5px; font-weight:800; letter-spacing:.06em; vertical-align:2px; font-style:normal;}
+
   @media (max-width:360px){
     .start h1{font-size:27px;}
     .step-title{font-size:20px;}
@@ -266,15 +352,16 @@
         </a>
       </div>
 
-      <div class="start-kicker"><i></i>8단계 수면·체형 문진</div>
+      <div class="start-kicker"><i></i>맞춤 진단 · 위생 진단</div>
       <h1>잠은,<br>몸에 맞춰야<br><em>편안해집니다.</em></h1>
-      <p class="lead">체형과 수면 습관, 반려동물 동반 여부까지 8단계로 읽고 코웨이 BEREX 매트리스 가운데 가장 잘 맞는 한 대를 골라 드립니다. 약 1분이면 충분합니다.</p>
+      <p class="lead">체형과 수면 습관으로 맞는 매트리스를 찾는 8단계 문진, 지금 쓰는 매트리스의 위생 상태를 보는 진단이 있습니다. 상담 자리에서 필요한 쪽을 골라 주세요.</p>
 
       <div class="hero">
         <img src="img/signature-hero.webp" alt="BEREX 시그니처 매트리스" width="760" height="313">
         <div class="hero-tag"><span>SIGNATURE</span><b>BEREX PREMIUM LINE</b></div>
       </div>
 
+      <div class="group-label" style="margin:0 0 8px">맞춤 진단에서 확인하는 것</div>
       <ul class="features">
         <li><span class="num">1</span><div><b>8단계 문진</b><p>인원·체격·허리·자세·열감·반려동물·쿠션감·구성까지</p></div></li>
         <li><span class="num">2</span><div><b>실제 BEREX 모델 매칭</b><p>사이즈별 월 렌탈료와 추천 이유까지 한 번에</p></div></li>
@@ -282,10 +369,22 @@
       </ul>
 
       <div class="start-cta">
-        <button class="btn btn-primary" id="start-btn">
-          진단 시작하기
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </button>
+        <div class="mode-list">
+          <button class="mode-card primary" id="start-btn">
+            <span class="m-ico">
+              <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5M3 18h18M7 11V8a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3"/></svg>
+            </span>
+            <span class="m-txt"><b>맞춤 진단</b><small>8단계 문진 · 약 1분 · 내 몸에 맞는 BEREX 모델 추천</small></span>
+            <span class="m-go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span>
+          </button>
+          <button class="mode-card" id="hygiene-start-btn">
+            <span class="m-ico">
+              <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.2-2.9 7.6-7 9-4.1-1.4-7-4.8-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+            </span>
+            <span class="m-txt"><b>위생 진단<i class="mode-tag">NEW</i></b><small>사진 확인 + 8문항 · 진드기·곰팡이·먼지 위험도와 관리법</small></span>
+            <span class="m-go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span>
+          </button>
+        </div>
         <p class="start-note">결과는 상담용으로 바로 복사할 수 있어요.</p>
       </div>
 
@@ -325,6 +424,106 @@
       </button>
     </div>
     <div class="result-body" id="result-body"></div>
+  </section>
+
+  <!-- ================= HYGIENE · PHOTO ================= -->
+  <section class="screen" id="screen-hygiene-photo">
+    <div class="quiz-head">
+      <div class="row">
+        <button class="icon-btn" id="hyg-photo-back" aria-label="처음 화면으로">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <span class="ttl">매트리스 위생 진단</span>
+        <span class="ttl" id="hyg-photo-count">사진 · 1 / 5</span>
+      </div>
+      <div class="progress"><i id="hyg-photo-progress" style="width:20%"></i></div>
+    </div>
+    <div class="quiz-body">
+      <div class="step-no">STEP 01</div>
+      <h2 class="step-title">먼저 매트리스를<br>눈으로 살펴볼까요?</h2>
+      <p class="step-sub">사진을 찍어 두면 화면에서 크게 보며 아래 항목을 함께 확인할 수 있어요. 사진으로 진드기나 곰팡이를 판정하지는 않고, 직접 살펴보시도록 돕는 용도입니다.</p>
+
+      <div class="photo-slot" id="photo-slot">
+        <img id="photo-preview" class="photo-preview" alt="촬영한 매트리스 사진 미리보기" hidden>
+        <div class="photo-empty" id="photo-empty">
+          <span class="p-ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.4"/></svg>
+          </span>
+          <b>사진 찍기 · 앨범에서 선택</b>
+          <small>머리 쪽부터 꼼꼼히 찍으면 확인하기 쉬워요</small>
+        </div>
+      </div>
+      <input type="file" id="photo-input" accept="image/*" hidden>
+      <div class="photo-actions" id="photo-actions" hidden>
+        <button class="photo-btn" id="photo-change">다른 사진으로 바꾸기</button>
+        <button class="photo-btn" id="photo-remove">사진 지우기</button>
+      </div>
+      <p class="privacy-note">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+        <span>사진은 저장되거나 전송되지 않습니다. 이 기기 화면 안에서만 보여 드려요.</span>
+      </p>
+
+      <div class="group-label">사진을 보며 해당되는 항목 <span>여러 개 선택할 수 있어요</span></div>
+      <div class="check-list" id="check-list">
+        <button class="check-item" data-chk="head" aria-pressed="false">
+          <span class="c-box"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <span><b>머리 쪽에 누런 얼룩</b><small>머리·어깨가 닿는 자리에 누렇게 번진 자국</small></span>
+        </button>
+        <button class="check-item" data-chk="dots" aria-pressed="false">
+          <span class="c-box"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <span><b>검은·회색 점이나 얼룩</b><small>작은 반점이 무리 지어 보이는 경우</small></span>
+        </button>
+        <button class="check-item" data-chk="seam" aria-pressed="false">
+          <span class="c-box"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <span><b>이음새·퀼팅 홈에 먼지</b><small>봉제선이나 홈을 따라 회색 먼지가 보이는 경우</small></span>
+        </button>
+        <button class="check-item" data-chk="damp" aria-pressed="false">
+          <span class="c-box"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <span><b>눅눅한 자국·물얼룩</b><small>테두리나 밑면에 물이 번진 자국</small></span>
+        </button>
+        <button class="check-item" data-chk="under" aria-pressed="false">
+          <span class="c-box"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <span><b>커버 밑·밑면 먼지</b><small>커버를 들췄을 때 안쪽에 먼지가 쌓인 경우</small></span>
+        </button>
+      </div>
+      <p class="measure-hint" style="margin-top:12px">사진이 없어도 괜찮아요. 문항만으로도 진단할 수 있습니다.</p>
+    </div>
+    <div class="quiz-foot">
+      <div class="inner">
+        <button class="btn btn-primary" id="hyg-photo-next">다음</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= HYGIENE · QUIZ ================= -->
+  <section class="screen" id="screen-hygiene-quiz">
+    <div class="quiz-head">
+      <div class="row">
+        <button class="icon-btn" id="hyg-quiz-back" aria-label="이전 단계">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <span class="ttl">매트리스 위생 진단</span>
+        <span class="ttl" id="hyg-count">2 / 5</span>
+      </div>
+      <div class="progress"><i id="hyg-progress"></i></div>
+    </div>
+    <div class="quiz-body" id="hyg-quiz-body"></div>
+    <div class="quiz-foot">
+      <div class="inner">
+        <button class="btn btn-primary" id="hyg-next" disabled>다음</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= HYGIENE · RESULT ================= -->
+  <section class="screen" id="screen-hygiene-result">
+    <div class="result-head">
+      <span class="ttl">위생 진단 결과</span>
+      <button class="icon-btn" id="hyg-result-restart" aria-label="처음부터 다시 진단">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5"/></svg>
+      </button>
+    </div>
+    <div class="result-body" id="hyg-result-body"></div>
   </section>
 
 </div>
@@ -1474,6 +1673,413 @@ let toastTimer=null;
 function toast(msg){
   const t=$('#toast'); t.textContent=msg; t.classList.add('on');
   clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove('on'),1900);
+}
+
+/* =========================================================
+   매트리스 위생 진단 (신규 모드)
+   · 사진은 브라우저 안에서만 미리보기 — 업로드·서버 전송·저장 없음
+   · 진드기·곰팡이·먼지 위험도는 생활 습관 답변 기반의 상담 참고 지표
+   ========================================================= */
+const HYG_TOTAL = 5;                 // 사진 1단계 + 문항 4단계
+const HYG_LEVEL = { low:'낮음', mid:'주의', high:'높음' };
+const HYG_CLS = { low:'lv-low', mid:'lv-mid', high:'lv-high' };
+const hygLevel = p => p < 32 ? 'low' : p < 62 ? 'mid' : 'high';
+
+const HICON = {
+  mite:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="4.6"/><path d="M12 3v2.2M12 18.8V21M3 12h2.2M18.8 12H21M6 6l1.6 1.6M16.4 16.4 18 18M18 6l-1.6 1.6M7.6 16.4 6 18"/></svg>',
+  mold:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5s6 6.4 6 10.1A6 6 0 0 1 6 13.6C6 9.9 12 3.5 12 3.5z"/></svg>',
+  dust:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="7.5" cy="8" r="1.3"/><circle cx="15" cy="6.8" r="1"/><circle cx="12" cy="12.6" r="1.2"/><circle cx="17.2" cy="15.8" r="1.3"/><circle cx="6.4" cy="16" r="1"/><circle cx="11" cy="18.6" r=".9"/></svg>'
+};
+
+/* 사진을 보며 직접 체크하는 항목 — 자동 판정이 아니라 확인 가이드 */
+const PHOTO_ITEMS = [
+  { id:'head',  title:'머리 쪽에 누런 얼룩',   p:{m:8, o:6,  d:4}  },
+  { id:'dots',  title:'검은·회색 점이나 얼룩', p:{m:3, o:18, d:3}  },
+  { id:'seam',  title:'이음새·홈에 먼지',     p:{m:4, o:2,  d:14} },
+  { id:'damp',  title:'눅눅한 자국·물얼룩',   p:{m:6, o:12, d:2}  },
+  { id:'under', title:'커버 밑·밑면 먼지',   p:{m:6, o:4,  d:12} }
+];
+
+/* 위생 문진 8문항 (4화면 × 2~3문항) */
+const HYG_STEPS = [
+  {
+    title:'평소 침실 환경은\n어떤가요?',
+    sub:'습기와 공기 흐름은 진드기와 곰팡이가 자라기 쉬운 조건을 좌우합니다.',
+    qs:[
+      { id:'vent', q:'침실 환기는 얼마나 자주 하나요?', opts:[
+        { v:'daily', t:'거의 매일', s:'아침·저녁으로 창을 열어 두는 편', tag:'환기 거의 매일', p:{m:0, o:0, d:0} },
+        { v:'often', t:'주 2~3회', s:'생각날 때 한 번씩 여는 정도', tag:'환기 주 2~3회', p:{m:9, o:10, d:6} },
+        { v:'rare', t:'거의 하지 않아요', s:'창을 닫아 두고 지내는 편', tag:'환기 거의 안 함', p:{m:18, o:20, d:12} }
+      ]},
+      { id:'damp', q:'장마철이나 겨울에 결로나 곰팡이를 본 적이 있나요?', opts:[
+        { v:'no', t:'없어요', s:'창틀에도 물방울이 잘 생기지 않아요', tag:'결로 경험 없음', p:{m:0, o:0, d:0} },
+        { v:'window', t:'창틀·벽에 생겨요', s:'침실 창이나 벽에서 물방울·곰팡이를 봤어요', tag:'창틀·벽 결로', p:{m:8, o:10, d:3} },
+        { v:'bed', t:'매트리스 주변에도 생겨요', s:'바닥이나 매트리스 밑면이 눅눅했어요', tag:'매트리스 주변 결로', p:{m:18, o:22, d:6} }
+      ]}
+    ]
+  },
+  {
+    title:'냄새와 몸의\n반응은 어떤가요?',
+    sub:'매트리스 냄새와 아침 증상은 위생 상태를 짐작하게 하는 신호입니다.',
+    qs:[
+      { id:'smell', q:'매트리스에서 냄새가 나나요?', opts:[
+        { v:'none', t:'없어요', s:'가까이 맡아도 특별한 냄새가 없어요', tag:'냄새 없음', p:{m:0, o:0, d:0} },
+        { v:'faint', t:'가끔 퀴퀴해요', s:'비 온 뒤나 오래 닫아 두면 그런 기운이 있어요', tag:'가끔 퀴퀴함', p:{m:5, o:8, d:3} },
+        { v:'strong', t:'누린내·곰팡이 냄새가 나요', s:'가까이 가면 확실히 느껴져요', tag:'누린내·곰팡이 냄새', p:{m:10, o:18, d:6} }
+      ]},
+      { id:'morning', q:'아침에 일어나면 이런 증상이 있나요?', sub:'진단이 아니라 생활 속 신호로만 참고합니다.', opts:[
+        { v:'no', t:'없어요', s:'아침에 특별히 불편한 곳이 없어요', tag:'아침 증상 없음', p:{m:0, o:0, d:0} },
+        { v:'nose', t:'재채기·코막힘이 자주', s:'일어나면 코가 막히거나 재채기가 나요', tag:'아침 재채기·코막힘', p:{m:9, o:5, d:4} },
+        { v:'skin', t:'피부가 가렵거나 붉어져요', s:'등이나 팔에 가려움이 생겨요', tag:'아침 피부 가려움', p:{m:8, o:4, d:4} },
+        { v:'both', t:'둘 다 있어요', s:'코와 피부 증상이 같이 나타나요', tag:'아침 코·피부 증상', p:{m:14, o:8, d:6} }
+      ]}
+    ]
+  },
+  {
+    title:'세탁과 청소는\n어떻게 하고 계세요?',
+    sub:'커버 세탁과 진공청소 주기는 먼지·진드기 관리의 기본입니다.',
+    qs:[
+      { id:'wash', q:'커버 세탁과 매트리스 진공청소는 얼마나 자주 하나요?', opts:[
+        { v:'month', t:'한 달에 한 번 이상', s:'최근에도 세탁했고, 진공청소도 가끔 해요', tag:'커버 세탁 월 1회 이상', p:{m:0, o:0, d:0} },
+        { v:'quarter', t:'2~3개월에 한 번', s:'마지막 세탁이 두세 달 전쯤이에요', tag:'커버 세탁 2~3개월', p:{m:10, o:5, d:11} },
+        { v:'half', t:'반년에 한 번 이하', s:'생각날 때 한두 번이고, 진공청소는 거의 안 해요', tag:'커버 세탁 반년 이하', p:{m:18, o:9, d:19} },
+        { v:'never', t:'거의 안 해요', s:'마지막으로 언제 했는지 기억이 잘 안 나요', tag:'커버 세탁 거의 안 함', p:{m:24, o:12, d:24} }
+      ]},
+      { id:'food', q:'침대에서 음식물을 먹는 편인가요?', opts:[
+        { v:'never', t:'아니요', s:'침대에서는 물 말고는 잘 먹지 않아요', tag:'침대 음식 없음', p:{m:0, o:0, d:0} },
+        { v:'sometimes', t:'가끔 간식·음료', s:'주말이나 늦은 밤에 가끔', tag:'침대 간식 가끔', p:{m:4, o:3, d:5} },
+        { v:'often', t:'자주 먹어요', s:'거실 대신 침대에서 먹는 일이 많아요', tag:'침대 음식 자주', p:{m:8, o:6, d:10} }
+      ]}
+    ]
+  },
+  {
+    title:'마지막으로\n매트리스 정보를 알려 주세요.',
+    sub:'사용 기간과 프레임 통풍까지 보면 관리 방향이 더 분명해집니다.',
+    qs:[
+      { id:'pet', q:'반려동물과 함께 주무시나요?', opts:[
+        { v:'none', t:'없음', s:'반려동물과 함께 살지 않아요', tag:'반려동물 없음', p:{m:0, o:0, d:0} },
+        { v:'indoor', t:'있지만 침대엔 안 올라와요', s:'털·실내 위생은 신경 쓰이는 편', tag:'반려동물(침대 밖)', p:{m:5, o:2, d:9} },
+        { v:'bed', t:'함께 자요', s:'침대 위에서 함께 생활해요', tag:'반려동물 동반', p:{m:14, o:5, d:18} }
+      ]},
+      { id:'age', q:'매트리스는 사용한 지 얼마나 됐나요?', chips:true, opts:[
+        { v:'new', t:'3년 이내', tag:'사용 3년 이내', p:{m:0, o:0, d:0} },
+        { v:'mid', t:'3~7년', tag:'사용 3~7년', p:{m:8, o:5, d:7} },
+        { v:'old', t:'8년 이상', tag:'사용 8년 이상', p:{m:14, o:9, d:12} }
+      ]},
+      { id:'frame', q:'침대 프레임은 어떤 형태인가요?', chips:true, opts:[
+        { v:'slat', t:'살대형', tag:'프레임 살대형', p:{m:0, o:0, d:0} },
+        { v:'flat', t:'판형·밀착형', tag:'프레임 판형', p:{m:8, o:10, d:4} },
+        { v:'floor', t:'바닥에 바로', tag:'프레임 바닥 밀착', p:{m:10, o:12, d:6} },
+        { v:'unknown', t:'모르겠어요', tag:'프레임 모름', p:{m:4, o:4, d:3} }
+      ]}
+    ]
+  }
+];
+
+const HYG_AXES = [
+  { k:'m', name:'집먼지진드기', short:'진드기', icon:'mite',
+    why:{ low:'지금 습관이면 진드기가 번식하기 쉬운 조건은 아닙니다. 이 주기를 유지해 주세요.',
+          mid:'진드기가 좋아하는 조건이 일부 있습니다. 세탁·환기 주기를 조금만 당겨 보세요.',
+          high:'습기·각질·따뜻함이 여러 개 겹쳤습니다. 커버 세탁과 제습을 먼저 챙겨 주세요.' } },
+  { k:'o', name:'곰팡이', short:'곰팡이', icon:'mold',
+    why:{ low:'곰팡이가 자라기 쉬운 습기 신호는 거의 없었습니다.',
+          mid:'결로나 환기 부족 신호가 일부 있습니다. 밑면 통풍과 제습을 신경 써 주세요.',
+          high:'습기·냄새·얼룩 신호가 겹쳤습니다. 매트리스를 세워 밑면까지 말려 주세요.' } },
+  { k:'d', name:'먼지', short:'먼지', icon:'dust',
+    why:{ low:'털·각질·먼지가 빨리 쌓이는 조건은 아닙니다.',
+          mid:'털·먼지가 쌓이기 쉬운 조건이 있습니다. 진공청소 주기를 당겨 주세요.',
+          high:'먼지·털이 쌓이는 조건이 여러 개 겹쳤습니다. 커버 세탁과 진공청소를 먼저 해 주세요.' } }
+];
+
+const hstate = { step:0, checks:[], answers:{}, photoUrl:null };
+
+const hygQ = id => { for(const st of HYG_STEPS){ const q = st.qs.find(x=>x.id===id); if(q) return q; } return null; };
+const hygOpt = id => { const q = hygQ(id); return q ? q.opts.find(o=>o.v===hstate.answers[id]) : null; };
+const hygTag = id => { const o = hygOpt(id); return o ? o.tag : '—'; };
+
+/* ---------- 사진: 기기 안에서만 ---------- */
+function hygClearPhoto(){
+  if(hstate.photoUrl){ URL.revokeObjectURL(hstate.photoUrl); hstate.photoUrl = null; }
+  const img = $('#photo-preview');
+  if(img){ img.removeAttribute('src'); img.hidden = true; }
+  const slot = $('#photo-slot'); if(slot) slot.classList.remove('has-photo');
+  const empty = $('#photo-empty'); if(empty) empty.hidden = false;
+  const acts = $('#photo-actions'); if(acts) acts.hidden = true;
+  const input = $('#photo-input'); if(input) input.value = '';
+}
+function hygReset(){
+  hstate.step = 0; hstate.checks = []; hstate.answers = {};
+  hygClearPhoto();
+  document.querySelectorAll('[data-chk]').forEach(b=>b.setAttribute('aria-pressed','false'));
+}
+function hygStart(){
+  hygReset();
+  show('screen-hygiene-photo');
+}
+
+$('#hygiene-start-btn').addEventListener('click', hygStart);
+$('#hyg-photo-back').addEventListener('click', ()=>{ hygClearPhoto(); show('screen-start'); });
+$('#photo-input').addEventListener('change', e=>{
+  const f = e.target.files && e.target.files[0];
+  if(!f) return;
+  if(!/^image\//.test(f.type || '')){ toast('이미지 파일만 볼 수 있어요'); return; }
+  hygClearPhoto();
+  const url = URL.createObjectURL(f);
+  hstate.photoUrl = url;
+  const img = $('#photo-preview');
+  img.src = url; img.hidden = false;
+  $('#photo-empty').hidden = true;
+  $('#photo-slot').classList.add('has-photo');
+  $('#photo-actions').hidden = false;
+});
+$('#photo-slot').addEventListener('click', ()=>{ if(!hstate.photoUrl) $('#photo-input').click(); });
+$('#photo-change').addEventListener('click', ()=> $('#photo-input').click());
+$('#photo-remove').addEventListener('click', hygClearPhoto);
+window.addEventListener('pagehide', hygClearPhoto);
+
+document.addEventListener('click', e=>{
+  const c = e.target.closest('[data-chk]');
+  if(c){
+    const id = c.dataset.chk;
+    const i = hstate.checks.indexOf(id);
+    if(i >= 0) hstate.checks.splice(i,1); else hstate.checks.push(id);
+    c.setAttribute('aria-pressed', String(hstate.checks.includes(id)));
+    return;
+  }
+  const b = e.target.closest('[data-hq]');
+  if(!b) return;
+  const { hq, hv } = b.dataset;
+  hstate.answers[hq] = hv;
+  document.querySelectorAll(`[data-hq="${hq}"]`).forEach(x=>x.setAttribute('aria-pressed', String(x.dataset.hv === hv)));
+  hygUpdateNext();
+});
+
+/* ---------- 문항 화면 ---------- */
+function hygStepDone(st){ return st.qs.every(q=> !!hstate.answers[q.id]); }
+function hygUpdateNext(){
+  const st = HYG_STEPS[hstate.step];
+  const btn = $('#hyg-next');
+  btn.disabled = !hygStepDone(st);
+  btn.textContent = hstate.step === HYG_STEPS.length-1 ? '위생 진단 결과 보기' : '다음';
+}
+function hygRenderStep(){
+  const st = HYG_STEPS[hstate.step];
+  const n = hstate.step + 2;
+  $('#hyg-count').textContent = n + ' / ' + HYG_TOTAL;
+  $('#hyg-progress').style.width = (n / HYG_TOTAL * 100) + '%';
+  $('#hyg-quiz-body').innerHTML = `
+    <div class="step-no">STEP ${String(n).padStart(2,'0')}</div>
+    <h2 class="step-title">${st.title.replace(/\n/g,'<br>')}</h2>
+    <p class="step-sub">${st.sub}</p>
+    ${st.qs.map(q=>`
+      <div class="hq">${q.q}${q.sub?`<span>${q.sub}</span>`:''}</div>
+      ${q.chips
+        ? `<div class="hchip-grid">${q.opts.map(o=>`<button class="hchip" data-hq="${q.id}" data-hv="${o.v}" aria-pressed="${hstate.answers[q.id]===o.v}">${o.t}</button>`).join('')}</div>`
+        : `<div class="opts">${q.opts.map(o=>`
+            <button class="opt" data-hq="${q.id}" data-hv="${o.v}" aria-pressed="${hstate.answers[q.id]===o.v}">
+              <span class="txt"><b>${o.t}</b>${o.s?`<small>${o.s}</small>`:''}</span><span class="dot"></span>
+            </button>`).join('')}</div>`}
+    `).join('')}
+  `;
+  hygUpdateNext();
+  window.scrollTo({top:0,behavior:'instant'});
+}
+$('#hyg-photo-next').addEventListener('click', ()=>{ hstate.step = 0; hygRenderStep(); show('screen-hygiene-quiz'); });
+$('#hyg-quiz-back').addEventListener('click', ()=>{
+  if(hstate.step === 0){ show('screen-hygiene-photo'); return; }
+  hstate.step--; hygRenderStep();
+});
+$('#hyg-next').addEventListener('click', ()=>{
+  if(!hygStepDone(HYG_STEPS[hstate.step])) return;
+  if(hstate.step === HYG_STEPS.length-1){ buildHygieneResult(); show('screen-hygiene-result'); return; }
+  hstate.step++; hygRenderStep();
+});
+$('#hyg-result-restart').addEventListener('click', ()=>{ hygClearPhoto(); show('screen-start'); });
+
+/* ---------- 위험도 계산 ---------- */
+function hygCompute(){
+  const raw = {m:0, o:0, d:0}, mx = {m:0, o:0, d:0};
+  const contrib = {m:[], o:[], d:[]};
+  HYG_STEPS.forEach(st=>st.qs.forEach(q=>{
+    const ax = {m:0, o:0, d:0};
+    q.opts.forEach(o=>{ ['m','o','d'].forEach(k=>{ if(o.p[k] > ax[k]) ax[k] = o.p[k]; }); });
+    ['m','o','d'].forEach(k=>{ mx[k] += ax[k]; });
+    const ch = q.opts.find(o=>o.v === hstate.answers[q.id]);
+    if(!ch) return;
+    ['m','o','d'].forEach(k=>{
+      raw[k] += ch.p[k];
+      if(ch.p[k] > 0) contrib[k].push({ tag: ch.tag, w: ch.p[k] });
+    });
+  }));
+  const pm = {m:0, o:0, d:0};
+  PHOTO_ITEMS.forEach(it=>{ ['m','o','d'].forEach(k=>{ pm[k] += it.p[k]; }); });
+  const checked = [];
+  hstate.checks.forEach(id=>{
+    const it = PHOTO_ITEMS.find(x=>x.id === id);
+    if(!it) return;
+    checked.push(it);
+    ['m','o','d'].forEach(k=>{
+      raw[k] += it.p[k];
+      if(it.p[k] > 0) contrib[k].push({ tag: '사진 · ' + it.title, w: it.p[k] });
+    });
+  });
+  const pct = {}, lv = {};
+  ['m','o','d'].forEach(k=>{
+    pct[k] = Math.min(100, Math.round(raw[k] / Math.max(1, mx[k] + pm[k]) * 100));
+    lv[k] = hygLevel(pct[k]);
+    contrib[k].sort((a,b)=> b.w - a.w);
+  });
+  return { pct, lv, contrib, checked };
+}
+
+/* ---------- 관리법 ---------- */
+function hygCareItems(r){
+  const sev = k => r.lv[k] === 'high' ? 2 : r.lv[k] === 'mid' ? 1 : 0;
+  const frameNote = (hstate.answers.frame === 'flat' || hstate.answers.frame === 'floor')
+    ? ' 지금 프레임은 통풍이 어려운 형태라, 이 작업이 특히 도움이 됩니다.' : '';
+  const list = [
+    { step:'커버·패드를 분리해 60℃ 이상으로 세탁', when:'2주에 1회 · 얼룩이 보이면 바로', axes:['m','d'],
+      text:'커버 지퍼를 열어 분리한 뒤 60℃ 이상 물로 세탁해 주세요. 진드기는 뜨거운 물과 건조에 약한 것으로 알려져 있어요. 세탁 후에는 건조기나 볕에 완전히 말려 주세요.' },
+    { step:'매트리스는 진공청소기로 주 1회', when:'주 1회 · 2~3분', axes:['d','m'],
+      text:'브러시 대신 틈새 노즐을 끼우고 봉제선·퀼팅 홈·테두리를 따라 천천히 흡입해 주세요. 커버를 벗긴 상태라면 안쪽도 같은 방식으로 해 주세요.' },
+    { step:'제습과 환기로 침실 습도 낮추기', when:'아침 30분 맞통풍 · 습도 45~50%', axes:['o','m'],
+      text:'두 방향 창을 함께 열어 공기를 통하게 하고, 장마철·겨울에는 제습기를 1~2시간씩 돌려 주세요. 침실 습도는 45~50%가 관리하기 좋은 범위로 알려져 있어요.' },
+    { step:'이불·베개·패드도 함께 말리기', when:'2주에 1회', axes:['m','d'],
+      text:'매트리스만 관리하면 침구에 남은 각질·먼지가 다시 내려앉습니다. 이불과 베개는 볕이나 건조기에 말리고, 패드는 커버와 함께 세탁해 주세요.' },
+    { step:'매트리스를 세워 밑면까지 말리기', when:'연 2회 · 눅눅할 땐 바로', axes:['o'],
+      text:'프레임에서 들어내 세워 두고 밑면과 옆면을 2~3시간 말려 주세요.' + frameNote }
+  ];
+  return list
+    .map((c,i)=>({ c, i, s: Math.max(...c.axes.map(sev)) }))
+    .sort((a,b)=> (b.s - a.s) || (a.i - b.i))
+    .map(x=>({ ...x.c, top: x.s === 2 }));
+}
+
+/* ---------- 결과 화면 ---------- */
+function buildHygieneResult(){
+  const r = hygCompute();
+  const care = hygCareItems(r);
+  const chips = [
+    hstate.checks.length ? '사진 확인 ' + hstate.checks.length + '항목' : (hstate.photoUrl ? '사진만 확인' : '사진 없이 진행'),
+    hygTag('vent'), hygTag('wash'), hygTag('pet'), hygTag('age'), hygTag('frame')
+  ];
+  const badges = HYG_AXES.map(a=>`<div class="axis-badge ${HYG_CLS[r.lv[a.k]]}"><small>${a.short}</small><b>${HYG_LEVEL[r.lv[a.k]]}</b></div>`).join('');
+  const axisRows = HYG_AXES.map(a=>{
+    const lv = r.lv[a.k];
+    const evi = r.contrib[a.k].slice(0,4);
+    return `<div class="axis-row">
+      <div class="axis-top">
+        <span class="nm">${HICON[a.icon]}${a.name}</span>
+        <span class="lv ${HYG_CLS[lv]}">${HYG_LEVEL[lv]}</span>
+      </div>
+      <div class="axis-meter"><i class="${HYG_CLS[lv]}" style="width:${Math.max(4, r.pct[a.k])}%"></i></div>
+      <p class="axis-why">${a.why[lv]}</p>
+      ${evi.length ? `<div class="evi-chips">${evi.map(e=>`<span>${e.tag}</span>`).join('')}</div>` : ''}
+    </div>`;
+  }).join('');
+  const photoBlock = r.checked.length
+    ? `<div class="note-box"><b>사진에서 확인하신 항목</b> — ${r.checked.map(i=>i.title).join(', ')}. 사진은 직접 살펴보신 내용을 정리한 것이고, 앱이 자동으로 판정한 결과가 아닙니다.</div>`
+    : (hstate.photoUrl ? `<div class="note-box"><b>사진 확인</b> — 사진은 보셨지만 체크하신 항목은 없습니다. 눈에 보이는 얼룩·먼지가 없다면 지금 관리 주기를 유지해 주세요.</div>` : '');
+  const highAxes = HYG_AXES.filter(a=> r.lv[a.k] === 'high');
+  const midAxes = HYG_AXES.filter(a=> r.lv[a.k] === 'mid');
+  const alertBlock = highAxes.length
+    ? `<div class="note-box"><b>${highAxes.map(a=>a.name).join('·')} 위험도가 높게 나왔어요</b> — 침구용 진드기 확인 키트로 직접 확인해 보시거나, 매트리스 전문 케어·교체 상담을 함께 받아 보시길 권합니다. 눈에 보이는 얼룩이 있다면 물티슈로 문질렀을 때 묻어나는지, 냄새가 남아 있는지로 구분해 보세요.</div>`
+    : midAxes.length
+      ? `<div class="note-box"><b>${midAxes.map(a=>a.name).join('·')} 주의 단계예요</b> — 아래 관리법을 2~4주만 지켜도 상태가 달라질 수 있어요. 눈에 보이는 얼룩이 있다면 진드기 확인 키트로 한 번 확인해 보세요.</div>`
+      : `<div class="note-box"><b>지금 상태는 잘 관리되고 있어요</b> — 세 축 모두 낮음입니다. 지금 주기를 유지하고, 장마철·겨울에는 제습만 조금 더 신경 써 주세요.</div>`;
+
+  $('#hyg-result-body').innerHTML = `
+    <div class="result-intro">
+      <div class="eyebrow">MATTRESS HYGIENE CHECK</div>
+      <h1>지금 매트리스의<br>위생 상태를 정리했습니다.</h1>
+      <p>사진으로 직접 확인하신 내용과 8개 문항을 함께 봤습니다. 등급은 생활 습관 답변을 기준으로 계산한 상담 참고 지표입니다.</p>
+      <div class="answer-chips">${chips.map(c=>`<span>${c}</span>`).join('')}</div>
+    </div>
+
+    <div class="analysis">
+      <div class="analysis-top">
+        <div class="ttl">위생 위험도</div>
+        <h2>진드기 · 곰팡이 · 먼지</h2>
+        <div class="axis-badges">${badges}</div>
+      </div>
+      <div class="analysis-body">${axisRows}</div>
+    </div>
+
+    ${photoBlock}
+    ${alertBlock}
+
+    <div class="section-cap"><span class="rank">순서</span><h3>지금 할 수 있는 관리법</h3></div>
+    <div class="care-list">
+      ${care.map((c,i)=>`<div class="care-item">
+        <span class="care-num">${i+1}</span>
+        <div><b>${c.step}${c.top?'<i class="care-flag">우선</i>':''}</b><p>${c.text}</p><span class="when">${c.when}</span></div>
+      </div>`).join('')}
+    </div>
+
+    <div class="note-box" style="margin-top:14px"><b>참고</b> — 커버 교체가 포함된 관리유형(스페셜체인지·토탈케어)이나 방문 케어는 상담에서 함께 비교해 드릴 수 있어요.</div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="hyg-copy-btn">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        위생 진단 요약 복사
+      </button>
+      <a class="btn btn-outline" href="https://leyle2324-dev.github.io/coway-card/" target="_blank" rel="noopener">
+        코웨이 전체 명함 보기
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+      </a>
+      <button class="btn btn-ghost" id="hyg-restart-btn">처음부터 다시 진단</button>
+    </div>
+
+    <div class="result-foot">
+      코웨이 BEREX 매트리스 렌탈 상담 · <a href="tel:01094228307">010-9422-8307</a><br>
+      사진은 기기 안에서만 보여 드리고 저장·전송하지 않습니다. 위험도는 생활 습관 답변을 기준으로 한 상담 참고 지표입니다.<br>
+      본 진단은 의학적 진단·치료를 목적으로 하지 않습니다.
+    </div>
+  `;
+
+  $('#hyg-copy-btn').addEventListener('click', hygCopySummary);
+  $('#hyg-restart-btn').addEventListener('click', ()=>{ hygClearPhoto(); show('screen-start'); });
+}
+
+function hygSummaryText(){
+  const r = hygCompute();
+  const qa = id => { const o = hygOpt(id); return o ? o.t : '—'; };
+  const L = [];
+  L.push('[BEREX 매트리스 위생 진단]');
+  L.push('· 사진: ' + (r.checked.length
+    ? '확인함 (' + r.checked.map(i=>i.title).join(', ') + ')'
+    : (hstate.photoUrl ? '촬영함 · 체크 항목 없음' : '건너뜀')));
+  L.push(`· 환기: ${qa('vent')} / 결로·곰팡이: ${qa('damp')}`);
+  L.push(`· 냄새: ${qa('smell')} / 아침 증상: ${qa('morning')}`);
+  L.push(`· 세탁·청소: ${qa('wash')} / 침대 음식: ${qa('food')}`);
+  L.push(`· 반려동물: ${qa('pet')} / 사용 연수: ${qa('age')} / 프레임: ${qa('frame')}`);
+  L.push('');
+  L.push('▶ 위험도: ' + HYG_AXES.map(a=>`${a.name} ${HYG_LEVEL[r.lv[a.k]]}`).join(' · '));
+  L.push('▶ 먼저 할 일');
+  hygCareItems(r).slice(0,3).forEach((c,i)=> L.push(`  ${i+1}. ${c.step} (${c.when})`));
+  L.push('');
+  L.push('※ 생활 습관 답변 기준 상담 참고 지표이며, 사진은 자동 판정이 아닙니다. 의학적 진단이 아닙니다.');
+  return L.join('\n');
+}
+async function hygCopySummary(){
+  const text = hygSummaryText();
+  let ok = false;
+  try{
+    if(navigator.clipboard && window.isSecureContext){ await navigator.clipboard.writeText(text); ok = true; }
+  }catch(e){ ok = false; }
+  if(!ok){
+    try{
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.setAttribute('readonly','');
+      ta.style.position = 'fixed'; ta.style.left = '-9999px'; ta.style.top = '0';
+      document.body.appendChild(ta);
+      ta.focus(); ta.select(); ta.setSelectionRange(0, text.length);
+      ok = document.execCommand('copy');
+      ta.remove();
+    }catch(e){ ok = false; }
+  }
+  if(ok){ toast('위생 진단 요약을 복사했어요'); }
+  else { openSummarySheet(text); }
 }
 
 /* ---------- PWA ---------- */

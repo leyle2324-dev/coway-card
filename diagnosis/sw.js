@@ -1,7 +1,7 @@
 /* BEREX 수면·매트리스 맞춤 진단 — 오프라인 캐시
    배포 위치: https://leyle2324-dev.github.io/coway-card/diagnosis/
    모든 경로는 이 파일(sw.js) 위치 기준 상대경로입니다. */
-const CACHE = 'berex-diagnosis-v7';
+const CACHE = 'berex-diagnosis-v8';
 const ASSETS = [
   './',
   './index.html',
