@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<title>390 미리보기</title>
+<style>
+  html,body{margin:0;background:#222a31;font:12px/1.5 -apple-system,"Malgun Gothic",sans-serif;color:#e8eef4}
+  .wrap{display:flex;gap:14px;padding:12px;align-items:flex-start}
+  figure{margin:0}
+  figcaption{font-size:12px;font-weight:700;padding:2px 0 6px;color:#9fb4c7}
+  iframe{width:390px;height:844px;border:0;background:#fff;display:block;border-radius:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <figure><figcaption>index.html · 390px</figcaption><iframe id="f1" src="./index.html#cat-bed" width="390" height="844"></iframe></figure>
+  <figure><figcaption>set-discount.html · 390px (침대 탭 → 모디 담기 → 토탈)</figcaption><iframe id="f2" src="./set-discount.html" width="390" height="844"></iframe></figure>
+</div>
+<script>
+  function ready(f, cb) {
+    f.addEventListener('load', function () { setTimeout(function () { cb(f.contentDocument); }, 700); });
+  }
+  ready(document.getElementById('f1'), function (d) {
+    var bed = d.getElementById('cat-bed');
+    if (bed) bed.scrollIntoView();
+  });
+  ready(document.getElementById('f2'), function (d) {
+    var tabs = [].slice.call(d.querySelectorAll('.tab'));
+    var bedTab = tabs.filter(function (t) { return t.textContent.indexOf('침대') === 0; })[0];
+    if (bedTab) bedTab.click();
+    setTimeout(function () {
+      var btn = [].slice.call(d.querySelectorAll('.pitem')).filter(function (li) {
+        return li.textContent.indexOf('모디 매트리스') > -1;
+      })[0];
+      if (btn) {
+        var add = btn.querySelector('.addbtn');
+        if (add) add.click();
+      }
+      setTimeout(function () {
+        var row = d.querySelector('.selist li');
+        if (row) {
+          var total = [].slice.call(row.querySelectorAll('.tierbtn')).filter(function (b) {
+            return b.getAttribute('data-tier') === 'total';
+          })[0];
+          if (total) total.click();
+          row.scrollIntoView();
+        }
+      }, 300);
+    }, 300);
+  });
+</script>
+</body>
+</html>
