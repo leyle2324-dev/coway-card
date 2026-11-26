@@ -7,7 +7,7 @@
 <meta name="format-detection" content="telephone=no">
 <meta name="theme-color" content="#0e2c4a">
 <title>세트 구성 · 월 합산 금액 확인</title>
-<meta name="description" content="코웨이 제품 165종 중 원하는 제품을 골라 제품별 할인율(5~20%)을 적용한 월 합산 금액을 바로 확인하세요. 최종 할인과 조건은 전문상담사와 상의해 주세요.">
+<meta name="description" content="코웨이 제품 139종 중 원하는 제품을 골라 제품별 할인율(5~20%)을 적용한 월 합산 금액을 바로 확인하세요. 최종 할인과 조건은 전문상담사와 상의해 주세요.">
 <meta property="og:title" content="세트 구성 · 월 합산 금액 확인">
 <meta property="og:description" content="원하는 제품들을 골라 제품별 할인율(5~20%)을 적용한 월 합산 금액을 확인하세요. 최종 할인과 조건은 상담으로 확정됩니다.">
 <meta property="og:type" content="website">
@@ -255,6 +255,28 @@
   .segbtn:active{background:rgba(10,122,194,.10);}
   .segbtn.is-on{background:#fff;color:#0869a8;box-shadow:0 1px 4px rgba(14,44,74,.16);}
   .segbtn:focus-visible{outline:3px solid #8fd0ff;outline-offset:1px;}
+  /* ── 케어 등급 (토탈·베이직·서비스프리) ── */
+  .tierbar{
+    display:flex;align-items:center;gap:4px;flex-wrap:wrap;
+    margin:5px 0 0;
+  }
+  .tierbtn{
+    display:inline-flex;align-items:center;justify-content:center;
+    min-height:26px;padding:0 8px;border-radius:8px;
+    background:#f2f7fc;border:1px solid #dbe8f4;
+    font-family:inherit;font-size:11px;font-weight:800;
+    color:#4a6478;letter-spacing:-.01em;
+    cursor:pointer;-webkit-tap-highlight-color:transparent;
+  }
+  .tierbtn.is-on{background:var(--navy);border-color:var(--navy);color:#fff;}
+  .tierbtn:active{background:#e2eefa;}
+  .tierbtn.is-on:active{background:#0a2238;}
+  .tierbtn:focus-visible{outline:3px solid #8fd0ff;outline-offset:1px;}
+  .tierterm{
+    margin-left:auto;font-size:10.5px;font-weight:700;color:#8ba0b2;
+    font-variant-numeric:tabular-nums;
+  }
+  .selist .tierrow{grid-column:1 / -1;grid-row:3;}
   .selist-empty{
     margin:0;padding:12px 0 2px;
     font-size:12.5px;color:var(--muted);line-height:1.6;text-align:center;
@@ -470,6 +492,9 @@
     .selist .disc-applied{color:#9fb0c1;}
     .selist .disc-applied.is-on{color:#6fd3bd;}
     .selist .disc-na{color:#d5ab86;}
+    .tierbtn{background:#16232f;border-color:#243446;color:#c3d1de;}
+    .tierbtn.is-on{background:#1b4a75;border-color:#2f6f9f;color:#f2f8ff;}
+    .tierterm{color:#8296a8;}
     .seg{background:#0f2233;border-color:#23516f;}
     .segbtn{color:#9fb4c7;}
     .segbtn:active{background:rgba(140,203,247,.12);}
@@ -527,13 +552,13 @@
   <header class="phero">
     <p class="eyebrow">세트 구성</p>
     <h1>원하는 제품을 골라<br>월 합산 금액을 확인하세요</h1>
-    <p class="lead">정수기·공기청정기·비데·침대·안마의자까지 코웨이 제품 165종 중에서 필요한 제품을 담으면, 선택한 제품의 월 렌탈료가 바로 합산됩니다.</p>
+    <p class="lead">정수기·공기청정기·비데·침대·안마의자까지 코웨이 제품 139종 중에서 필요한 제품을 담으면, 선택한 제품의 월 렌탈료가 바로 합산됩니다.</p>
     <div class="phero-chips">
-      <span>제품 165종</span>
+      <span>제품 139종</span>
       <span>실시간 합산</span>
       <span>상담으로 최종 확인</span>
     </div>
-    <p class="phero-note">표시 금액은 코웨이닷컴 기준 실제 월 렌탈료(약정 할인·자동이체 할인 반영)입니다 · 제품마다 5~20% 할인율을 골라 적용해 볼 수 있고, 최종 요율과 조건은 상담으로 확정됩니다</p>
+    <p class="phero-note">표시 금액은 코웨이닷컴 기준 실제 월 렌탈료(약정 할인·자동이체 할인 반영)입니다 · 매트리스는 <b>토탈·베이직·서비스프리</b> 케어 등급을 골라 금액을 볼 수 있고, 제품마다 5~20% 할인율도 적용해 볼 수 있습니다. 최종 요율과 조건은 상담으로 확정됩니다</p>
   </header>
 
   <div class="sumbar is-empty" id="sumbar" aria-live="polite">
@@ -590,7 +615,7 @@
   <section class="sec" id="pick" aria-labelledby="pick-h">
     <div class="sec-head">
       <div>
-        <h2 id="pick-h">제품 고르기 <span>165종</span></h2>
+        <h2 id="pick-h">제품 고르기 <span>139종</span></h2>
         <p>카테고리나 검색으로 찾아 여러 개를 담아 보세요.</p>
       </div>
     </div>
@@ -603,7 +628,7 @@
       <div class="tabs" id="tabs" role="tablist" aria-label="제품 카테고리"></div>
     </div>
 
-    <p class="countline" id="countline">전체 165종</p>
+    <p class="countline" id="countline">전체 139종</p>
     <p class="noresult" id="noresult" hidden>조건에 맞는 제품이 없습니다.<br><b>다른 카테고리</b>를 고르거나 <b>검색어를 줄여</b> 다시 찾아보세요.</p>
     <ul class="plist" id="plist"></ul>
   </section>
@@ -618,6 +643,7 @@
         <li>위 <b>할인 적용 월 합산</b>은 담은 제품의 월 렌탈료에 <b>제품마다 고른 할인율(5%·10%·15%·20%)</b>을 적용해 계산한 금액입니다. 할인액은 제품별로 원 단위에서 반올림하고, 아무 요율도 고르지 않은 제품은 정가로 더합니다. 화면 위 <b>‘할인 전 합산’</b>은 할인을 적용하기 전 금액입니다.</li>
         <li>실제 프로모션에서 제품별로 어느 요율이 적용되는지는 그 달 조건에 따라 달라집니다. 화면에서 고른 요율은 상담 전 참고 계산이며, <b>최종 할인율과 월 납부액</b>은 상담할 때 제품 조합과 설치 조건을 함께 확인해 확정해 드립니다.</li>
         <li>자동이체·제휴카드 할인, 설치비, 관리 주기 등은 상담에서 함께 정리해 드립니다.</li>
+        <li>매트리스는 <b>토탈·베이직·서비스프리</b> 중 그 제품이 실제로 운영하는 등급만 버튼으로 나옵니다. 등급을 누르면 그 금액으로 할인·합계가 바로 다시 계산되고, 등급별 금액은 코웨이닷컴 상품페이지의 실렌탈료(약정·자동이체 할인 반영)입니다. 의무사용기간은 상품페이지 기본 기간(7년 또는 9년)을 기준으로 했습니다.</li>
         <li>표시 금액이 <b>‘상담 확인’</b>인 제품은 공식몰에 월 렌탈료가 표시되지 않는(렌탈 미운영) 제품이라 합산에서 빠져 있습니다. 렌탈 가능 여부와 견적은 상담으로 확인해 드립니다.</li>
       </ul>
       <p class="fine">표시 금액은 2026-11-26 코웨이닷컴 기준이며, 프로모션에 따라 달라질 수 있습니다.</p>
@@ -652,7 +678,7 @@
 (function () {
   "use strict";
 
-  var PRODUCTS = [{"id":"1544","cat":"water","name":"카페 얼음정수기","model":"CHPCI-8400N_WT","img":"img/1544.webp","monthly":53900},{"id":"1494","cat":"water","name":"아이콘 정수기 2","model":"CP-7211N_V2/WT","img":"img/1494.webp","monthly":25900},{"id":"1427","cat":"water","name":"아이스 스탠드 3.0","model":"CHPI-5820L","img":"img/1427.webp","monthly":53400},{"id":"1384","cat":"water","name":"아이콘 정수기 3","model":"CP-7220N_BG","img":"img/1384.webp","monthly":26900},{"id":"1370","cat":"water","name":"아이스 스탠드 5.2","model":"CHPI-5830L","img":"img/1370.webp","monthly":58900},{"id":"1299","cat":"water","name":"워터 스탠드 12 플러스","model":"CHP-5730L","img":"img/1299.webp","monthly":25900},{"id":"1248","cat":"water","name":"스위치 정수기","model":"P-2200N","img":"img/1248.webp","monthly":15900},{"id":"1288","cat":"water","name":"아이콘 얼음정수기 맥스","model":"CHPI-7420N","img":"img/1288.webp","monthly":48900},{"id":"1272","cat":"water","name":"아이콘 얼음정수기 스탠다드","model":"CPI-7410N","img":"img/1272.webp","monthly":41900},{"id":"1527","cat":"water","name":"아이콘 얼음정수기 미니","model":"CHPI-7430N","img":"img/1527.webp","monthly":40900},{"id":"1253","cat":"water","name":"아이콘 프로 정수기","model":"CHP-7212N","img":"img/1253.webp","monthly":29900},{"id":"1252","cat":"water","name":"엘리트 빌트인 정수기","model":"CHP-1111N","img":"img/1252.webp","monthly":30900},{"id":"1220","cat":"water","name":"엘리트 얼음정수기 RO","model":"CHPI-7521L","img":"img/1220.webp","monthly":40400},{"id":"1148","cat":"water","name":"아이콘 얼음정수기 오리지널","model":"CPI-7400N","img":"img/1148.webp","monthly":41400},{"id":"1137","cat":"water","name":"워터 스탠드 12","model":"CHP-5711L","img":"img/1137.webp","monthly":25900},{"id":"1055","cat":"water","name":"엘리트 정수기","model":"CP-6340L","img":"img/1055.webp","monthly":28900},{"id":"1045","cat":"water","name":"워터 스탠드 21","model":"CHP-5720L","img":"img/1045.webp","monthly":44900},{"id":"1010","cat":"water","name":"아이스 스탠드 3.8","model":"CHPI-5810L","img":"img/1010.webp","monthly":55900},{"id":"235","cat":"water","name":"노블 정수기 RO","model":"CHP-8310L","img":"img/235.webp","monthly":33400},{"id":"233","cat":"water","name":"노블 정수기 가로","model":"CHP-8210N","img":"img/233.webp","monthly":33400},{"id":"211","cat":"water","name":"노블 정수기 세로","model":"CP-8200N","img":"img/211.webp","monthly":31400},{"id":"212","cat":"water","name":"노블 빌트인 정수기","model":"CHP-3140N","img":"img/212.webp","monthly":36400},{"id":"109","cat":"water","name":"프라임 베이직","model":"P-6320L","img":"img/109.webp","monthly":20900},{"id":"3","cat":"water","name":"AIS(아이스) 3.0","model":"CPI-7511L","img":"img/3.webp","monthly":38400},{"id":"87","cat":"water","name":"AIS(아이스) 3.0 스파클링","model":"CPSI-8510L","img":"img/87.webp","monthly":48900},{"id":"240","cat":"water","name":"나노직수 정수기 미니","model":"P-350N","img":"img/240.webp","monthly":15900},{"id":"101","cat":"water","name":"워터 스탠드 10 RO직수","model":"CHP-5700R","img":"img/101.webp","monthly":51900},{"id":"2","cat":"water","name":"아이스 스탠드","model":"CHPI-5801L","img":"img/2.webp","monthly":55900},{"id":"100","cat":"water","name":"아이스 스탠드 1.0","model":"CHPI-620L","img":"img/100.webp","monthly":48900},{"id":"110","cat":"water","name":"프라임 1.0","model":"CHP-264L","img":"img/110.webp","monthly":28900},{"id":"104","cat":"water","name":"워터 스탠드 33","model":"CHP-700L","img":"img/104.webp","monthly":60100},{"id":"1568","cat":"air","name":"노블 공기청정기 플러스 (57㎡)","model":"AP-1726J","img":"img/1568.webp","monthly":32400},{"id":"1567","cat":"air","name":"노블 공기청정기 플러스 (70㎡)","model":"AP-2126I","img":"img/1567.webp","monthly":34400},{"id":"1518","cat":"air","name":"인버터 제습기 25L","model":"AD-2526N","img":"img/1518.webp","monthly":18900},{"id":"1491","cat":"air","name":"듀얼클린 가습공기청정기2","model":"APM-1226H","img":"img/1491.webp","monthly":27900},{"id":"1488","cat":"air","name":"벽걸이에어컨","model":"ACAH-065AA","img":"img/1488.webp","monthly":17900},{"id":"1437","cat":"air","name":"스퀘어핏 공기청정기 (50㎡)","model":"AP-1526A","img":"img/1437.webp","monthly":19400},{"id":"1438","cat":"air","name":"스퀘어핏 공기청정기 (66㎡)","model":"AP-2026B","img":"img/1438.webp","monthly":22400},{"id":"1479","cat":"air","name":"인버터 제습기 20L","model":"AD-2026C","img":"img/1479.webp","monthly":16400},{"id":"1255","cat":"air","name":"인버터 제습기 23L","model":"AD-2325C","img":"img/1255.webp","monthly":17900},{"id":"1374","cat":"air","name":"플로우360 공기청정기 (63㎡)","model":"AP-1924A","img":"img/1374.webp","monthly":null},{"id":"1375","cat":"air","name":"플로우360 공기청정기 (76㎡)","model":"AP-2524B","img":"img/1375.webp","monthly":null},{"id":"1343","cat":"air","name":"히티브 온풍공기청정기","model":"APH-0525F","img":"img/1343.webp","monthly":24400},{"id":"1284","cat":"air","name":"스퀘어핏 공기청정기 (38㎡)","model":"AP-1125G","img":"img/1284.webp","monthly":16400},{"id":"1285","cat":"air","name":"스퀘어핏 공기청정기 (82㎡)","model":"AP-2425H","img":"img/1285.webp","monthly":25400},{"id":"1254","cat":"air","name":"노블 제습공기청정기","model":"APD-1025E","img":"img/1254.webp","monthly":37900},{"id":"1251","cat":"air","name":"파워업 공기청정기 2","model":"AP-3525I","img":"img/1251.webp","monthly":45900},{"id":"1219","cat":"air","name":"노블 공기청정기2 (133㎡)","model":"AP-4025D","img":"img/1219.webp","monthly":51900},{"id":"1186","cat":"air","name":"노블 공기청정기2 (100㎡)","model":"AP-3024H","img":"img/1186.webp","monthly":47900},{"id":"1212","cat":"air","name":"벽걸이 공기청정기2","model":"AP-1225F","img":"img/1212.webp","monthly":27900},{"id":"1138","cat":"air","name":"파워업 공기청정기","model":"AP-3522F","img":"img/1138.webp","monthly":45900},{"id":"1068","cat":"air","name":"노블 공기청정기2 (53㎡)","model":"AP-1623M","img":"img/1068.webp","monthly":30900},{"id":"1056","cat":"air","name":"노블 공기청정기2 (67㎡)","model":"AP-2023K","img":"img/1056.webp","monthly":33900},{"id":"1051","cat":"air","name":"멀티액션 공기청정기2","model":"AP-1523D","img":"img/1051.webp","monthly":27900},{"id":"1049","cat":"air","name":"듀얼클린 제습공기청정기","model":"APD-1023A","img":"img/1049.webp","monthly":33900},{"id":"1047","cat":"air","name":"싱글파워 공기청정기","model":"AP-1023F","img":"img/1047.webp","monthly":18400},{"id":"1605","cat":"air","name":"공기청정기S (45㎡)","model":"AP-1522C","img":"img/1605.webp","monthly":null},{"id":"4","cat":"air","name":"노블 공기청정기(100㎡)","model":"AP-3021D","img":"img/4.webp","monthly":47900},{"id":"157","cat":"air","name":"노블 제습기","model":"AD-1221E","img":"img/157.webp","monthly":14900},{"id":"6","cat":"air","name":"에어카트리지 공기청정기 (33㎡)","model":"AP-1019C","img":"img/6.webp","monthly":null},{"id":"247","cat":"air","name":"에어카트리지 공기청정기 (60㎡)","model":"AP-1821F","img":"img/247.webp","monthly":null},{"id":"215","cat":"air","name":"노블 가습기 (자연기화식)","model":"AM-1421G","img":"img/215.webp","monthly":null},{"id":"7","cat":"air","name":"아이콘 공기청정기","model":"AP-1019D","img":"img/7.webp","monthly":27900},{"id":"149","cat":"air","name":"벽걸이 공기청정기 (AP-3519A)","model":"AP-3519A","img":"img/149.webp","monthly":51900},{"id":"32","cat":"air","name":"사계절 의류청정기 더블케어(FAD-01S)","model":"FAD-01S","img":"img/32.webp","monthly":42900},{"id":"254","cat":"air","name":"사계절 의류청정기 더블케어(FAD-02S)","model":"FAD-02S","img":"img/254.webp","monthly":40900},{"id":"129","cat":"air","name":"콰트로파워 공기청정기","model":"AP-3018B","img":"img/129.webp","monthly":51900},{"id":"1594","cat":"bidet","name":"더블케어 비데","model":"BAS37-D","img":"img/1594.webp","monthly":23400},{"id":"1593","cat":"bidet","name":"더매너 비데","model":"BAS50-A","img":"img/1593.webp","monthly":25900},{"id":"1547","cat":"bidet","name":"컴팩트 비데 1","model":"BAS25-C","img":"img/1547.webp","monthly":21400},{"id":"1525","cat":"bidet","name":"컴팩트 비데2","model":"BAS47-BE","img":"img/1525.webp","monthly":19400},{"id":"1522","cat":"bidet","name":"스타일 비데","model":"BAS40-B","img":"img/1522.webp","monthly":17400},{"id":"1523","cat":"bidet","name":"스타일 비데 플러스","model":"BAS41-B_PK","img":"img/1523.webp","monthly":18900},{"id":"1524","cat":"bidet","name":"프라임 비데","model":"BA52-A","img":"img/1524.webp","monthly":15900},{"id":"1477","cat":"bidet","name":"더매너 비데 플러스","model":"BAS51-A","img":"img/1477.webp","monthly":28900},{"id":"1351","cat":"bidet","name":"슬리믹 비데","model":"BAS49-A","img":"img/1351.webp","monthly":20900},{"id":"1205","cat":"bidet","name":"더블케어 비데","model":"BAS37-C","img":"img/1205.webp","monthly":23400},{"id":"1206","cat":"bidet","name":"더블케어 비데 플러스","model":"BAS38-C","img":"img/1206.webp","monthly":24400},{"id":"1048","cat":"bidet","name":"저수압용 비데","model":"BAS39-A","img":"img/1048.webp","monthly":20400},{"id":"1017","cat":"bidet","name":"스킨플러스 연수기(수전일체형)","model":"BB17-A_WT","img":"img/1017.webp","monthly":30900},{"id":"1016","cat":"bidet","name":"스킨플러스 연수기(일반형)","model":"BB16-A_WT","img":"img/1016.webp","monthly":27900},{"id":"43","cat":"bidet","name":"프라임 비데(건조기능 미포함)","model":"BA20-D","img":"img/43.webp","monthly":15900},{"id":"9","cat":"bidet","name":"연수기(BB15-A)","model":"BB15-A","img":"img/9.webp","monthly":26900},{"id":"1564","cat":"bed","name":"BEREX 스마트 매트리스 S6+ 슬립 싱크","model":"CMSS-AS04SD_BG","img":"img/1564.webp","monthly":72900},{"id":"1563","cat":"bed","name":"BEREX 스마트 매트리스 S8+ 슬립 싱크","model":"CMSS-AS05SD_BG","img":"img/1563.webp","monthly":86900},{"id":"1565","cat":"bed","name":"BEREX 시그니처 파이어쉴드 매트리스 슬립 싱크","model":"CMSS-SP02SD","img":"img/1565.webp","monthly":68900},{"id":"1506","cat":"bed","name":"BEREX 더블사이드&볼륨 침대","model":"","img":"img/1506.webp","monthly":32970},{"id":"1507","cat":"bed","name":"BEREX 루네어&컴포트 침대","model":"","img":"img/1507.webp","monthly":35520},{"id":"1505","cat":"bed","name":"BEREX 스마트&코지 침대","model":"","img":"img/1505.webp","monthly":63570},{"id":"1504","cat":"bed","name":"BEREX 시그니처&모던라운드 침대","model":"","img":"img/1504.webp","monthly":55070},{"id":"1509","cat":"bed","name":"BEREX 시그니처&스위트호텔 침대","model":"","img":"img/1509.webp","monthly":57620},{"id":"1508","cat":"bed","name":"BEREX 하이브리드4&소프트쿠션 침대","model":"","img":"img/1508.webp","monthly":38070},{"id":"1435","cat":"bed","name":"BEREX 모던 플러스 파운데이션","model":"CFSS-F05_BG","img":"img/1435.webp","monthly":15900},{"id":"1454","cat":"bed","name":"BEREX 모디&볼륨 침대","model":"","img":"img/1454.webp","monthly":30420},{"id":"1434","cat":"bed","name":"BEREX 스위트 호텔 프레임","model":"CFSS-HT01_BG","img":"img/1434.webp","monthly":23900},{"id":"1455","cat":"bed","name":"BEREX 시그니처&소프트쿠션 침대","model":"","img":"img/1455.webp","monthly":52520},{"id":"1456","cat":"bed","name":"BEREX 엘리트&볼륨 침대","model":"","img":"img/1456.webp","monthly":29570},{"id":"1448","cat":"bed","name":"BEREX 더블사이드&컴포트 침대","model":"","img":"img/1448.webp","monthly":35520},{"id":"1442","cat":"bed","name":"BEREX 루네어&루나 침대","model":"","img":"img/1442.webp","monthly":30420},{"id":"1439","cat":"bed","name":"BEREX 모디&마이 침대","model":"","img":"img/1439.webp","monthly":30420},{"id":"1443","cat":"bed","name":"BEREX 모디&수납형 침대","model":"","img":"img/1443.webp","monthly":28720},{"id":"1446","cat":"bed","name":"BEREX 스마트&모던라운드 침대","model":"","img":"img/1446.webp","monthly":70370},{"id":"1444","cat":"bed","name":"BEREX 스마트&볼륨 침대","model":"","img":"img/1444.webp","monthly":66970},{"id":"1447","cat":"bed","name":"BEREX 스마트&소프트쿠션 침대","model":"","img":"img/1447.webp","monthly":79720},{"id":"1445","cat":"bed","name":"BEREX 시그니처&코지 침대","model":"","img":"img/1445.webp","monthly":48270},{"id":"1441","cat":"bed","name":"BEREX 엘리트&우디 침대","model":"","img":"img/1441.webp","monthly":25320},{"id":"1451","cat":"bed","name":"BEREX 하이브리드4&모던라운드 침대","model":"","img":"img/1451.webp","monthly":40620},{"id":"1440","cat":"bed","name":"BEREX 하이브리드4&코지 침대","model":"","img":"img/1440.webp","monthly":33820},{"id":"1425","cat":"bed","name":"BEREX M시리즈 안마매트리스","model":"","img":"img/1425.webp","monthly":124430},{"id":"1393","cat":"bed","name":"BEREX R시리즈 R3 모션베드","model":"","img":"img/1393.webp","monthly":84820},{"id":"1392","cat":"bed","name":"BEREX R시리즈 R5 스트레칭 베드","model":"","img":"img/1392.webp","monthly":94170},{"id":"1391","cat":"bed","name":"BEREX R시리즈 R7 스트레칭 모션베드","model":"","img":"img/1391.webp","monthly":104370},{"id":"1354","cat":"bed","name":"BEREX 루나 프레임","model":"CFSS-TM14_IV","img":"img/1354.webp","monthly":17900},{"id":"1352","cat":"bed","name":"BEREX 루네어 매트리스","model":"CMSS-SE03H","img":"img/1352.webp","monthly":17900},{"id":"1113","cat":"bed","name":"BEREX 모던 파운데이션","model":"CFSS-F04_BG","img":"img/1113.webp","monthly":12900},{"id":"1353","cat":"bed","name":"BEREX 코지 프레임","model":"CFSS-TM13_IV","img":"img/1353.webp","monthly":16900},{"id":"1309","cat":"bed","name":"BEREX 모던 라운드 프레임","model":"CFSS-CB02_BG/HC","img":"img/1309.webp","monthly":24900},{"id":"1300","cat":"bed","name":"BEREX 모디 매트리스","model":"CMSS-SE02H","img":"img/1300.webp","monthly":14900},{"id":"1341","cat":"bed","name":"BEREX 모디&모던 침대","model":"","img":"img/1341.webp","monthly":23620},{"id":"1111","cat":"bed","name":"BEREX 시그니처 매트리스","model":"CMSS-SP01S","img":"img/1111.webp","monthly":39900},{"id":"1311","cat":"bed","name":"BEREX 시그니처 파이어쉴드 매트리스","model":"CMSS-SP02S","img":"img/1311.webp","monthly":43900},{"id":"26","cat":"bed","name":"BEREX 하이브리드 4 매트리스","model":"CMSS-PR04M_V2","img":"img/26.webp","monthly":22900},{"id":"1241","cat":"bed","name":"BEREX 스마트&그레이스 침대","model":"","img":"img/1241.webp","monthly":72920},{"id":"1204","cat":"bed","name":"BEREX 그레이스 프레임","model":"CFQ-CB04_GR/HB","img":"img/1204.webp","monthly":27900},{"id":"1195","cat":"bed","name":"BEREX 수납형 프레임","model":"CFS-SB01_BG","img":"img/1195.webp","monthly":18900},{"id":"1189","cat":"bed","name":"BEREX 스마트 매트리스 S6+","model":"CMSS-AS04_BG","img":"img/1189.webp","monthly":57900},{"id":"1188","cat":"bed","name":"BEREX 스마트 매트리스 S8+","model":"CMSS-AS05_BG","img":"img/1188.webp","monthly":71900},{"id":"1190","cat":"bed","name":"BEREX 소프트 쿠션 프레임","model":"CFSS-CB03_IV","img":"img/1190.webp","monthly":21900},{"id":"1134","cat":"bed","name":"BEREX 볼륨 프레임","model":"CFSS-TM12_BG","img":"img/1134.webp","monthly":20900},{"id":"1112","cat":"bed","name":"BEREX 더블 사이드 매트리스","model":"CMSS-SE01","img":"img/1112.webp","monthly":17900},{"id":"1099","cat":"bed","name":"BEREX 우디 프레임","model":"CFSS-TM11_NT","img":"img/1099.webp","monthly":15900},{"id":"1082","cat":"bed","name":"BEREX 엘리트 매트리스","model":"CMS-ST01EH","img":"img/1082.webp","monthly":12900},{"id":"1057","cat":"bed","name":"BEREX 컴포트 프레임","model":"CFSS-CB01_IV","img":"img/1057.webp","monthly":23900},{"id":"1000","cat":"bed","name":"BEREX 마이 프레임 기본형 (플랫/볼륨)","model":"CFSS-FP01_GN","img":"img/1000.webp","monthly":17900},{"id":"1001","cat":"bed","name":"BEREX 마이 프레임 사이드형 (플랫/볼륨)","model":"CFSS-FP02S_IV","img":"img/1001.webp","monthly":20900},{"id":"1026","cat":"bed","name":"BEREX 원바디 2 매트리스","model":"CMSS-OB03_BG","img":"img/1026.webp","monthly":16900},{"id":"1027","cat":"bed","name":"BEREX 프라임 플러스 2 매트리스","model":"CMK-S05","img":"img/1027.webp","monthly":23900},{"id":"176","cat":"bed","name":"BEREX 컴팩트 메모리폼 매트리스","model":"CMSS-M01M","img":"img/176.webp","monthly":16900},{"id":"181","cat":"bed","name":"BEREX 하이브리드 3 매트리스","model":"CMSS-PR03","img":"img/181.webp","monthly":21900},{"id":"179","cat":"bed","name":"BEREX 프라임 매트리스","model":"CMQ-S03H","img":"img/179.webp","monthly":17900},{"id":"194","cat":"bed","name":"BEREX 원목 프레임","model":"CFK-TM09N","img":"img/194.webp","monthly":19900},{"id":"10","cat":"bed","name":"BEREX 패밀리 프레임 (결합형)","model":"CFSS-LM02G","img":"img/10.webp","monthly":24900},{"id":"192","cat":"bed","name":"BEREX 패밀리 프레임 (단독형)","model":"CFSS-LM01G","img":"img/192.webp","monthly":24900},{"id":"229","cat":"bed","name":"BEREX 모던 어반 프레임","model":"CFK-L01","img":"img/229.webp","monthly":28900},{"id":"177","cat":"bed","name":"BEREX 더블체인지 매트리스","model":"CMSS-SL01","img":"img/177.webp","monthly":14900},{"id":"1553","cat":"massage","name":"BEREX 트리플체어2 슬림","model":"MC-R03S_RD","img":"img/1553.webp","monthly":60900},{"id":"1426","cat":"massage","name":"BEREX 안마의자 페블체어2","model":"MC-C02AT_BU","img":"img/1426.webp","monthly":58900},{"id":"1358","cat":"massage","name":"BEREX 리클라이닝 마사지셋","model":"MB-M05M_WT","img":"img/1358.webp","monthly":84600},{"id":"1359","cat":"massage","name":"BEREX 리클라이닝 코어셋","model":"MB-R05M_BK","img":"img/1359.webp","monthly":78300},{"id":"1356","cat":"massage","name":"BEREX 마사지셋","model":"MB-M03M_BR","img":"img/1356.webp","monthly":77400},{"id":"1357","cat":"massage","name":"BEREX 코어셋","model":"MB-R03M_BG","img":"img/1357.webp","monthly":71100},{"id":"1207","cat":"massage","name":"BEREX 트리플체어","model":"MC-R01","img":"img/1207.webp","monthly":60900},{"id":"1169","cat":"massage","name":"BEREX 안마의자 마인","model":"MC-B03","img":"img/1169.webp","monthly":42900},{"id":"1149","cat":"massage","name":"BEREX 안마의자 마인 플러스","model":"MC-B02","img":"img/1149.webp","monthly":44900},{"id":"1059","cat":"massage","name":"BEREX 안마의자 페블체어","model":"MC-C01_GR","img":"img/1059.webp","monthly":53900},{"id":"234","cat":"massage","name":"BEREX 안마의자 시그니처","model":"MC-SC01","img":"img/234.webp","monthly":109000},{"id":"1566","cat":"kitchen","name":"제로 음식물처리기 미생물형 미니","model":"WMB-0703_WT","img":"img/1566.webp","monthly":27900},{"id":"1480","cat":"kitchen","name":"W 인덕션 프로","model":"CIP-31WWS","img":"img/1480.webp","monthly":23900},{"id":"1493","cat":"kitchen","name":"제로 음식물 처리기 분쇄형 2L","model":"WMG-2005_WT","img":"img/1493.webp","monthly":18900},{"id":"1492","cat":"kitchen","name":"제로 음식물 처리기 분쇄형 3L","model":"WMG-3004_WT","img":"img/1492.webp","monthly":20900},{"id":"1071","cat":"kitchen","name":"프라임 인덕션 (3구)","model":"NIP-31KE","img":"img/1071.webp","monthly":16400},{"id":"1072","cat":"kitchen","name":"프라임 하이브리드 (인덕션 2구+ 하이라이트 1구)","model":"NHP-31KE","img":"img/1072.webp","monthly":12900},{"id":"1058","cat":"kitchen","name":"프라임S 하이라이트 (3구)","model":"CER-04","img":"img/1058.webp","monthly":14400},{"id":"246","cat":"kitchen","name":"노블 인덕션 All-Free (4구)","model":"CIR-F41PS","img":"img/246.webp","monthly":27900},{"id":"244","cat":"kitchen","name":"노블 인덕션 All-Free 와이드 (6구,전기공사형)","model":"CIR-F60GS","img":"img/244.webp","monthly":55900}];
+  var PRODUCTS = [{"id":"1544","cat":"water","name":"카페 얼음정수기","model":"CHPCI-8400N_WT","img":"img/1544.webp","monthly":53900},{"id":"1494","cat":"water","name":"아이콘 정수기 2","model":"CP-7211N_V2/WT","img":"img/1494.webp","monthly":25900},{"id":"1427","cat":"water","name":"아이스 스탠드 3.0","model":"CHPI-5820L","img":"img/1427.webp","monthly":53400},{"id":"1384","cat":"water","name":"아이콘 정수기 3","model":"CP-7220N_BG","img":"img/1384.webp","monthly":26900},{"id":"1370","cat":"water","name":"아이스 스탠드 5.2","model":"CHPI-5830L","img":"img/1370.webp","monthly":58900},{"id":"1299","cat":"water","name":"워터 스탠드 12 플러스","model":"CHP-5730L","img":"img/1299.webp","monthly":25900},{"id":"1248","cat":"water","name":"스위치 정수기","model":"P-2200N","img":"img/1248.webp","monthly":15900},{"id":"1288","cat":"water","name":"아이콘 얼음정수기 맥스","model":"CHPI-7420N","img":"img/1288.webp","monthly":48900},{"id":"1272","cat":"water","name":"아이콘 얼음정수기 스탠다드","model":"CPI-7410N","img":"img/1272.webp","monthly":41900},{"id":"1527","cat":"water","name":"아이콘 얼음정수기 미니","model":"CHPI-7430N","img":"img/1527.webp","monthly":40900},{"id":"1253","cat":"water","name":"아이콘 프로 정수기","model":"CHP-7212N","img":"img/1253.webp","monthly":29900},{"id":"1252","cat":"water","name":"엘리트 빌트인 정수기","model":"CHP-1111N","img":"img/1252.webp","monthly":30900},{"id":"1220","cat":"water","name":"엘리트 얼음정수기 RO","model":"CHPI-7521L","img":"img/1220.webp","monthly":40400},{"id":"1148","cat":"water","name":"아이콘 얼음정수기 오리지널","model":"CPI-7400N","img":"img/1148.webp","monthly":41400},{"id":"1137","cat":"water","name":"워터 스탠드 12","model":"CHP-5711L","img":"img/1137.webp","monthly":25900},{"id":"1055","cat":"water","name":"엘리트 정수기","model":"CP-6340L","img":"img/1055.webp","monthly":28900},{"id":"1045","cat":"water","name":"워터 스탠드 21","model":"CHP-5720L","img":"img/1045.webp","monthly":44900},{"id":"1010","cat":"water","name":"아이스 스탠드 3.8","model":"CHPI-5810L","img":"img/1010.webp","monthly":55900},{"id":"235","cat":"water","name":"노블 정수기 RO","model":"CHP-8310L","img":"img/235.webp","monthly":33400},{"id":"233","cat":"water","name":"노블 정수기 가로","model":"CHP-8210N","img":"img/233.webp","monthly":33400},{"id":"211","cat":"water","name":"노블 정수기 세로","model":"CP-8200N","img":"img/211.webp","monthly":31400},{"id":"212","cat":"water","name":"노블 빌트인 정수기","model":"CHP-3140N","img":"img/212.webp","monthly":36400},{"id":"109","cat":"water","name":"프라임 베이직","model":"P-6320L","img":"img/109.webp","monthly":20900},{"id":"3","cat":"water","name":"AIS(아이스) 3.0","model":"CPI-7511L","img":"img/3.webp","monthly":38400},{"id":"87","cat":"water","name":"AIS(아이스) 3.0 스파클링","model":"CPSI-8510L","img":"img/87.webp","monthly":48900},{"id":"240","cat":"water","name":"나노직수 정수기 미니","model":"P-350N","img":"img/240.webp","monthly":15900},{"id":"101","cat":"water","name":"워터 스탠드 10 RO직수","model":"CHP-5700R","img":"img/101.webp","monthly":51900},{"id":"2","cat":"water","name":"아이스 스탠드","model":"CHPI-5801L","img":"img/2.webp","monthly":55900},{"id":"100","cat":"water","name":"아이스 스탠드 1.0","model":"CHPI-620L","img":"img/100.webp","monthly":48900},{"id":"110","cat":"water","name":"프라임 1.0","model":"CHP-264L","img":"img/110.webp","monthly":28900},{"id":"104","cat":"water","name":"워터 스탠드 33","model":"CHP-700L","img":"img/104.webp","monthly":60100},{"id":"1568","cat":"air","name":"노블 공기청정기 플러스 (57㎡)","model":"AP-1726J","img":"img/1568.webp","monthly":32400},{"id":"1567","cat":"air","name":"노블 공기청정기 플러스 (70㎡)","model":"AP-2126I","img":"img/1567.webp","monthly":34400},{"id":"1518","cat":"air","name":"인버터 제습기 25L","model":"AD-2526N","img":"img/1518.webp","monthly":18900},{"id":"1491","cat":"air","name":"듀얼클린 가습공기청정기2","model":"APM-1226H","img":"img/1491.webp","monthly":27900},{"id":"1488","cat":"air","name":"벽걸이에어컨","model":"ACAH-065AA","img":"img/1488.webp","monthly":17900},{"id":"1437","cat":"air","name":"스퀘어핏 공기청정기 (50㎡)","model":"AP-1526A","img":"img/1437.webp","monthly":19400},{"id":"1438","cat":"air","name":"스퀘어핏 공기청정기 (66㎡)","model":"AP-2026B","img":"img/1438.webp","monthly":22400},{"id":"1479","cat":"air","name":"인버터 제습기 20L","model":"AD-2026C","img":"img/1479.webp","monthly":16400},{"id":"1255","cat":"air","name":"인버터 제습기 23L","model":"AD-2325C","img":"img/1255.webp","monthly":17900},{"id":"1374","cat":"air","name":"플로우360 공기청정기 (63㎡)","model":"AP-1924A","img":"img/1374.webp","monthly":null},{"id":"1375","cat":"air","name":"플로우360 공기청정기 (76㎡)","model":"AP-2524B","img":"img/1375.webp","monthly":null},{"id":"1343","cat":"air","name":"히티브 온풍공기청정기","model":"APH-0525F","img":"img/1343.webp","monthly":24400},{"id":"1284","cat":"air","name":"스퀘어핏 공기청정기 (38㎡)","model":"AP-1125G","img":"img/1284.webp","monthly":16400},{"id":"1285","cat":"air","name":"스퀘어핏 공기청정기 (82㎡)","model":"AP-2425H","img":"img/1285.webp","monthly":25400},{"id":"1254","cat":"air","name":"노블 제습공기청정기","model":"APD-1025E","img":"img/1254.webp","monthly":37900},{"id":"1251","cat":"air","name":"파워업 공기청정기 2","model":"AP-3525I","img":"img/1251.webp","monthly":45900},{"id":"1219","cat":"air","name":"노블 공기청정기2 (133㎡)","model":"AP-4025D","img":"img/1219.webp","monthly":51900},{"id":"1186","cat":"air","name":"노블 공기청정기2 (100㎡)","model":"AP-3024H","img":"img/1186.webp","monthly":47900},{"id":"1212","cat":"air","name":"벽걸이 공기청정기2","model":"AP-1225F","img":"img/1212.webp","monthly":27900},{"id":"1138","cat":"air","name":"파워업 공기청정기","model":"AP-3522F","img":"img/1138.webp","monthly":45900},{"id":"1068","cat":"air","name":"노블 공기청정기2 (53㎡)","model":"AP-1623M","img":"img/1068.webp","monthly":30900},{"id":"1056","cat":"air","name":"노블 공기청정기2 (67㎡)","model":"AP-2023K","img":"img/1056.webp","monthly":33900},{"id":"1051","cat":"air","name":"멀티액션 공기청정기2","model":"AP-1523D","img":"img/1051.webp","monthly":27900},{"id":"1049","cat":"air","name":"듀얼클린 제습공기청정기","model":"APD-1023A","img":"img/1049.webp","monthly":33900},{"id":"1047","cat":"air","name":"싱글파워 공기청정기","model":"AP-1023F","img":"img/1047.webp","monthly":18400},{"id":"1605","cat":"air","name":"공기청정기S (45㎡)","model":"AP-1522C","img":"img/1605.webp","monthly":null},{"id":"4","cat":"air","name":"노블 공기청정기(100㎡)","model":"AP-3021D","img":"img/4.webp","monthly":47900},{"id":"157","cat":"air","name":"노블 제습기","model":"AD-1221E","img":"img/157.webp","monthly":14900},{"id":"6","cat":"air","name":"에어카트리지 공기청정기 (33㎡)","model":"AP-1019C","img":"img/6.webp","monthly":null},{"id":"247","cat":"air","name":"에어카트리지 공기청정기 (60㎡)","model":"AP-1821F","img":"img/247.webp","monthly":null},{"id":"215","cat":"air","name":"노블 가습기 (자연기화식)","model":"AM-1421G","img":"img/215.webp","monthly":null},{"id":"7","cat":"air","name":"아이콘 공기청정기","model":"AP-1019D","img":"img/7.webp","monthly":27900},{"id":"149","cat":"air","name":"벽걸이 공기청정기 (AP-3519A)","model":"AP-3519A","img":"img/149.webp","monthly":51900},{"id":"32","cat":"air","name":"사계절 의류청정기 더블케어(FAD-01S)","model":"FAD-01S","img":"img/32.webp","monthly":42900},{"id":"254","cat":"air","name":"사계절 의류청정기 더블케어(FAD-02S)","model":"FAD-02S","img":"img/254.webp","monthly":40900},{"id":"129","cat":"air","name":"콰트로파워 공기청정기","model":"AP-3018B","img":"img/129.webp","monthly":51900},{"id":"1594","cat":"bidet","name":"더블케어 비데","model":"BAS37-D","img":"img/1594.webp","monthly":23400},{"id":"1593","cat":"bidet","name":"더매너 비데","model":"BAS50-A","img":"img/1593.webp","monthly":25900},{"id":"1547","cat":"bidet","name":"컴팩트 비데 1","model":"BAS25-C","img":"img/1547.webp","monthly":21400},{"id":"1525","cat":"bidet","name":"컴팩트 비데2","model":"BAS47-BE","img":"img/1525.webp","monthly":19400},{"id":"1522","cat":"bidet","name":"스타일 비데","model":"BAS40-B","img":"img/1522.webp","monthly":17400},{"id":"1523","cat":"bidet","name":"스타일 비데 플러스","model":"BAS41-B_PK","img":"img/1523.webp","monthly":18900},{"id":"1524","cat":"bidet","name":"프라임 비데","model":"BA52-A","img":"img/1524.webp","monthly":15900},{"id":"1477","cat":"bidet","name":"더매너 비데 플러스","model":"BAS51-A","img":"img/1477.webp","monthly":28900},{"id":"1351","cat":"bidet","name":"슬리믹 비데","model":"BAS49-A","img":"img/1351.webp","monthly":20900},{"id":"1205","cat":"bidet","name":"더블케어 비데","model":"BAS37-C","img":"img/1205.webp","monthly":23400},{"id":"1206","cat":"bidet","name":"더블케어 비데 플러스","model":"BAS38-C","img":"img/1206.webp","monthly":24400},{"id":"1048","cat":"bidet","name":"저수압용 비데","model":"BAS39-A","img":"img/1048.webp","monthly":20400},{"id":"1017","cat":"bidet","name":"스킨플러스 연수기(수전일체형)","model":"BB17-A_WT","img":"img/1017.webp","monthly":30900},{"id":"1016","cat":"bidet","name":"스킨플러스 연수기(일반형)","model":"BB16-A_WT","img":"img/1016.webp","monthly":27900},{"id":"43","cat":"bidet","name":"프라임 비데(건조기능 미포함)","model":"BA20-D","img":"img/43.webp","monthly":15900},{"id":"9","cat":"bidet","name":"연수기(BB15-A)","model":"BB15-A","img":"img/9.webp","monthly":26900},{"id":"1564","cat":"bed","name":"BEREX 스마트 매트리스 S6+ 슬립 싱크","model":"CMSS-AS04SD_BG","img":"img/1564.webp","monthly":72900,"term":"7년","tiers":{"free":[72900,85900],"basic":[76900,87900],"total":[79900,90900]}},{"id":"1563","cat":"bed","name":"BEREX 스마트 매트리스 S8+ 슬립 싱크","model":"CMSS-AS05SD_BG","img":"img/1563.webp","monthly":86900,"term":"7년","tiers":{"free":[86900,99900],"basic":[90900,101900],"total":[94900,105900]}},{"id":"1565","cat":"bed","name":"BEREX 시그니처 파이어쉴드 매트리스 슬립 싱크","model":"CMSS-SP02SD","img":"img/1565.webp","monthly":68900,"term":"7년","tiers":{"free":[68900,71900],"basic":[72900,73900],"total":[78900,79900]}},{"id":"1435","cat":"bed","name":"BEREX 모던 플러스 파운데이션","model":"CFSS-F05_BG","img":"img/1435.webp","monthly":15900},{"id":"1434","cat":"bed","name":"BEREX 스위트 호텔 프레임","model":"CFSS-HT01_BG","img":"img/1434.webp","monthly":23900},{"id":"1354","cat":"bed","name":"BEREX 루나 프레임","model":"CFSS-TM14_IV","img":"img/1354.webp","monthly":17900},{"id":"1352","cat":"bed","name":"BEREX 루네어 매트리스","model":"CMSS-SE03H","img":"img/1352.webp","monthly":17900,"term":"9년","tiers":{"free":[17900,25900],"basic":[21900,27900],"total":[25900,31900]}},{"id":"1113","cat":"bed","name":"BEREX 모던 파운데이션","model":"CFSS-F04_BG","img":"img/1113.webp","monthly":12900},{"id":"1353","cat":"bed","name":"BEREX 코지 프레임","model":"CFSS-TM13_IV","img":"img/1353.webp","monthly":16900},{"id":"1309","cat":"bed","name":"BEREX 모던 라운드 프레임","model":"CFSS-CB02_BG/HC","img":"img/1309.webp","monthly":24900},{"id":"1300","cat":"bed","name":"BEREX 모디 매트리스","model":"CMSS-SE02H","img":"img/1300.webp","monthly":14900,"term":"9년","tiers":{"free":[14900,17900],"basic":[18900,19900],"total":[22900,23900]}},{"id":"1111","cat":"bed","name":"BEREX 시그니처 매트리스","model":"CMSS-SP01S","img":"img/1111.webp","monthly":39900,"term":"9년","tiers":{"free":[39900,42900],"basic":[43900,44900]}},{"id":"1311","cat":"bed","name":"BEREX 시그니처 파이어쉴드 매트리스","model":"CMSS-SP02S","img":"img/1311.webp","monthly":43900,"term":"9년","tiers":{"free":[43900,46900],"basic":[47900,48900]}},{"id":"26","cat":"bed","name":"BEREX 하이브리드 4 매트리스","model":"CMSS-PR04M_V2","img":"img/26.webp","monthly":22900,"term":"9년","tiers":{"free":[22900,25900],"basic":[26900,27900],"total":[31900,32900]}},{"id":"1204","cat":"bed","name":"BEREX 그레이스 프레임","model":"CFQ-CB04_GR/HB","img":"img/1204.webp","monthly":27900},{"id":"1195","cat":"bed","name":"BEREX 수납형 프레임","model":"CFS-SB01_BG","img":"img/1195.webp","monthly":18900},{"id":"1189","cat":"bed","name":"BEREX 스마트 매트리스 S6+","model":"CMSS-AS04_BG","img":"img/1189.webp","monthly":57900,"term":"7년","tiers":{"free":[57900,70900],"basic":[61900,72900],"total":[64900,75900]}},{"id":"1188","cat":"bed","name":"BEREX 스마트 매트리스 S8+","model":"CMSS-AS05_BG","img":"img/1188.webp","monthly":71900},{"id":"1190","cat":"bed","name":"BEREX 소프트 쿠션 프레임","model":"CFSS-CB03_IV","img":"img/1190.webp","monthly":21900},{"id":"1134","cat":"bed","name":"BEREX 볼륨 프레임","model":"CFSS-TM12_BG","img":"img/1134.webp","monthly":20900},{"id":"1112","cat":"bed","name":"BEREX 더블 사이드 매트리스","model":"CMSS-SE01","img":"img/1112.webp","monthly":17900,"term":"9년","tiers":{"free":[17900,24900],"basic":[21900,26900],"total":[23900,28900]}},{"id":"1099","cat":"bed","name":"BEREX 우디 프레임","model":"CFSS-TM11_NT","img":"img/1099.webp","monthly":15900},{"id":"1082","cat":"bed","name":"BEREX 엘리트 매트리스","model":"CMS-ST01EH","img":"img/1082.webp","monthly":12900,"term":"9년","tiers":{"free":[12900,15900],"basic":[16900,null],"total":[17900,null]}},{"id":"1057","cat":"bed","name":"BEREX 컴포트 프레임","model":"CFSS-CB01_IV","img":"img/1057.webp","monthly":23900},{"id":"1000","cat":"bed","name":"BEREX 마이 프레임 기본형 (플랫/볼륨)","model":"CFSS-FP01_GN","img":"img/1000.webp","monthly":17900},{"id":"1001","cat":"bed","name":"BEREX 마이 프레임 사이드형 (플랫/볼륨)","model":"CFSS-FP02S_IV","img":"img/1001.webp","monthly":20900},{"id":"1026","cat":"bed","name":"BEREX 원바디 2 매트리스","model":"CMSS-OB03_BG","img":"img/1026.webp","monthly":16900},{"id":"1027","cat":"bed","name":"BEREX 프라임 플러스 2 매트리스","model":"CMK-S05","img":"img/1027.webp","monthly":23900},{"id":"176","cat":"bed","name":"BEREX 컴팩트 메모리폼 매트리스","model":"CMSS-M01M","img":"img/176.webp","monthly":16900},{"id":"181","cat":"bed","name":"BEREX 하이브리드 3 매트리스","model":"CMSS-PR03","img":"img/181.webp","monthly":21900},{"id":"179","cat":"bed","name":"BEREX 프라임 매트리스","model":"CMQ-S03H","img":"img/179.webp","monthly":17900},{"id":"194","cat":"bed","name":"BEREX 원목 프레임","model":"CFK-TM09N","img":"img/194.webp","monthly":19900},{"id":"10","cat":"bed","name":"BEREX 패밀리 프레임 (결합형)","model":"CFSS-LM02G","img":"img/10.webp","monthly":24900},{"id":"192","cat":"bed","name":"BEREX 패밀리 프레임 (단독형)","model":"CFSS-LM01G","img":"img/192.webp","monthly":24900},{"id":"229","cat":"bed","name":"BEREX 모던 어반 프레임","model":"CFK-L01","img":"img/229.webp","monthly":28900},{"id":"177","cat":"bed","name":"BEREX 더블체인지 매트리스","model":"CMSS-SL01","img":"img/177.webp","monthly":14900},{"id":"1553","cat":"massage","name":"BEREX 트리플체어2 슬림","model":"MC-R03S_RD","img":"img/1553.webp","monthly":60900},{"id":"1426","cat":"massage","name":"BEREX 안마의자 페블체어2","model":"MC-C02AT_BU","img":"img/1426.webp","monthly":58900},{"id":"1358","cat":"massage","name":"BEREX 리클라이닝 마사지셋","model":"MB-M05M_WT","img":"img/1358.webp","monthly":84600},{"id":"1359","cat":"massage","name":"BEREX 리클라이닝 코어셋","model":"MB-R05M_BK","img":"img/1359.webp","monthly":78300},{"id":"1356","cat":"massage","name":"BEREX 마사지셋","model":"MB-M03M_BR","img":"img/1356.webp","monthly":77400},{"id":"1357","cat":"massage","name":"BEREX 코어셋","model":"MB-R03M_BG","img":"img/1357.webp","monthly":71100},{"id":"1207","cat":"massage","name":"BEREX 트리플체어","model":"MC-R01","img":"img/1207.webp","monthly":60900},{"id":"1169","cat":"massage","name":"BEREX 안마의자 마인","model":"MC-B03","img":"img/1169.webp","monthly":42900},{"id":"1149","cat":"massage","name":"BEREX 안마의자 마인 플러스","model":"MC-B02","img":"img/1149.webp","monthly":44900},{"id":"1059","cat":"massage","name":"BEREX 안마의자 페블체어","model":"MC-C01_GR","img":"img/1059.webp","monthly":53900},{"id":"234","cat":"massage","name":"BEREX 안마의자 시그니처","model":"MC-SC01","img":"img/234.webp","monthly":109000},{"id":"1566","cat":"kitchen","name":"제로 음식물처리기 미생물형 미니","model":"WMB-0703_WT","img":"img/1566.webp","monthly":27900},{"id":"1480","cat":"kitchen","name":"W 인덕션 프로","model":"CIP-31WWS","img":"img/1480.webp","monthly":23900},{"id":"1493","cat":"kitchen","name":"제로 음식물 처리기 분쇄형 2L","model":"WMG-2005_WT","img":"img/1493.webp","monthly":18900},{"id":"1492","cat":"kitchen","name":"제로 음식물 처리기 분쇄형 3L","model":"WMG-3004_WT","img":"img/1492.webp","monthly":20900},{"id":"1071","cat":"kitchen","name":"프라임 인덕션 (3구)","model":"NIP-31KE","img":"img/1071.webp","monthly":16400},{"id":"1072","cat":"kitchen","name":"프라임 하이브리드 (인덕션 2구+ 하이라이트 1구)","model":"NHP-31KE","img":"img/1072.webp","monthly":12900},{"id":"1058","cat":"kitchen","name":"프라임S 하이라이트 (3구)","model":"CER-04","img":"img/1058.webp","monthly":14400},{"id":"246","cat":"kitchen","name":"노블 인덕션 All-Free (4구)","model":"CIR-F41PS","img":"img/246.webp","monthly":27900},{"id":"244","cat":"kitchen","name":"노블 인덕션 All-Free 와이드 (6구,전기공사형)","model":"CIR-F60GS","img":"img/244.webp","monthly":55900}];
   var CATS = [
     { key: "all",     label: "전체" },
     { key: "water",   label: "정수기" },
@@ -669,6 +695,10 @@
   var selected = [];          // product ids, in the order they were added
   var discounts = {};         // product id -> 5 | 10 | 15 | 20 (키가 없으면 할인 미적용)
   var RATES = [5, 10, 15, 20];
+  var tierSel = {};           // product id -> "total" | "basic" | "free" (키가 없으면 서비스프리)
+  var TIER_SHORT = { total: "토탈", basic: "베이직", free: "서비스프리" };
+  var TIER_LONG = { total: "토탈케어", basic: "베이직케어", free: "서비스프리" };
+  var TIER_ORDER = ["total", "basic", "free"];
   var activeCat = "all";
   var query = "";
 
@@ -690,11 +720,44 @@
   var elBarTotal = document.getElementById("sumbar-total");
   var elReset = document.getElementById("reset-btn");
   var btnMap = {};
+  var priceEls = {};
 
   function comma(n) { return n.toLocaleString("ko-KR"); }
   function won(n) { return comma(n) + "원"; }
   function rateOf(id) { return discounts[id] || 0; }
   function discOf(monthly, rate) { return Math.round(monthly * rate / 100); }
+
+  /* ── 케어 등급(토탈·베이직·서비스프리) ── */
+  function tierKey(p) { return p.tiers ? (tierSel[p.id] || "free") : null; }
+  function priceOf(p) {
+    var k = tierKey(p);
+    if (k && p.tiers[k]) { return p.tiers[k][0]; }
+    return p.monthly;
+  }
+  function makeTierBar(p) {
+    var box = document.createElement("div");
+    box.className = "tierbar";
+    box.setAttribute("data-pid", p.id);
+    box.setAttribute("role", "group");
+    box.setAttribute("aria-label", p.name + " 케어 등급");
+    var cur = tierKey(p);
+    TIER_ORDER.forEach(function (k) {
+      if (!p.tiers[k]) return;
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "tierbtn" + (cur === k ? " is-on" : "");
+      b.textContent = TIER_SHORT[k];
+      b.setAttribute("data-pid", p.id);
+      b.setAttribute("data-tier", k);
+      b.setAttribute("aria-pressed", cur === k ? "true" : "false");
+      box.appendChild(b);
+    });
+    var t = document.createElement("span");
+    t.className = "tierterm";
+    t.textContent = p.term + " 기준";
+    box.appendChild(t);
+    return box;
+  }
 
   /* ── 카테고리 탭 ── */
   var counts = {};
@@ -755,13 +818,16 @@
       md.className = "md";
       md.textContent = p.model;
 
+      var unit = priceOf(p);
       var pr = document.createElement("p");
-      pr.className = "pr" + (p.monthly === null ? " is-ask" : "");
-      pr.textContent = p.monthly === null ? "상담 확인" : "월 " + won(p.monthly);
+      pr.className = "pr" + (unit === null ? " is-ask" : "");
+      pr.textContent = unit === null ? "상담 확인" : "월 " + won(unit);
+      priceEls[p.id] = pr;
 
       bd.appendChild(nm);
       bd.appendChild(md);
       bd.appendChild(pr);
+      if (p.tiers) { bd.appendChild(makeTierBar(p)); }
 
       var btn = document.createElement("button");
       btn.type = "button";
@@ -835,16 +901,30 @@
       if (li) { li.classList.toggle("is-on", on); }
     });
 
+    // 케어 등급 버튼 상태 동기화(담기 전 목록)
+    Array.prototype.forEach.call(document.querySelectorAll(".tierbar[data-pid]"), function (bar) {
+      var pid = bar.getAttribute("data-pid");
+      var pp = byId[pid];
+      if (!pp || !pp.tiers) return;
+      var cur = tierKey(pp);
+      Array.prototype.forEach.call(bar.querySelectorAll(".tierbtn"), function (b) {
+        var on = b.getAttribute("data-tier") === cur;
+        b.classList.toggle("is-on", on);
+        b.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+    });
+
     // 선택 목록
     elSelList.textContent = "";
     selected.forEach(function (id) {
       var p = byId[id];
       if (!p) return;
 
+      var unit = priceOf(p);
       var rate = rateOf(p.id);
-      var disc = (p.monthly !== null && rate) ? discOf(p.monthly, rate) : 0;
-      if (p.monthly === null) { askCount++; }
-      else { gross += p.monthly; discSum += disc; if (rate) { discCount++; } }
+      var disc = (unit !== null && rate) ? discOf(unit, rate) : 0;
+      if (unit === null) { askCount++; }
+      else { gross += unit; discSum += disc; if (rate) { discCount++; } }
 
       var li = document.createElement("li");
       li.dataset.pid = p.id;
@@ -863,7 +943,7 @@
       nm.textContent = p.name;
       var md = document.createElement("p");
       md.className = "md";
-      md.textContent = p.model;
+      md.textContent = p.model + (p.tiers ? " · " + TIER_LONG[tierKey(p)] + " " + p.term + " 기준" : "");
       info.appendChild(nm);
       info.appendChild(md);
 
@@ -871,8 +951,8 @@
       prwrap.className = "prwrap";
 
       var pr = document.createElement("span");
-      pr.className = "pr" + (p.monthly === null ? " is-ask" : "");
-      pr.textContent = p.monthly === null ? "상담 확인" : "월 " + won(p.monthly);
+      pr.className = "pr" + (unit === null ? " is-ask" : "");
+      pr.textContent = unit === null ? "상담 확인" : "월 " + won(unit);
 
       var rm = document.createElement("button");
       rm.type = "button";
@@ -895,7 +975,7 @@
       } else {
         var applied = document.createElement("span");
         applied.className = "disc-applied" + (rate ? " is-on" : "");
-        applied.textContent = rate ? "적용 " + won(p.monthly - disc) : "할인 없음";
+        applied.textContent = rate ? "적용 " + won(unit - disc) : "할인 없음";
 
         var seg = document.createElement("div");
         seg.className = "seg";
@@ -921,6 +1001,12 @@
       li.appendChild(info);
       li.appendChild(prwrap);
       li.appendChild(row);
+      if (p.tiers) {
+        var trow = document.createElement("div");
+        trow.className = "tierrow";
+        trow.appendChild(makeTierBar(p));
+        li.appendChild(trow);
+      }
       elSelList.appendChild(li);
     });
 
@@ -958,6 +1044,24 @@
   elQ.addEventListener("input", function () {
     query = elQ.value || "";
     applyFilter();
+  });
+
+  /* 케어 등급 선택: 담기 전 목록과 담은 목록의 금액을 함께 바꾼다 */
+  document.addEventListener("click", function (e) {
+    var el = e.target;
+    while (el && el !== document && !(el.classList && el.classList.contains("tierbtn"))) { el = el.parentNode; }
+    if (!el || el === document || !el.classList || !el.classList.contains("tierbtn")) return;
+    var id = el.getAttribute("data-pid");
+    var k = el.getAttribute("data-tier");
+    var p = byId[id];
+    if (!p || !k || !p.tiers || !p.tiers[k]) return;
+    tierSel[id] = k;
+    if (priceEls[id]) {
+      var unit = priceOf(p);
+      priceEls[id].textContent = "월 " + won(unit);
+      priceEls[id].classList.remove("is-ask");
+    }
+    renderSelected();
   });
 
   elReset.addEventListener("click", function () {

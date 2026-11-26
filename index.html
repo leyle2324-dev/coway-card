@@ -1568,6 +1568,37 @@
     .diag-arrow{color:#cbb694;}
     .diag-pill{background:rgba(255,255,255,.16);color:#e6d6bb;}
   }
+
+  /* ── 매트리스 케어 등급 칩 (토탈·베이직·서비스프리) ── */
+  .cat-note{
+    margin:-2px 0 12px;font-size:12px;line-height:1.6;color:var(--muted);
+  }
+  .cat-note b{color:var(--navy);font-weight:800;}
+  .tierbar{
+    display:flex;align-items:center;gap:4px;flex-wrap:wrap;
+    margin:0 0 8px;
+  }
+  .tierbtn{
+    display:inline-flex;align-items:center;justify-content:center;
+    min-height:27px;padding:0 9px;border-radius:8px;
+    background:#f2f7fc;border:1px solid #dbe8f4;
+    font-family:inherit;font-size:11.5px;font-weight:800;
+    color:#4a6478;letter-spacing:-.01em;
+    cursor:pointer;-webkit-tap-highlight-color:transparent;
+  }
+  .tierbtn.is-on{background:var(--navy);border-color:var(--navy);color:#fff;}
+  .tierbtn:active{background:#e2eefa;}
+  .tierbtn.is-on:active{background:#0a2238;}
+  .tierbtn:focus-visible{outline:3px solid #8fd0ff;outline-offset:1px;}
+  .tierterm{
+    margin-left:auto;font-size:10.5px;font-weight:700;color:#8ba0b2;
+    font-variant-numeric:tabular-nums;
+  }
+  @media (prefers-color-scheme: dark){
+    .tierbtn{background:#16232f;border-color:#243446;color:#c3d1de;}
+    .tierbtn.is-on{background:#1b4a75;border-color:#2f6f9f;color:#f2f8ff;}
+    .tierterm{color:#8296a8;}
+  }
 </style>
 <body>
 
@@ -3093,6 +3124,7 @@
 
     <section class="cat-group" data-cat="bed" id="cat-bed" aria-label="침대·매트리스">
       <h3 class="cat-title">침대·매트리스 <span>62</span></h3>
+      <p class="cat-note">매트리스는 <b>토탈·베이직·서비스프리</b> 케어 등급을 눌러 등급별 월 렌탈료를 바로 볼 수 있습니다. (표시는 코웨이닷컴 기준 실렌탈료)</p>
       <ul class="products">
       <li class="pcard">
         <a class="pthumb" href="https://www.coway.com/product/detail?prdno=1564" target="_blank" rel="noopener">
@@ -3102,6 +3134,12 @@
           <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1564" target="_blank" rel="noopener">BEREX 스마트 매트리스 S6+ 슬립 싱크</a></p>
           <p class="pmeta"><span class="pmodel">CMSS-AS04SD_BG</span></p>
           <p class="pdesc">잠이 달라진다, 잘 자는 기술</p>
+          <div class="tierbar" data-term="7년" data-tiers='{"total":[79900,90900],"basic":[76900,87900],"free":[72900,85900]}'>
+            <button type="button" class="tierbtn" data-tier="total" aria-pressed="false">토탈</button>
+            <button type="button" class="tierbtn" data-tier="basic" aria-pressed="false">베이직</button>
+            <button type="button" class="tierbtn is-on" data-tier="free" aria-pressed="true">서비스프리</button>
+            <span class="tierterm">7년 기준</span>
+          </div>
           <div class="prow">
             <p class="pprice"><s>월 85,900원</s> <b>월 72,900원</b></p>
             <a class="pbtn" href="tel:01094228307" aria-label="BEREX 스마트 매트리스 S6+ 슬립 싱크 상담 문의 전화">
@@ -3119,6 +3157,12 @@
           <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1563" target="_blank" rel="noopener">BEREX 스마트 매트리스 S8+ 슬립 싱크</a></p>
           <p class="pmeta"><span class="pmodel">CMSS-AS05SD_BG</span></p>
           <p class="pdesc">잠이 달라진다, 잘 자는 기술</p>
+          <div class="tierbar" data-term="7년" data-tiers='{"total":[94900,105900],"basic":[90900,101900],"free":[86900,99900]}'>
+            <button type="button" class="tierbtn" data-tier="total" aria-pressed="false">토탈</button>
+            <button type="button" class="tierbtn" data-tier="basic" aria-pressed="false">베이직</button>
+            <button type="button" class="tierbtn is-on" data-tier="free" aria-pressed="true">서비스프리</button>
+            <span class="tierterm">7년 기준</span>
+          </div>
           <div class="prow">
             <p class="pprice"><s>월 99,900원</s> <b>월 86,900원</b></p>
             <a class="pbtn" href="tel:01094228307" aria-label="BEREX 스마트 매트리스 S8+ 슬립 싱크 상담 문의 전화">
@@ -3136,6 +3180,12 @@
           <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1565" target="_blank" rel="noopener">BEREX 시그니처 파이어쉴드 매트리스 슬립 싱크</a></p>
           <p class="pmeta"><span class="pmodel">CMSS-SP02SD</span></p>
           <p class="pdesc">안전하게 잠들고 스마트하게 관리하는 수면 케어</p>
+          <div class="tierbar" data-term="7년" data-tiers='{"total":[78900,79900],"basic":[72900,73900],"free":[68900,71900]}'>
+            <button type="button" class="tierbtn" data-tier="total" aria-pressed="false">토탈</button>
+            <button type="button" class="tierbtn" data-tier="basic" aria-pressed="false">베이직</button>
+            <button type="button" class="tierbtn is-on" data-tier="free" aria-pressed="true">서비스프리</button>
+            <span class="tierterm">7년 기준</span>
+          </div>
           <div class="prow">
             <p class="pprice"><s>월 71,900원</s> <b>월 68,900원</b></p>
             <a class="pbtn" href="tel:01094228307" aria-label="BEREX 시그니처 파이어쉴드 매트리스 슬립 싱크 상담 문의 전화">
@@ -3612,6 +3662,12 @@
           <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1352" target="_blank" rel="noopener">BEREX 루네어 매트리스</a></p>
           <p class="pmeta"><span class="pmodel">CMSS-SE03H</span></p>
           <p class="pdesc">내 몸에 맞춘 듯 편안한 프리미엄</p>
+          <div class="tierbar" data-term="9년" data-tiers='{"total":[25900,31900],"basic":[21900,27900],"free":[17900,25900]}'>
+            <button type="button" class="tierbtn" data-tier="total" aria-pressed="false">토탈</button>
+            <button type="button" class="tierbtn" data-tier="basic" aria-pressed="false">베이직</button>
+            <button type="button" class="tierbtn is-on" data-tier="free" aria-pressed="true">서비스프리</button>
+            <span class="tierterm">9년 기준</span>
+          </div>
           <div class="prow">
             <p class="pprice"><s>월 25,900원</s> <b>월 17,900원</b></p>
             <a class="pbtn" href="tel:01094228307" aria-label="BEREX 루네어 매트리스 상담 문의 전화">
@@ -3680,6 +3736,12 @@
           <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1300" target="_blank" rel="noopener">BEREX 모디 매트리스</a></p>
           <p class="pmeta"><span class="pmodel">CMSS-SE02H</span></p>
           <p class="pdesc">탄탄하게 받쳐주고, 부드럽게 감싸주는</p>
+          <div class="tierbar" data-term="9년" data-tiers='{"total":[22900,23900],"basic":[18900,19900],"free":[14900,17900]}'>
+            <button type="button" class="tierbtn" data-tier="total" aria-pressed="false">토탈</button>
+            <button type="button" class="tierbtn" data-tier="basic" aria-pressed="false">베이직</button>
+            <button type="button" class="tierbtn is-on" data-tier="free" aria-pressed="true">서비스프리</button>
+            <span class="tierterm">9년 기준</span>
+          </div>
           <div class="prow">
             <p class="pprice"><s>월 17,900원</s> <b>월 14,900원</b></p>
             <a class="pbtn" href="tel:01094228307" aria-label="BEREX 모디 매트리스 상담 문의 전화">
@@ -3714,6 +3776,11 @@
           <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1111" target="_blank" rel="noopener">BEREX 시그니처 매트리스</a></p>
           <p class="pmeta"><span class="pmodel">CMSS-SP01S</span></p>
           <p class="pdesc">아름다운 실루엣으로 완성된 차원이 다른 편안함</p>
+          <div class="tierbar" data-term="9년" data-tiers='{"basic":[43900,44900],"free":[39900,42900]}'>
+            <button type="button" class="tierbtn" data-tier="basic" aria-pressed="false">베이직</button>
+            <button type="button" class="tierbtn is-on" data-tier="free" aria-pressed="true">서비스프리</button>
+            <span class="tierterm">9년 기준</span>
+          </div>
           <div class="prow">
             <p class="pprice"><s>월 42,900원</s> <b>월 39,900원</b></p>
             <a class="pbtn" href="tel:01094228307" aria-label="BEREX 시그니처 매트리스 상담 문의 전화">
@@ -3731,6 +3798,11 @@
           <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1311" target="_blank" rel="noopener">BEREX 시그니처 파이어쉴드 매트리스</a></p>
           <p class="pmeta"><span class="pmodel">CMSS-SP02S</span></p>
           <p class="pdesc">한층 더 안전한 프리미엄 수면 경험</p>
+          <div class="tierbar" data-term="9년" data-tiers='{"basic":[47900,48900],"free":[43900,46900]}'>
+            <button type="button" class="tierbtn" data-tier="basic" aria-pressed="false">베이직</button>
+            <button type="button" class="tierbtn is-on" data-tier="free" aria-pressed="true">서비스프리</button>
+            <span class="tierterm">9년 기준</span>
+          </div>
           <div class="prow">
             <p class="pprice"><s>월 46,900원</s> <b>월 43,900원</b></p>
             <a class="pbtn" href="tel:01094228307" aria-label="BEREX 시그니처 파이어쉴드 매트리스 상담 문의 전화">
@@ -3748,6 +3820,12 @@
           <p class="pname"><a href="https://www.coway.com/product/detail?prdno=26" target="_blank" rel="noopener">BEREX 하이브리드 4 매트리스</a></p>
           <p class="pmeta"><span class="pmodel">CMSS-PR04M_V2</span></p>
           <p class="pdesc">프리미엄 메모리폼 탑퍼로 완성한</p>
+          <div class="tierbar" data-term="9년" data-tiers='{"total":[31900,32900],"basic":[26900,27900],"free":[22900,25900]}'>
+            <button type="button" class="tierbtn" data-tier="total" aria-pressed="false">토탈</button>
+            <button type="button" class="tierbtn" data-tier="basic" aria-pressed="false">베이직</button>
+            <button type="button" class="tierbtn is-on" data-tier="free" aria-pressed="true">서비스프리</button>
+            <span class="tierterm">9년 기준</span>
+          </div>
           <div class="prow">
             <p class="pprice"><s>월 25,900원</s> <b>월 22,900원</b></p>
             <a class="pbtn" href="tel:01094228307" aria-label="BEREX 하이브리드 4 매트리스 상담 문의 전화">
@@ -3816,6 +3894,12 @@
           <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1189" target="_blank" rel="noopener">BEREX 스마트 매트리스 S6+</a></p>
           <p class="pmeta"><span class="pmodel">CMSS-AS04_BG</span></p>
           <p class="pdesc">잠이 달라진다, 잘 자는 기술</p>
+          <div class="tierbar" data-term="7년" data-tiers='{"total":[64900,75900],"basic":[61900,72900],"free":[57900,70900]}'>
+            <button type="button" class="tierbtn" data-tier="total" aria-pressed="false">토탈</button>
+            <button type="button" class="tierbtn" data-tier="basic" aria-pressed="false">베이직</button>
+            <button type="button" class="tierbtn is-on" data-tier="free" aria-pressed="true">서비스프리</button>
+            <span class="tierterm">7년 기준</span>
+          </div>
           <div class="prow">
             <p class="pprice"><s>월 70,900원</s> <b>월 57,900원</b></p>
             <a class="pbtn" href="tel:01094228307" aria-label="BEREX 스마트 매트리스 S6+ 상담 문의 전화">
@@ -3884,6 +3968,12 @@
           <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1112" target="_blank" rel="noopener">BEREX 더블 사이드 매트리스</a></p>
           <p class="pmeta"><span class="pmodel">CMSS-SE01</span></p>
           <p class="pdesc">나에게 맞는 최적의 착와감을 선택할 수 있는</p>
+          <div class="tierbar" data-term="9년" data-tiers='{"total":[23900,28900],"basic":[21900,26900],"free":[17900,24900]}'>
+            <button type="button" class="tierbtn" data-tier="total" aria-pressed="false">토탈</button>
+            <button type="button" class="tierbtn" data-tier="basic" aria-pressed="false">베이직</button>
+            <button type="button" class="tierbtn is-on" data-tier="free" aria-pressed="true">서비스프리</button>
+            <span class="tierterm">9년 기준</span>
+          </div>
           <div class="prow">
             <p class="pprice"><s>월 24,900원</s> <b>월 17,900원</b></p>
             <a class="pbtn" href="tel:01094228307" aria-label="BEREX 더블 사이드 매트리스 상담 문의 전화">
@@ -3918,6 +4008,12 @@
           <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1082" target="_blank" rel="noopener">BEREX 엘리트 매트리스</a></p>
           <p class="pmeta"><span class="pmodel">CMS-ST01EH</span></p>
           <p class="pdesc">탄탄한 지지력으로 신체를 안정적으로 받쳐주는</p>
+          <div class="tierbar" data-term="9년" data-tiers='{"total":[17900,null],"basic":[16900,null],"free":[12900,15900]}'>
+            <button type="button" class="tierbtn" data-tier="total" aria-pressed="false">토탈</button>
+            <button type="button" class="tierbtn" data-tier="basic" aria-pressed="false">베이직</button>
+            <button type="button" class="tierbtn is-on" data-tier="free" aria-pressed="true">서비스프리</button>
+            <span class="tierterm">9년 기준</span>
+          </div>
           <div class="prow">
             <p class="pprice"><s>월 15,900원</s> <b>월 12,900원</b></p>
             <a class="pbtn" href="tel:01094228307" aria-label="BEREX 엘리트 매트리스 상담 문의 전화">
@@ -4565,6 +4661,38 @@
 
   // 기본값: 전체
   apply('all');
+})();
+</script>
+
+
+<script>
+/* ── 매트리스 케어 등급(토탈·베이직·서비스프리) 선택 ── */
+(function () {
+  function won(n) { return Number(n).toLocaleString('ko-KR'); }
+  function parse(bar) {
+    try { return JSON.parse(bar.getAttribute('data-tiers') || '{}'); } catch (e) { return {}; }
+  }
+  document.addEventListener('click', function (e) {
+    var el = e.target;
+    while (el && el !== document && !(el.classList && el.classList.contains('tierbtn'))) { el = el.parentNode; }
+    if (!el || el === document || !el.classList || !el.classList.contains('tierbtn')) return;
+    var bar = el.parentNode;
+    while (bar && bar !== document && !(bar.classList && bar.classList.contains('tierbar'))) { bar = bar.parentNode; }
+    if (!bar || bar === document) return;
+    var key = el.getAttribute('data-tier');
+    var data = parse(bar);
+    if (!data[key]) return;
+    Array.prototype.forEach.call(bar.querySelectorAll('.tierbtn'), function (b) {
+      var on = b === el;
+      b.classList.toggle('is-on', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    var body = bar.parentNode;
+    var price = body.querySelector('.pprice');
+    if (!price) return;
+    var now = data[key][0], list = data[key][1];
+    price.innerHTML = (list && list > now ? '<s>월 ' + won(list) + '원</s> ' : '') + '<b>월 ' + won(now) + '원</b>';
+  });
 })();
 </script>
 
