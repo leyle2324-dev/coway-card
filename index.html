@@ -3917,6 +3917,12 @@
           <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1188" target="_blank" rel="noopener">BEREX 스마트 매트리스 S8+</a></p>
           <p class="pmeta"><span class="pmodel">CMSS-AS05_BG</span></p>
           <p class="pdesc">잠이 달라진다, 잘 자는 기술</p>
+          <div class="tierbar" data-term="7년" data-tiers='{"total":[79900,90900],"basic":[75900,86900],"free":[71900,84900]}'>
+            <button type="button" class="tierbtn" data-tier="total" aria-pressed="false">토탈</button>
+            <button type="button" class="tierbtn" data-tier="basic" aria-pressed="false">베이직</button>
+            <button type="button" class="tierbtn is-on" data-tier="free" aria-pressed="true">서비스프리</button>
+            <span class="tierterm">7년 기준</span>
+          </div>
           <div class="prow">
             <p class="pprice"><s>월 84,900원</s> <b>월 71,900원</b></p>
             <a class="pbtn" href="tel:01094228307" aria-label="BEREX 스마트 매트리스 S8+ 상담 문의 전화">
@@ -4099,6 +4105,12 @@
           <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1027" target="_blank" rel="noopener">BEREX 프라임 플러스 2 매트리스</a></p>
           <p class="pmeta"><span class="pmodel">CMK-S05</span><span class="pbadge">24개월 1만원</span></p>
           <p class="pdesc">더욱 섬세해진 편안함</p>
+          <div class="tierbar" data-term="9년" data-tiers='{"total":[31900,37900],"basic":[27900,33900],"free":[23900,31900]}'>
+            <button type="button" class="tierbtn" data-tier="total" aria-pressed="false">토탈</button>
+            <button type="button" class="tierbtn" data-tier="basic" aria-pressed="false">베이직</button>
+            <button type="button" class="tierbtn is-on" data-tier="free" aria-pressed="true">서비스프리</button>
+            <span class="tierterm">9년 기준</span>
+          </div>
           <div class="prow">
             <p class="pprice"><s>월 31,900원</s> <b>월 23,900원</b></p>
             <a class="pbtn" href="tel:01094228307" aria-label="BEREX 프라임 플러스 2 매트리스 상담 문의 전화">
@@ -4661,6 +4673,38 @@
 
   // 기본값: 전체
   apply('all');
+})();
+</script>
+
+
+<script>
+/* ── 매트리스 케어 등급(토탈·베이직·서비스프리) 선택 ── */
+(function () {
+  function won(n) { return Number(n).toLocaleString('ko-KR'); }
+  function parse(bar) {
+    try { return JSON.parse(bar.getAttribute('data-tiers') || '{}'); } catch (e) { return {}; }
+  }
+  document.addEventListener('click', function (e) {
+    var el = e.target;
+    while (el && el !== document && !(el.classList && el.classList.contains('tierbtn'))) { el = el.parentNode; }
+    if (!el || el === document || !el.classList || !el.classList.contains('tierbtn')) return;
+    var bar = el.parentNode;
+    while (bar && bar !== document && !(bar.classList && bar.classList.contains('tierbar'))) { bar = bar.parentNode; }
+    if (!bar || bar === document) return;
+    var key = el.getAttribute('data-tier');
+    var data = parse(bar);
+    if (!data[key]) return;
+    Array.prototype.forEach.call(bar.querySelectorAll('.tierbtn'), function (b) {
+      var on = b === el;
+      b.classList.toggle('is-on', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    var body = bar.parentNode;
+    var price = body.querySelector('.pprice');
+    if (!price) return;
+    var now = data[key][0], list = data[key][1];
+    price.innerHTML = (list && list > now ? '<s>월 ' + won(list) + '원</s> ' : '') + '<b>월 ' + won(now) + '원</b>';
+  });
 })();
 </script>
 
