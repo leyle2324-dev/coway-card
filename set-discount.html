@@ -532,6 +532,32 @@
     .callbar{background:rgba(13,22,32,.96);}
     .cbtn-sms{background:#16232f;color:#dce9f6;border-color:#2a4a66;}
   }
+  /* ── 매트리스 사이즈·약정기간·케어등급 칩 ── */
+  .mbar{display:flex;flex-direction:column;gap:3px;margin:5px 0 0;}
+  .mbar .mrow{display:flex;align-items:center;gap:5px;min-width:0;}
+  .mbar .mlab{flex:0 0 28px;font-size:9.5px;font-weight:800;color:#8ba0b2;letter-spacing:-.03em;}
+  .mbar .mchips{display:flex;flex-wrap:wrap;gap:3px;min-width:0;}
+  .mbtn{
+    display:inline-flex;align-items:center;justify-content:center;
+    min-height:24px;padding:0 6px;border-radius:7px;
+    background:#f2f7fc;border:1px solid #dbe8f4;
+    font-family:inherit;font-size:10.5px;font-weight:800;
+    color:#4a6478;letter-spacing:-.02em;line-height:1;
+    cursor:pointer;-webkit-tap-highlight-color:transparent;
+    font-variant-numeric:tabular-nums;
+  }
+  .mbtn.is-on{background:var(--navy);border-color:var(--navy);color:#fff;}
+  .mbtn:active{background:#e2eefa;}
+  .mbtn.is-on:active{background:#0a2238;}
+  .mbtn:focus-visible{outline:3px solid #8fd0ff;outline-offset:1px;}
+  .mbar .mbasis{margin:1px 0 0;font-size:10px;font-weight:700;color:#8ba0b2;letter-spacing:-.01em;}
+  .pitem .mbar{grid-column:1 / -1;grid-row:3;}
+  .selist .mbar{grid-column:1 / -1;grid-row:4;}
+  @media (prefers-color-scheme: dark){
+    .mbar .mlab,.mbar .mbasis{color:#8296a8;}
+    .mbtn{background:#16232f;border-color:#243446;color:#c3d1de;}
+    .mbtn.is-on{background:#1b4a75;border-color:#2f6f9f;color:#f2f8ff;}
+  }
 </style>
 </head>
 <body>
@@ -674,6 +700,7 @@
   </a>
 </nav>
 
+<script src="mattress-data.js"></script>
 <script>
 (function () {
   "use strict";
@@ -696,6 +723,7 @@
   var discounts = {};         // product id -> 5 | 10 | 15 | 20 (키가 없으면 할인 미적용)
   var RATES = [5, 10, 15, 20];
   var tierSel = {};           // product id -> "total" | "basic" | "free" (키가 없으면 서비스프리)
+  var mSel = {};              // product id -> {size, tier, term} (매트리스)
   var TIER_SHORT = { total: "토탈", basic: "베이직", free: "서비스프리" };
   var TIER_LONG = { total: "토탈케어", basic: "베이직케어", free: "서비스프리" };
   var TIER_ORDER = ["total", "basic", "free"];
@@ -729,7 +757,19 @@
 
   /* ── 케어 등급(토탈·베이직·서비스프리) ── */
   function tierKey(p) { return p.tiers ? (tierSel[p.id] || "free") : null; }
+  /* ── 매트리스: 사이즈·약정기간·케어등급 조합 ── */
+  function isMatt(p) { return !!(window.MATT && window.MATT[p.id] && window.MATT_FN); }
+  function mState(p) {
+    var st = window.MATT_FN.norm(p.id, mSel[p.id]);
+    mSel[p.id] = st;
+    return st;
+  }
   function priceOf(p) {
+    if (isMatt(p)) {
+      var st = mState(p);
+      var pr = window.MATT_FN.price(p.id, st);
+      return pr ? pr[0] : null;
+    }
     var k = tierKey(p);
     if (k && p.tiers[k]) { return p.tiers[k][0]; }
     return p.monthly;
@@ -757,6 +797,51 @@
     t.textContent = p.term + " 기준";
     box.appendChild(t);
     return box;
+  }
+
+  function paintMattBar(box, p) {
+    var F = window.MATT_FN, m = window.MATT[p.id];
+    var st = mState(p);
+    if (!m) return;
+    box.textContent = "";
+    function row(lab, dim, items, cur) {
+      var r = document.createElement("div"); r.className = "mrow";
+      var l = document.createElement("span"); l.className = "mlab"; l.textContent = lab;
+      r.appendChild(l);
+      var wrap = document.createElement("div"); wrap.className = "mchips";
+      items.forEach(function (it) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "mbtn" + (it.v === cur ? " is-on" : "");
+        b.textContent = it.l;
+        b.setAttribute("data-dim", dim);
+        b.setAttribute("data-v", it.v);
+        b.setAttribute("aria-pressed", it.v === cur ? "true" : "false");
+        b.setAttribute("aria-label", p.name + " " + (it.full || it.l) + (it.v === cur ? " 선택됨" : " 선택"));
+        wrap.appendChild(b);
+      });
+      r.appendChild(wrap); box.appendChild(r);
+    }
+    row("사이즈", "size", m.s.map(function (s) { return { v: s.k, l: s.k, full: s.n }; }), st.size);
+    row("기간", "term", F.terms(p.id, st.size, st.tier).map(function (t) { return { v: t, l: t + "년" }; }), st.term);
+    row("케어", "tier", F.tiers(p.id, st.size).map(function (t) { return { v: t, l: F.L[t] }; }), st.tier);
+    var b = document.createElement("p"); b.className = "mbasis"; b.textContent = F.basis(st) + " 기준";
+    box.appendChild(b);
+  }
+  function makeMattBar(p) {
+    var box = document.createElement("div");
+    box.className = "mbar";
+    box.setAttribute("data-pid", p.id);
+    box.setAttribute("role", "group");
+    box.setAttribute("aria-label", p.name + " 사이즈·약정기간·케어등급");
+    paintMattBar(box, p);
+    return box;
+  }
+  function repaintMattBars(id) {
+    Array.prototype.forEach.call(document.querySelectorAll(".mbar[data-pid='" + id + "']"), function (bar) {
+      var pp = byId[bar.getAttribute("data-pid")];
+      if (pp) paintMattBar(bar, pp);
+    });
   }
 
   /* ── 카테고리 탭 ── */
@@ -827,7 +912,8 @@
       bd.appendChild(nm);
       bd.appendChild(md);
       bd.appendChild(pr);
-      if (p.tiers) { bd.appendChild(makeTierBar(p)); }
+      if (isMatt(p)) { bd.appendChild(makeMattBar(p)); }
+      else if (p.tiers) { bd.appendChild(makeTierBar(p)); }
 
       var btn = document.createElement("button");
       btn.type = "button";
@@ -943,7 +1029,8 @@
       nm.textContent = p.name;
       var md = document.createElement("p");
       md.className = "md";
-      md.textContent = p.model + (p.tiers ? " · " + TIER_LONG[tierKey(p)] + " " + p.term + " 기준" : "");
+      md.textContent = p.model + (isMatt(p) ? " · " + window.MATT_FN.basis(mState(p)) + " 기준"
+        : (p.tiers ? " · " + TIER_LONG[tierKey(p)] + " " + p.term + " 기준" : ""));
       info.appendChild(nm);
       info.appendChild(md);
 
@@ -1001,7 +1088,9 @@
       li.appendChild(info);
       li.appendChild(prwrap);
       li.appendChild(row);
-      if (p.tiers) {
+      if (isMatt(p)) {
+        li.appendChild(makeMattBar(p));
+      } else if (p.tiers) {
         var trow = document.createElement("div");
         trow.className = "tierrow";
         trow.appendChild(makeTierBar(p));
@@ -1046,8 +1135,29 @@
     applyFilter();
   });
 
-  /* 케어 등급 선택: 담기 전 목록과 담은 목록의 금액을 함께 바꾼다 */
+  /* 매트리스 사이즈·약정기간·케어등급: 담기 전 목록과 담은 목록의 금액을 함께 바꾼다 */
   document.addEventListener("click", function (e) {
+    var mt = e.target;
+    while (mt && mt !== document && !(mt.classList && mt.classList.contains("mbtn"))) { mt = mt.parentNode; }
+    if (mt && mt !== document && mt.classList && mt.classList.contains("mbtn")) {
+      var bar = mt;
+      while (bar && bar !== document && !(bar.classList && bar.classList.contains("mbar"))) { bar = bar.parentNode; }
+      if (!bar || bar === document) return;
+      var pid = bar.getAttribute("data-pid");
+      var pp = byId[pid];
+      if (!pp) return;
+      var st = mState(pp);
+      st[mt.getAttribute("data-dim")] = mt.getAttribute("data-v");
+      mSel[pid] = st;
+      if (priceEls[pid]) {
+        var unit = priceOf(pp);
+        priceEls[pid].textContent = unit === null ? "상담 확인" : "월 " + won(unit);
+        priceEls[pid].classList.toggle("is-ask", unit === null);
+      }
+      repaintMattBars(pid);
+      renderSelected();
+      return;
+    }
     var el = e.target;
     while (el && el !== document && !(el.classList && el.classList.contains("tierbtn"))) { el = el.parentNode; }
     if (!el || el === document || !el.classList || !el.classList.contains("tierbtn")) return;

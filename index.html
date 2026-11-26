@@ -1599,6 +1599,31 @@
     .tierbtn.is-on{background:#1b4a75;border-color:#2f6f9f;color:#f2f8ff;}
     .tierterm{color:#8296a8;}
   }
+  /* ── 매트리스 사이즈·약정기간·케어등급 칩 ── */
+  .mopts{display:flex;flex-direction:column;gap:4px;margin:0 0 6px;}
+  .mrow{display:flex;align-items:center;gap:6px;min-width:0;}
+  .mlab{flex:0 0 30px;font-size:10px;font-weight:800;color:#8ba0b2;letter-spacing:-.03em;}
+  .mchips{display:flex;flex-wrap:wrap;gap:3px;min-width:0;}
+  .mbtn{
+    display:inline-flex;align-items:center;justify-content:center;
+    min-height:25px;padding:0 7px;border-radius:7px;
+    background:#f2f7fc;border:1px solid #dbe8f4;
+    font-family:inherit;font-size:11px;font-weight:800;
+    color:#4a6478;letter-spacing:-.02em;line-height:1;
+    cursor:pointer;-webkit-tap-highlight-color:transparent;
+    font-variant-numeric:tabular-nums;
+  }
+  .mbtn.is-on{background:var(--navy);border-color:var(--navy);color:#fff;}
+  .mbtn:active{background:#e2eefa;}
+  .mbtn.is-on:active{background:#0a2238;}
+  .mbtn:focus-visible{outline:3px solid #8fd0ff;outline-offset:1px;}
+  .mbasis{margin:0;font-size:10.5px;font-weight:700;color:#8ba0b2;letter-spacing:-.01em;}
+  @media (prefers-color-scheme: dark){
+    .mlab{color:#7d92a6;}
+    .mbtn{background:#16232f;border-color:#243446;color:#c3d1de;}
+    .mbtn.is-on{background:#1b4a75;border-color:#2f6f9f;color:#f2f8ff;}
+    .mbasis{color:#8296a8;}
+  }
 </style>
 <body>
 
@@ -1682,11 +1707,11 @@
 
     <nav class="catnav" id="catnav" aria-label="제품 카테고리">
       <div class="catnav-inner">
-        <button class="tab is-active" type="button" data-filter="all" aria-selected="true">전체 <i>165</i></button>
+        <button class="tab is-active" type="button" data-filter="all" aria-selected="true">전체 <i>143</i></button>
         <button class="tab" type="button" data-filter="water" aria-selected="false">정수기 <i>31</i></button>
         <button class="tab" type="button" data-filter="air" aria-selected="false">공기청정기·에어컨 <i>36</i></button>
         <button class="tab" type="button" data-filter="bidet" aria-selected="false">비데·연수기 <i>16</i></button>
-        <button class="tab" type="button" data-filter="bed" aria-selected="false">침대·매트리스 <i>62</i></button>
+        <button class="tab" type="button" data-filter="bed" aria-selected="false">침대·매트리스 <i>40</i></button>
         <button class="tab" type="button" data-filter="massage" aria-selected="false">안마의자 <i>11</i></button>
         <button class="tab" type="button" data-filter="kitchen" aria-selected="false">주방·생활 <i>9</i></button>
       </div>
@@ -3123,8 +3148,8 @@
     </section>
 
     <section class="cat-group" data-cat="bed" id="cat-bed" aria-label="침대·매트리스">
-      <h3 class="cat-title">침대·매트리스 <span>62</span></h3>
-      <p class="cat-note">매트리스는 <b>토탈·베이직·서비스프리</b> 케어 등급을 눌러 등급별 월 렌탈료를 바로 볼 수 있습니다. (표시는 코웨이닷컴 기준 실렌탈료)</p>
+      <h3 class="cat-title">침대·매트리스 <span>40</span></h3>
+      <p class="cat-note">매트리스는 <b>사이즈 · 약정기간 · 케어등급</b>을 눌러 조합별 월 렌탈료를 바로 볼 수 있습니다. (코웨이닷컴 실제 표시 금액 기준 실렌탈료)</p>
       <ul class="products">
       <li class="pcard">
         <a class="pthumb" href="https://www.coway.com/product/detail?prdno=1564" target="_blank" rel="noopener">
@@ -3134,12 +3159,7 @@
           <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1564" target="_blank" rel="noopener">BEREX 스마트 매트리스 S6+ 슬립 싱크</a></p>
           <p class="pmeta"><span class="pmodel">CMSS-AS04SD_BG</span></p>
           <p class="pdesc">잠이 달라진다, 잘 자는 기술</p>
-          <div class="tierbar" data-term="7년" data-tiers='{"total":[79900,90900],"basic":[76900,87900],"free":[72900,85900]}'>
-            <button type="button" class="tierbtn" data-tier="total" aria-pressed="false">토탈</button>
-            <button type="button" class="tierbtn" data-tier="basic" aria-pressed="false">베이직</button>
-            <button type="button" class="tierbtn is-on" data-tier="free" aria-pressed="true">서비스프리</button>
-            <span class="tierterm">7년 기준</span>
-          </div>
+          <div class="mopts" data-mid="1564"></div>
           <div class="prow">
             <p class="pprice"><s>월 85,900원</s> <b>월 72,900원</b></p>
             <a class="pbtn" href="tel:01094228307" aria-label="BEREX 스마트 매트리스 S6+ 슬립 싱크 상담 문의 전화">
@@ -3157,12 +3177,7 @@
           <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1563" target="_blank" rel="noopener">BEREX 스마트 매트리스 S8+ 슬립 싱크</a></p>
           <p class="pmeta"><span class="pmodel">CMSS-AS05SD_BG</span></p>
           <p class="pdesc">잠이 달라진다, 잘 자는 기술</p>
-          <div class="tierbar" data-term="7년" data-tiers='{"total":[94900,105900],"basic":[90900,101900],"free":[86900,99900]}'>
-            <button type="button" class="tierbtn" data-tier="total" aria-pressed="false">토탈</button>
-            <button type="button" class="tierbtn" data-tier="basic" aria-pressed="false">베이직</button>
-            <button type="button" class="tierbtn is-on" data-tier="free" aria-pressed="true">서비스프리</button>
-            <span class="tierterm">7년 기준</span>
-          </div>
+          <div class="mopts" data-mid="1563"></div>
           <div class="prow">
             <p class="pprice"><s>월 99,900원</s> <b>월 86,900원</b></p>
             <a class="pbtn" href="tel:01094228307" aria-label="BEREX 스마트 매트리스 S8+ 슬립 싱크 상담 문의 전화">
@@ -3180,12 +3195,7 @@
           <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1565" target="_blank" rel="noopener">BEREX 시그니처 파이어쉴드 매트리스 슬립 싱크</a></p>
           <p class="pmeta"><span class="pmodel">CMSS-SP02SD</span></p>
           <p class="pdesc">안전하게 잠들고 스마트하게 관리하는 수면 케어</p>
-          <div class="tierbar" data-term="7년" data-tiers='{"total":[78900,79900],"basic":[72900,73900],"free":[68900,71900]}'>
-            <button type="button" class="tierbtn" data-tier="total" aria-pressed="false">토탈</button>
-            <button type="button" class="tierbtn" data-tier="basic" aria-pressed="false">베이직</button>
-            <button type="button" class="tierbtn is-on" data-tier="free" aria-pressed="true">서비스프리</button>
-            <span class="tierterm">7년 기준</span>
-          </div>
+          <div class="mopts" data-mid="1565"></div>
           <div class="prow">
             <p class="pprice"><s>월 71,900원</s> <b>월 68,900원</b></p>
             <a class="pbtn" href="tel:01094228307" aria-label="BEREX 시그니처 파이어쉴드 매트리스 슬립 싱크 상담 문의 전화">
@@ -3195,108 +3205,12 @@
           </div>
         </div>
       </li>
-      <li class="pcard">
-        <a class="pthumb" href="https://www.coway.com/product/detail?prdno=1506" target="_blank" rel="noopener">
-          <img src="img/1506.webp" alt="BEREX 더블사이드&amp;볼륨 침대  제품 사진" width="160" height="160" loading="lazy" decoding="async">
-        </a>
-        <div class="pbody">
-          <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1506" target="_blank" rel="noopener">BEREX 더블사이드&amp;볼륨 침대</a></p>
-          <p class="pmeta"></p>
-          
-          <div class="prow">
-            <p class="pprice"><s>월 46,800원</s> <b>월 32,970원</b></p>
-            <a class="pbtn" href="tel:01094228307" aria-label="BEREX 더블사이드&amp;볼륨 침대 상담 문의 전화">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6.4 6.4l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg>
-              <span>상담</span>
-            </a>
-          </div>
-        </div>
-      </li>
-      <li class="pcard">
-        <a class="pthumb" href="https://www.coway.com/product/detail?prdno=1507" target="_blank" rel="noopener">
-          <img src="img/1507.webp" alt="BEREX 루네어&amp;컴포트 침대  제품 사진" width="160" height="160" loading="lazy" decoding="async">
-        </a>
-        <div class="pbody">
-          <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1507" target="_blank" rel="noopener">BEREX 루네어&amp;컴포트 침대</a></p>
-          <p class="pmeta"></p>
-          
-          <div class="prow">
-            <p class="pprice"><s>월 50,800원</s> <b>월 35,520원</b></p>
-            <a class="pbtn" href="tel:01094228307" aria-label="BEREX 루네어&amp;컴포트 침대 상담 문의 전화">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6.4 6.4l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg>
-              <span>상담</span>
-            </a>
-          </div>
-        </div>
-      </li>
-      <li class="pcard">
-        <a class="pthumb" href="https://www.coway.com/product/detail?prdno=1505" target="_blank" rel="noopener">
-          <img src="img/1505.webp" alt="BEREX 스마트&amp;코지 침대  제품 사진" width="160" height="160" loading="lazy" decoding="async">
-        </a>
-        <div class="pbody">
-          <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1505" target="_blank" rel="noopener">BEREX 스마트&amp;코지 침대</a></p>
-          <p class="pmeta"></p>
-          
-          <div class="prow">
-            <p class="pprice"><s>월 88,800원</s> <b>월 63,570원</b></p>
-            <a class="pbtn" href="tel:01094228307" aria-label="BEREX 스마트&amp;코지 침대 상담 문의 전화">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6.4 6.4l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg>
-              <span>상담</span>
-            </a>
-          </div>
-        </div>
-      </li>
-      <li class="pcard">
-        <a class="pthumb" href="https://www.coway.com/product/detail?prdno=1504" target="_blank" rel="noopener">
-          <img src="img/1504.webp" alt="BEREX 시그니처&amp;모던라운드 침대  제품 사진" width="160" height="160" loading="lazy" decoding="async">
-        </a>
-        <div class="pbody">
-          <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1504" target="_blank" rel="noopener">BEREX 시그니처&amp;모던라운드 침대</a></p>
-          <p class="pmeta"></p>
-          
-          <div class="prow">
-            <p class="pprice"><s>월 68,800원</s> <b>월 55,070원</b></p>
-            <a class="pbtn" href="tel:01094228307" aria-label="BEREX 시그니처&amp;모던라운드 침대 상담 문의 전화">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6.4 6.4l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg>
-              <span>상담</span>
-            </a>
-          </div>
-        </div>
-      </li>
-      <li class="pcard">
-        <a class="pthumb" href="https://www.coway.com/product/detail?prdno=1509" target="_blank" rel="noopener">
-          <img src="img/1509.webp" alt="BEREX 시그니처&amp;스위트호텔 침대  제품 사진" width="160" height="160" loading="lazy" decoding="async">
-        </a>
-        <div class="pbody">
-          <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1509" target="_blank" rel="noopener">BEREX 시그니처&amp;스위트호텔 침대</a></p>
-          <p class="pmeta"></p>
-          
-          <div class="prow">
-            <p class="pprice"><s>월 71,800원</s> <b>월 57,620원</b></p>
-            <a class="pbtn" href="tel:01094228307" aria-label="BEREX 시그니처&amp;스위트호텔 침대 상담 문의 전화">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6.4 6.4l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg>
-              <span>상담</span>
-            </a>
-          </div>
-        </div>
-      </li>
-      <li class="pcard">
-        <a class="pthumb" href="https://www.coway.com/product/detail?prdno=1508" target="_blank" rel="noopener">
-          <img src="img/1508.webp" alt="BEREX 하이브리드4&amp;소프트쿠션 침대  제품 사진" width="160" height="160" loading="lazy" decoding="async">
-        </a>
-        <div class="pbody">
-          <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1508" target="_blank" rel="noopener">BEREX 하이브리드4&amp;소프트쿠션 침대</a></p>
-          <p class="pmeta"></p>
-          
-          <div class="prow">
-            <p class="pprice"><s>월 48,800원</s> <b>월 38,070원</b></p>
-            <a class="pbtn" href="tel:01094228307" aria-label="BEREX 하이브리드4&amp;소프트쿠션 침대 상담 문의 전화">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6.4 6.4l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg>
-              <span>상담</span>
-            </a>
-          </div>
-        </div>
-      </li>
+      
+      
+      
+      
+      
+      
       <li class="pcard">
         <a class="pthumb" href="https://www.coway.com/product/detail?prdno=1435" target="_blank" rel="noopener">
           <img src="img/1435.webp" alt="BEREX 모던 플러스 파운데이션 CFSS-F05_BG 제품 사진" width="160" height="160" loading="lazy" decoding="async">
@@ -3314,23 +3228,7 @@
           </div>
         </div>
       </li>
-      <li class="pcard">
-        <a class="pthumb" href="https://www.coway.com/product/detail?prdno=1454" target="_blank" rel="noopener">
-          <img src="img/1454.webp" alt="BEREX 모디&amp;볼륨 침대  제품 사진" width="160" height="160" loading="lazy" decoding="async">
-        </a>
-        <div class="pbody">
-          <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1454" target="_blank" rel="noopener">BEREX 모디&amp;볼륨 침대</a></p>
-          <p class="pmeta"></p>
-          
-          <div class="prow">
-            <p class="pprice"><s>월 39,800원</s> <b>월 30,420원</b></p>
-            <a class="pbtn" href="tel:01094228307" aria-label="BEREX 모디&amp;볼륨 침대 상담 문의 전화">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6.4 6.4l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg>
-              <span>상담</span>
-            </a>
-          </div>
-        </div>
-      </li>
+      
       <li class="pcard">
         <a class="pthumb" href="https://www.coway.com/product/detail?prdno=1434" target="_blank" rel="noopener">
           <img src="img/1434.webp" alt="BEREX 스위트 호텔 프레임 CFSS-HT01_BG 제품 사진" width="160" height="160" loading="lazy" decoding="async">
@@ -3348,227 +3246,19 @@
           </div>
         </div>
       </li>
-      <li class="pcard">
-        <a class="pthumb" href="https://www.coway.com/product/detail?prdno=1455" target="_blank" rel="noopener">
-          <img src="img/1455.webp" alt="BEREX 시그니처&amp;소프트쿠션 침대  제품 사진" width="160" height="160" loading="lazy" decoding="async">
-        </a>
-        <div class="pbody">
-          <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1455" target="_blank" rel="noopener">BEREX 시그니처&amp;소프트쿠션 침대</a></p>
-          <p class="pmeta"></p>
-          
-          <div class="prow">
-            <p class="pprice"><s>월 65,800원</s> <b>월 52,520원</b></p>
-            <a class="pbtn" href="tel:01094228307" aria-label="BEREX 시그니처&amp;소프트쿠션 침대 상담 문의 전화">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6.4 6.4l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg>
-              <span>상담</span>
-            </a>
-          </div>
-        </div>
-      </li>
-      <li class="pcard">
-        <a class="pthumb" href="https://www.coway.com/product/detail?prdno=1456" target="_blank" rel="noopener">
-          <img src="img/1456.webp" alt="BEREX 엘리트&amp;볼륨 침대  제품 사진" width="160" height="160" loading="lazy" decoding="async">
-        </a>
-        <div class="pbody">
-          <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1456" target="_blank" rel="noopener">BEREX 엘리트&amp;볼륨 침대</a></p>
-          <p class="pmeta"></p>
-          
-          <div class="prow">
-            <p class="pprice"><s>월 38,800원</s> <b>월 29,570원</b></p>
-            <a class="pbtn" href="tel:01094228307" aria-label="BEREX 엘리트&amp;볼륨 침대 상담 문의 전화">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6.4 6.4l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg>
-              <span>상담</span>
-            </a>
-          </div>
-        </div>
-      </li>
-      <li class="pcard">
-        <a class="pthumb" href="https://www.coway.com/product/detail?prdno=1448" target="_blank" rel="noopener">
-          <img src="img/1448.webp" alt="BEREX 더블사이드&amp;컴포트 침대  제품 사진" width="160" height="160" loading="lazy" decoding="async">
-        </a>
-        <div class="pbody">
-          <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1448" target="_blank" rel="noopener">BEREX 더블사이드&amp;컴포트 침대</a></p>
-          <p class="pmeta"></p>
-          
-          <div class="prow">
-            <p class="pprice"><s>월 49,800원</s> <b>월 35,520원</b></p>
-            <a class="pbtn" href="tel:01094228307" aria-label="BEREX 더블사이드&amp;컴포트 침대 상담 문의 전화">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6.4 6.4l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg>
-              <span>상담</span>
-            </a>
-          </div>
-        </div>
-      </li>
-      <li class="pcard">
-        <a class="pthumb" href="https://www.coway.com/product/detail?prdno=1442" target="_blank" rel="noopener">
-          <img src="img/1442.webp" alt="BEREX 루네어&amp;루나 침대  제품 사진" width="160" height="160" loading="lazy" decoding="async">
-        </a>
-        <div class="pbody">
-          <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1442" target="_blank" rel="noopener">BEREX 루네어&amp;루나 침대</a></p>
-          <p class="pmeta"></p>
-          
-          <div class="prow">
-            <p class="pprice"><s>월 44,800원</s> <b>월 30,420원</b></p>
-            <a class="pbtn" href="tel:01094228307" aria-label="BEREX 루네어&amp;루나 침대 상담 문의 전화">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6.4 6.4l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg>
-              <span>상담</span>
-            </a>
-          </div>
-        </div>
-      </li>
-      <li class="pcard">
-        <a class="pthumb" href="https://www.coway.com/product/detail?prdno=1439" target="_blank" rel="noopener">
-          <img src="img/1439.webp" alt="BEREX 모디&amp;마이 침대  제품 사진" width="160" height="160" loading="lazy" decoding="async">
-        </a>
-        <div class="pbody">
-          <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1439" target="_blank" rel="noopener">BEREX 모디&amp;마이 침대</a></p>
-          <p class="pmeta"></p>
-          
-          <div class="prow">
-            <p class="pprice"><s>월 39,800원</s> <b>월 30,420원</b></p>
-            <a class="pbtn" href="tel:01094228307" aria-label="BEREX 모디&amp;마이 침대 상담 문의 전화">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6.4 6.4l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg>
-              <span>상담</span>
-            </a>
-          </div>
-        </div>
-      </li>
-      <li class="pcard">
-        <a class="pthumb" href="https://www.coway.com/product/detail?prdno=1443" target="_blank" rel="noopener">
-          <img src="img/1443.webp" alt="BEREX 모디&amp;수납형 침대  제품 사진" width="160" height="160" loading="lazy" decoding="async">
-        </a>
-        <div class="pbody">
-          <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1443" target="_blank" rel="noopener">BEREX 모디&amp;수납형 침대</a></p>
-          <p class="pmeta"></p>
-          
-          <div class="prow">
-            <p class="pprice"><s>월 37,800원</s> <b>월 28,720원</b></p>
-            <a class="pbtn" href="tel:01094228307" aria-label="BEREX 모디&amp;수납형 침대 상담 문의 전화">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6.4 6.4l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg>
-              <span>상담</span>
-            </a>
-          </div>
-        </div>
-      </li>
-      <li class="pcard">
-        <a class="pthumb" href="https://www.coway.com/product/detail?prdno=1446" target="_blank" rel="noopener">
-          <img src="img/1446.webp" alt="BEREX 스마트&amp;모던라운드 침대  제품 사진" width="160" height="160" loading="lazy" decoding="async">
-        </a>
-        <div class="pbody">
-          <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1446" target="_blank" rel="noopener">BEREX 스마트&amp;모던라운드 침대</a></p>
-          <p class="pmeta"></p>
-          
-          <div class="prow">
-            <p class="pprice"><s>월 96,800원</s> <b>월 70,370원</b></p>
-            <a class="pbtn" href="tel:01094228307" aria-label="BEREX 스마트&amp;모던라운드 침대 상담 문의 전화">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6.4 6.4l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg>
-              <span>상담</span>
-            </a>
-          </div>
-        </div>
-      </li>
-      <li class="pcard">
-        <a class="pthumb" href="https://www.coway.com/product/detail?prdno=1444" target="_blank" rel="noopener">
-          <img src="img/1444.webp" alt="BEREX 스마트&amp;볼륨 침대  제품 사진" width="160" height="160" loading="lazy" decoding="async">
-        </a>
-        <div class="pbody">
-          <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1444" target="_blank" rel="noopener">BEREX 스마트&amp;볼륨 침대</a></p>
-          <p class="pmeta"></p>
-          
-          <div class="prow">
-            <p class="pprice"><s>월 92,800원</s> <b>월 66,970원</b></p>
-            <a class="pbtn" href="tel:01094228307" aria-label="BEREX 스마트&amp;볼륨 침대 상담 문의 전화">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6.4 6.4l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg>
-              <span>상담</span>
-            </a>
-          </div>
-        </div>
-      </li>
-      <li class="pcard">
-        <a class="pthumb" href="https://www.coway.com/product/detail?prdno=1447" target="_blank" rel="noopener">
-          <img src="img/1447.webp" alt="BEREX 스마트&amp;소프트쿠션 침대  제품 사진" width="160" height="160" loading="lazy" decoding="async">
-        </a>
-        <div class="pbody">
-          <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1447" target="_blank" rel="noopener">BEREX 스마트&amp;소프트쿠션 침대</a></p>
-          <p class="pmeta"></p>
-          
-          <div class="prow">
-            <p class="pprice"><s>월 107,800원</s> <b>월 79,720원</b></p>
-            <a class="pbtn" href="tel:01094228307" aria-label="BEREX 스마트&amp;소프트쿠션 침대 상담 문의 전화">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6.4 6.4l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg>
-              <span>상담</span>
-            </a>
-          </div>
-        </div>
-      </li>
-      <li class="pcard">
-        <a class="pthumb" href="https://www.coway.com/product/detail?prdno=1445" target="_blank" rel="noopener">
-          <img src="img/1445.webp" alt="BEREX 시그니처&amp;코지 침대  제품 사진" width="160" height="160" loading="lazy" decoding="async">
-        </a>
-        <div class="pbody">
-          <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1445" target="_blank" rel="noopener">BEREX 시그니처&amp;코지 침대</a></p>
-          <p class="pmeta"></p>
-          
-          <div class="prow">
-            <p class="pprice"><s>월 60,800원</s> <b>월 48,270원</b></p>
-            <a class="pbtn" href="tel:01094228307" aria-label="BEREX 시그니처&amp;코지 침대 상담 문의 전화">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6.4 6.4l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg>
-              <span>상담</span>
-            </a>
-          </div>
-        </div>
-      </li>
-      <li class="pcard">
-        <a class="pthumb" href="https://www.coway.com/product/detail?prdno=1441" target="_blank" rel="noopener">
-          <img src="img/1441.webp" alt="BEREX 엘리트&amp;우디 침대  제품 사진" width="160" height="160" loading="lazy" decoding="async">
-        </a>
-        <div class="pbody">
-          <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1441" target="_blank" rel="noopener">BEREX 엘리트&amp;우디 침대</a></p>
-          <p class="pmeta"></p>
-          
-          <div class="prow">
-            <p class="pprice"><s>월 33,800원</s> <b>월 25,320원</b></p>
-            <a class="pbtn" href="tel:01094228307" aria-label="BEREX 엘리트&amp;우디 침대 상담 문의 전화">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6.4 6.4l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg>
-              <span>상담</span>
-            </a>
-          </div>
-        </div>
-      </li>
-      <li class="pcard">
-        <a class="pthumb" href="https://www.coway.com/product/detail?prdno=1451" target="_blank" rel="noopener">
-          <img src="img/1451.webp" alt="BEREX 하이브리드4&amp;모던라운드 침대  제품 사진" width="160" height="160" loading="lazy" decoding="async">
-        </a>
-        <div class="pbody">
-          <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1451" target="_blank" rel="noopener">BEREX 하이브리드4&amp;모던라운드 침대</a></p>
-          <p class="pmeta"></p>
-          
-          <div class="prow">
-            <p class="pprice"><s>월 51,800원</s> <b>월 40,620원</b></p>
-            <a class="pbtn" href="tel:01094228307" aria-label="BEREX 하이브리드4&amp;모던라운드 침대 상담 문의 전화">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6.4 6.4l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg>
-              <span>상담</span>
-            </a>
-          </div>
-        </div>
-      </li>
-      <li class="pcard">
-        <a class="pthumb" href="https://www.coway.com/product/detail?prdno=1440" target="_blank" rel="noopener">
-          <img src="img/1440.webp" alt="BEREX 하이브리드4&amp;코지 침대  제품 사진" width="160" height="160" loading="lazy" decoding="async">
-        </a>
-        <div class="pbody">
-          <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1440" target="_blank" rel="noopener">BEREX 하이브리드4&amp;코지 침대</a></p>
-          <p class="pmeta"></p>
-          
-          <div class="prow">
-            <p class="pprice"><s>월 43,800원</s> <b>월 33,820원</b></p>
-            <a class="pbtn" href="tel:01094228307" aria-label="BEREX 하이브리드4&amp;코지 침대 상담 문의 전화">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6.4 6.4l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg>
-              <span>상담</span>
-            </a>
-          </div>
-        </div>
-      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
       <li class="pcard">
         <a class="pthumb" href="https://www.coway.com/product/detail?prdno=1425" target="_blank" rel="noopener">
           <img src="img/1425.webp" alt="BEREX M시리즈 안마매트리스  제품 사진" width="160" height="160" loading="lazy" decoding="async">
@@ -3662,12 +3352,7 @@
           <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1352" target="_blank" rel="noopener">BEREX 루네어 매트리스</a></p>
           <p class="pmeta"><span class="pmodel">CMSS-SE03H</span></p>
           <p class="pdesc">내 몸에 맞춘 듯 편안한 프리미엄</p>
-          <div class="tierbar" data-term="9년" data-tiers='{"total":[25900,31900],"basic":[21900,27900],"free":[17900,25900]}'>
-            <button type="button" class="tierbtn" data-tier="total" aria-pressed="false">토탈</button>
-            <button type="button" class="tierbtn" data-tier="basic" aria-pressed="false">베이직</button>
-            <button type="button" class="tierbtn is-on" data-tier="free" aria-pressed="true">서비스프리</button>
-            <span class="tierterm">9년 기준</span>
-          </div>
+          <div class="mopts" data-mid="1352"></div>
           <div class="prow">
             <p class="pprice"><s>월 25,900원</s> <b>월 17,900원</b></p>
             <a class="pbtn" href="tel:01094228307" aria-label="BEREX 루네어 매트리스 상담 문의 전화">
@@ -3736,12 +3421,7 @@
           <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1300" target="_blank" rel="noopener">BEREX 모디 매트리스</a></p>
           <p class="pmeta"><span class="pmodel">CMSS-SE02H</span></p>
           <p class="pdesc">탄탄하게 받쳐주고, 부드럽게 감싸주는</p>
-          <div class="tierbar" data-term="9년" data-tiers='{"total":[22900,23900],"basic":[18900,19900],"free":[14900,17900]}'>
-            <button type="button" class="tierbtn" data-tier="total" aria-pressed="false">토탈</button>
-            <button type="button" class="tierbtn" data-tier="basic" aria-pressed="false">베이직</button>
-            <button type="button" class="tierbtn is-on" data-tier="free" aria-pressed="true">서비스프리</button>
-            <span class="tierterm">9년 기준</span>
-          </div>
+          <div class="mopts" data-mid="1300"></div>
           <div class="prow">
             <p class="pprice"><s>월 17,900원</s> <b>월 14,900원</b></p>
             <a class="pbtn" href="tel:01094228307" aria-label="BEREX 모디 매트리스 상담 문의 전화">
@@ -3751,23 +3431,7 @@
           </div>
         </div>
       </li>
-      <li class="pcard">
-        <a class="pthumb" href="https://www.coway.com/product/detail?prdno=1341" target="_blank" rel="noopener">
-          <img src="img/1341.webp" alt="BEREX 모디&amp;모던 침대  제품 사진" width="160" height="160" loading="lazy" decoding="async">
-        </a>
-        <div class="pbody">
-          <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1341" target="_blank" rel="noopener">BEREX 모디&amp;모던 침대</a></p>
-          <p class="pmeta"></p>
-          <p class="pdesc">지금 가장 많이 선택하는 베스트 침대</p>
-          <div class="prow">
-            <p class="pprice"><s>월 31,800원</s> <b>월 23,620원</b></p>
-            <a class="pbtn" href="tel:01094228307" aria-label="BEREX 모디&amp;모던 침대 상담 문의 전화">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6.4 6.4l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg>
-              <span>상담</span>
-            </a>
-          </div>
-        </div>
-      </li>
+      
       <li class="pcard">
         <a class="pthumb" href="https://www.coway.com/product/detail?prdno=1111" target="_blank" rel="noopener">
           <img src="img/1111.webp" alt="BEREX 시그니처 매트리스 CMSS-SP01S 제품 사진" width="160" height="160" loading="lazy" decoding="async">
@@ -3776,11 +3440,7 @@
           <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1111" target="_blank" rel="noopener">BEREX 시그니처 매트리스</a></p>
           <p class="pmeta"><span class="pmodel">CMSS-SP01S</span></p>
           <p class="pdesc">아름다운 실루엣으로 완성된 차원이 다른 편안함</p>
-          <div class="tierbar" data-term="9년" data-tiers='{"basic":[43900,44900],"free":[39900,42900]}'>
-            <button type="button" class="tierbtn" data-tier="basic" aria-pressed="false">베이직</button>
-            <button type="button" class="tierbtn is-on" data-tier="free" aria-pressed="true">서비스프리</button>
-            <span class="tierterm">9년 기준</span>
-          </div>
+          <div class="mopts" data-mid="1111"></div>
           <div class="prow">
             <p class="pprice"><s>월 42,900원</s> <b>월 39,900원</b></p>
             <a class="pbtn" href="tel:01094228307" aria-label="BEREX 시그니처 매트리스 상담 문의 전화">
@@ -3798,11 +3458,7 @@
           <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1311" target="_blank" rel="noopener">BEREX 시그니처 파이어쉴드 매트리스</a></p>
           <p class="pmeta"><span class="pmodel">CMSS-SP02S</span></p>
           <p class="pdesc">한층 더 안전한 프리미엄 수면 경험</p>
-          <div class="tierbar" data-term="9년" data-tiers='{"basic":[47900,48900],"free":[43900,46900]}'>
-            <button type="button" class="tierbtn" data-tier="basic" aria-pressed="false">베이직</button>
-            <button type="button" class="tierbtn is-on" data-tier="free" aria-pressed="true">서비스프리</button>
-            <span class="tierterm">9년 기준</span>
-          </div>
+          <div class="mopts" data-mid="1311"></div>
           <div class="prow">
             <p class="pprice"><s>월 46,900원</s> <b>월 43,900원</b></p>
             <a class="pbtn" href="tel:01094228307" aria-label="BEREX 시그니처 파이어쉴드 매트리스 상담 문의 전화">
@@ -3820,12 +3476,7 @@
           <p class="pname"><a href="https://www.coway.com/product/detail?prdno=26" target="_blank" rel="noopener">BEREX 하이브리드 4 매트리스</a></p>
           <p class="pmeta"><span class="pmodel">CMSS-PR04M_V2</span></p>
           <p class="pdesc">프리미엄 메모리폼 탑퍼로 완성한</p>
-          <div class="tierbar" data-term="9년" data-tiers='{"total":[31900,32900],"basic":[26900,27900],"free":[22900,25900]}'>
-            <button type="button" class="tierbtn" data-tier="total" aria-pressed="false">토탈</button>
-            <button type="button" class="tierbtn" data-tier="basic" aria-pressed="false">베이직</button>
-            <button type="button" class="tierbtn is-on" data-tier="free" aria-pressed="true">서비스프리</button>
-            <span class="tierterm">9년 기준</span>
-          </div>
+          <div class="mopts" data-mid="26"></div>
           <div class="prow">
             <p class="pprice"><s>월 25,900원</s> <b>월 22,900원</b></p>
             <a class="pbtn" href="tel:01094228307" aria-label="BEREX 하이브리드 4 매트리스 상담 문의 전화">
@@ -3835,23 +3486,7 @@
           </div>
         </div>
       </li>
-      <li class="pcard">
-        <a class="pthumb" href="https://www.coway.com/product/detail?prdno=1241" target="_blank" rel="noopener">
-          <img src="img/1241.webp" alt="BEREX 스마트&amp;그레이스 침대  제품 사진" width="160" height="160" loading="lazy" decoding="async">
-        </a>
-        <div class="pbody">
-          <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1241" target="_blank" rel="noopener">BEREX 스마트&amp;그레이스 침대</a></p>
-          <p class="pmeta"></p>
-          <p class="pdesc">취향, 체형별 맞춤 숙면 최적화 침대</p>
-          <div class="prow">
-            <p class="pprice"><s>월 99,800원</s> <b>월 72,920원</b></p>
-            <a class="pbtn" href="tel:01094228307" aria-label="BEREX 스마트&amp;그레이스 침대 상담 문의 전화">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6.4 6.4l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg>
-              <span>상담</span>
-            </a>
-          </div>
-        </div>
-      </li>
+      
       <li class="pcard">
         <a class="pthumb" href="https://www.coway.com/product/detail?prdno=1204" target="_blank" rel="noopener">
           <img src="img/1204.webp" alt="BEREX 그레이스 프레임 CFQ-CB04_GR/HB 제품 사진" width="160" height="160" loading="lazy" decoding="async">
@@ -3894,12 +3529,7 @@
           <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1189" target="_blank" rel="noopener">BEREX 스마트 매트리스 S6+</a></p>
           <p class="pmeta"><span class="pmodel">CMSS-AS04_BG</span></p>
           <p class="pdesc">잠이 달라진다, 잘 자는 기술</p>
-          <div class="tierbar" data-term="7년" data-tiers='{"total":[64900,75900],"basic":[61900,72900],"free":[57900,70900]}'>
-            <button type="button" class="tierbtn" data-tier="total" aria-pressed="false">토탈</button>
-            <button type="button" class="tierbtn" data-tier="basic" aria-pressed="false">베이직</button>
-            <button type="button" class="tierbtn is-on" data-tier="free" aria-pressed="true">서비스프리</button>
-            <span class="tierterm">7년 기준</span>
-          </div>
+          <div class="mopts" data-mid="1189"></div>
           <div class="prow">
             <p class="pprice"><s>월 70,900원</s> <b>월 57,900원</b></p>
             <a class="pbtn" href="tel:01094228307" aria-label="BEREX 스마트 매트리스 S6+ 상담 문의 전화">
@@ -3917,12 +3547,7 @@
           <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1188" target="_blank" rel="noopener">BEREX 스마트 매트리스 S8+</a></p>
           <p class="pmeta"><span class="pmodel">CMSS-AS05_BG</span></p>
           <p class="pdesc">잠이 달라진다, 잘 자는 기술</p>
-          <div class="tierbar" data-term="7년" data-tiers='{"total":[79900,90900],"basic":[75900,86900],"free":[71900,84900]}'>
-            <button type="button" class="tierbtn" data-tier="total" aria-pressed="false">토탈</button>
-            <button type="button" class="tierbtn" data-tier="basic" aria-pressed="false">베이직</button>
-            <button type="button" class="tierbtn is-on" data-tier="free" aria-pressed="true">서비스프리</button>
-            <span class="tierterm">7년 기준</span>
-          </div>
+          <div class="mopts" data-mid="1188"></div>
           <div class="prow">
             <p class="pprice"><s>월 84,900원</s> <b>월 71,900원</b></p>
             <a class="pbtn" href="tel:01094228307" aria-label="BEREX 스마트 매트리스 S8+ 상담 문의 전화">
@@ -3974,12 +3599,7 @@
           <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1112" target="_blank" rel="noopener">BEREX 더블 사이드 매트리스</a></p>
           <p class="pmeta"><span class="pmodel">CMSS-SE01</span></p>
           <p class="pdesc">나에게 맞는 최적의 착와감을 선택할 수 있는</p>
-          <div class="tierbar" data-term="9년" data-tiers='{"total":[23900,28900],"basic":[21900,26900],"free":[17900,24900]}'>
-            <button type="button" class="tierbtn" data-tier="total" aria-pressed="false">토탈</button>
-            <button type="button" class="tierbtn" data-tier="basic" aria-pressed="false">베이직</button>
-            <button type="button" class="tierbtn is-on" data-tier="free" aria-pressed="true">서비스프리</button>
-            <span class="tierterm">9년 기준</span>
-          </div>
+          <div class="mopts" data-mid="1112"></div>
           <div class="prow">
             <p class="pprice"><s>월 24,900원</s> <b>월 17,900원</b></p>
             <a class="pbtn" href="tel:01094228307" aria-label="BEREX 더블 사이드 매트리스 상담 문의 전화">
@@ -4014,12 +3634,7 @@
           <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1082" target="_blank" rel="noopener">BEREX 엘리트 매트리스</a></p>
           <p class="pmeta"><span class="pmodel">CMS-ST01EH</span></p>
           <p class="pdesc">탄탄한 지지력으로 신체를 안정적으로 받쳐주는</p>
-          <div class="tierbar" data-term="9년" data-tiers='{"total":[17900,null],"basic":[16900,null],"free":[12900,15900]}'>
-            <button type="button" class="tierbtn" data-tier="total" aria-pressed="false">토탈</button>
-            <button type="button" class="tierbtn" data-tier="basic" aria-pressed="false">베이직</button>
-            <button type="button" class="tierbtn is-on" data-tier="free" aria-pressed="true">서비스프리</button>
-            <span class="tierterm">9년 기준</span>
-          </div>
+          <div class="mopts" data-mid="1082"></div>
           <div class="prow">
             <p class="pprice"><s>월 15,900원</s> <b>월 12,900원</b></p>
             <a class="pbtn" href="tel:01094228307" aria-label="BEREX 엘리트 매트리스 상담 문의 전화">
@@ -4088,6 +3703,7 @@
           <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1026" target="_blank" rel="noopener">BEREX 원바디 2 매트리스</a></p>
           <p class="pmeta"><span class="pmodel">CMSS-OB03_BG</span></p>
           <p class="pdesc">일체형 디자인으로 뛰어난 공간 활용</p>
+          <div class="mopts" data-mid="1026"></div>
           <div class="prow">
             <p class="pprice"><s>월 19,900원</s> <b>월 16,900원</b></p>
             <a class="pbtn" href="tel:01094228307" aria-label="BEREX 원바디 2 매트리스 상담 문의 전화">
@@ -4105,12 +3721,7 @@
           <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1027" target="_blank" rel="noopener">BEREX 프라임 플러스 2 매트리스</a></p>
           <p class="pmeta"><span class="pmodel">CMK-S05</span><span class="pbadge">24개월 1만원</span></p>
           <p class="pdesc">더욱 섬세해진 편안함</p>
-          <div class="tierbar" data-term="9년" data-tiers='{"total":[31900,37900],"basic":[27900,33900],"free":[23900,31900]}'>
-            <button type="button" class="tierbtn" data-tier="total" aria-pressed="false">토탈</button>
-            <button type="button" class="tierbtn" data-tier="basic" aria-pressed="false">베이직</button>
-            <button type="button" class="tierbtn is-on" data-tier="free" aria-pressed="true">서비스프리</button>
-            <span class="tierterm">9년 기준</span>
-          </div>
+          <div class="mopts" data-mid="1027"></div>
           <div class="prow">
             <p class="pprice"><s>월 31,900원</s> <b>월 23,900원</b></p>
             <a class="pbtn" href="tel:01094228307" aria-label="BEREX 프라임 플러스 2 매트리스 상담 문의 전화">
@@ -4128,6 +3739,7 @@
           <p class="pname"><a href="https://www.coway.com/product/detail?prdno=176" target="_blank" rel="noopener">BEREX 컴팩트 메모리폼 매트리스</a></p>
           <p class="pmeta"><span class="pmodel">CMSS-M01M</span></p>
           <p class="pdesc">편안함을 위한 4중 레이어 구조</p>
+          <div class="mopts" data-mid="176"></div>
           <div class="prow">
             <p class="pprice"><s>월 19,900원</s> <b>월 16,900원</b></p>
             <a class="pbtn" href="tel:01094228307" aria-label="BEREX 컴팩트 메모리폼 매트리스 상담 문의 전화">
@@ -4145,6 +3757,7 @@
           <p class="pname"><a href="https://www.coway.com/product/detail?prdno=181" target="_blank" rel="noopener">BEREX 하이브리드 3 매트리스</a></p>
           <p class="pmeta"><span class="pmodel">CMSS-PR03</span></p>
           <p class="pdesc">통몰드 라텍스 매트리스의 편안함</p>
+          <div class="mopts" data-mid="181"></div>
           <div class="prow">
             <p class="pprice"><s>월 24,900원</s> <b>월 21,900원</b></p>
             <a class="pbtn" href="tel:01094228307" aria-label="BEREX 하이브리드 3 매트리스 상담 문의 전화">
@@ -4162,6 +3775,7 @@
           <p class="pname"><a href="https://www.coway.com/product/detail?prdno=179" target="_blank" rel="noopener">BEREX 프라임 매트리스</a></p>
           <p class="pmeta"><span class="pmodel">CMQ-S03H</span><span class="pbadge">24개월 1만원</span></p>
           <p class="pdesc">5존 컨투어 폼 탑퍼로 편안하게</p>
+          <div class="mopts" data-mid="179"></div>
           <div class="prow">
             <p class="pprice"><s>월 20,900원</s> <b>월 17,900원</b></p>
             <a class="pbtn" href="tel:01094228307" aria-label="BEREX 프라임 매트리스 상담 문의 전화">
@@ -4247,6 +3861,7 @@
           <p class="pname"><a href="https://www.coway.com/product/detail?prdno=177" target="_blank" rel="noopener">BEREX 더블체인지 매트리스</a></p>
           <p class="pmeta"><span class="pmodel">CMSS-SL01</span></p>
           <p class="pdesc">탑퍼를 두 번 교체해 위생 걱정없이</p>
+          <div class="mopts" data-mid="177"></div>
           <div class="prow">
             <p class="pprice"><s>월 17,900원</s> <b>월 14,900원</b></p>
             <a class="pbtn" href="tel:01094228307" aria-label="BEREX 더블체인지 매트리스 상담 문의 전화">
@@ -4677,66 +4292,63 @@
 </script>
 
 
+<script src="mattress-data.js"></script>
 <script>
-/* ── 매트리스 케어 등급(토탈·베이직·서비스프리) 선택 ── */
+/* ── 매트리스 사이즈·약정기간·케어등급 선택 → 실렌탈료 즉시 반영 ── */
 (function () {
-  function won(n) { return Number(n).toLocaleString('ko-KR'); }
-  function parse(bar) {
-    try { return JSON.parse(bar.getAttribute('data-tiers') || '{}'); } catch (e) { return {}; }
+  var F = window.MATT_FN; if (!F) return;
+  var state = {};
+  function chips(box, dim, lab, items, cur) {
+    var row = document.createElement('div'); row.className = 'mrow';
+    var l = document.createElement('span'); l.className = 'mlab'; l.textContent = lab;
+    row.appendChild(l);
+    var wrap = document.createElement('div'); wrap.className = 'mchips';
+    items.forEach(function (it) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'mbtn' + (it.v === cur ? ' is-on' : '');
+      b.textContent = it.l;
+      b.setAttribute('data-dim', dim);
+      b.setAttribute('data-v', it.v);
+      b.setAttribute('aria-pressed', it.v === cur ? 'true' : 'false');
+      if (it.full) b.setAttribute('aria-label', it.full);
+      wrap.appendChild(b);
+    });
+    row.appendChild(wrap); box.appendChild(row);
+  }
+  function paint(box) {
+    var id = box.getAttribute('data-mid');
+    if (!window.MATT || !window.MATT[id]) return;
+    var st = state[id] = F.norm(id, state[id]);
+    box.textContent = '';
+    var m = window.MATT[id];
+    chips(box, 'size', '사이즈', m.s.map(function (s) { return { v: s.k, l: s.k, full: s.n }; }), st.size);
+    chips(box, 'term', '기간', F.terms(id, st.size, st.tier).map(function (t) { return { v: t, l: t + '년' }; }), st.term);
+    chips(box, 'tier', '케어', F.tiers(id, st.size).map(function (t) { return { v: t, l: F.L[t] }; }), st.tier);
+    var b = document.createElement('p'); b.className = 'mbasis'; b.textContent = F.basis(st);
+    box.appendChild(b);
+    var body = box.parentNode;
+    while (body && body !== document && !(body.classList && body.classList.contains('pbody'))) body = body.parentNode;
+    var pr = body && body.querySelector ? body.querySelector('.pprice') : null;
+    if (pr) pr.innerHTML = F.priceHTML(F.price(id, st));
+  }
+  function init() {
+    var boxes = document.querySelectorAll('.mopts[data-mid]');
+    for (var i = 0; i < boxes.length; i++) paint(boxes[i]);
   }
   document.addEventListener('click', function (e) {
     var el = e.target;
-    while (el && el !== document && !(el.classList && el.classList.contains('tierbtn'))) { el = el.parentNode; }
-    if (!el || el === document || !el.classList || !el.classList.contains('tierbtn')) return;
-    var bar = el.parentNode;
-    while (bar && bar !== document && !(bar.classList && bar.classList.contains('tierbar'))) { bar = bar.parentNode; }
-    if (!bar || bar === document) return;
-    var key = el.getAttribute('data-tier');
-    var data = parse(bar);
-    if (!data[key]) return;
-    Array.prototype.forEach.call(bar.querySelectorAll('.tierbtn'), function (b) {
-      var on = b === el;
-      b.classList.toggle('is-on', on);
-      b.setAttribute('aria-pressed', on ? 'true' : 'false');
-    });
-    var body = bar.parentNode;
-    var price = body.querySelector('.pprice');
-    if (!price) return;
-    var now = data[key][0], list = data[key][1];
-    price.innerHTML = (list && list > now ? '<s>월 ' + won(list) + '원</s> ' : '') + '<b>월 ' + won(now) + '원</b>';
+    while (el && el !== document && !(el.classList && el.classList.contains('mbtn'))) el = el.parentNode;
+    if (!el || el === document || !el.classList || !el.classList.contains('mbtn')) return;
+    var box = el;
+    while (box && box !== document && !(box.classList && box.classList.contains('mopts'))) box = box.parentNode;
+    if (!box || box === document) return;
+    var id = box.getAttribute('data-mid');
+    var st = state[id] = F.norm(id, state[id]);
+    st[el.getAttribute('data-dim')] = el.getAttribute('data-v');
+    paint(box);
   });
-})();
-</script>
-
-
-<script>
-/* ── 매트리스 케어 등급(토탈·베이직·서비스프리) 선택 ── */
-(function () {
-  function won(n) { return Number(n).toLocaleString('ko-KR'); }
-  function parse(bar) {
-    try { return JSON.parse(bar.getAttribute('data-tiers') || '{}'); } catch (e) { return {}; }
-  }
-  document.addEventListener('click', function (e) {
-    var el = e.target;
-    while (el && el !== document && !(el.classList && el.classList.contains('tierbtn'))) { el = el.parentNode; }
-    if (!el || el === document || !el.classList || !el.classList.contains('tierbtn')) return;
-    var bar = el.parentNode;
-    while (bar && bar !== document && !(bar.classList && bar.classList.contains('tierbar'))) { bar = bar.parentNode; }
-    if (!bar || bar === document) return;
-    var key = el.getAttribute('data-tier');
-    var data = parse(bar);
-    if (!data[key]) return;
-    Array.prototype.forEach.call(bar.querySelectorAll('.tierbtn'), function (b) {
-      var on = b === el;
-      b.classList.toggle('is-on', on);
-      b.setAttribute('aria-pressed', on ? 'true' : 'false');
-    });
-    var body = bar.parentNode;
-    var price = body.querySelector('.pprice');
-    if (!price) return;
-    var now = data[key][0], list = data[key][1];
-    price.innerHTML = (list && list > now ? '<s>월 ' + won(list) + '원</s> ' : '') + '<b>월 ' + won(now) + '원</b>';
-  });
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
 </script>
 
