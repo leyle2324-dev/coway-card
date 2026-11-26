@@ -7,9 +7,9 @@
 <meta name="format-detection" content="telephone=no">
 <meta name="theme-color" content="#0e2c4a">
 <title>세트 구성 · 월 합산 금액 확인</title>
-<meta name="description" content="코웨이 제품 167종 중 원하는 제품을 골라 월 렌탈료 합산 금액을 바로 확인하세요. 세부 세트 할인과 최종 조건은 전문상담사와 상의해 주세요.">
+<meta name="description" content="코웨이 제품 167종 중 원하는 제품을 골라 제품별 할인율(5~20%)을 적용한 월 합산 금액을 바로 확인하세요. 최종 할인과 조건은 전문상담사와 상의해 주세요.">
 <meta property="og:title" content="세트 구성 · 월 합산 금액 확인">
-<meta property="og:description" content="원하는 제품들을 골라 월 합산 금액을 확인하세요. 세부 세트 할인은 전문상담사와 상의해 주세요.">
+<meta property="og:description" content="원하는 제품들을 골라 제품별 할인율(5~20%)을 적용한 월 합산 금액을 확인하세요. 최종 할인과 조건은 상담으로 확정됩니다.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
 <style>
@@ -140,13 +140,14 @@
   }
   .sec-head h2 span{font-size:12.5px;font-weight:700;color:var(--muted);}
   .sec-head p{margin:4px 0 0;font-size:13px;color:var(--muted);line-height:1.55;}
-  .sec-head-row{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+  .sec-head-row{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;}
   .reset{
     flex:0 0 auto;
     min-height:32px;padding:0 10px;border-radius:9px;
     background:#fff;border:1px solid var(--line);
     font-family:inherit;font-size:12px;font-weight:700;color:var(--muted);
     cursor:pointer;-webkit-tap-highlight-color:transparent;
+    margin-top:1px;
   }
   .reset:focus-visible{outline:3px solid #8fd0ff;outline-offset:2px;}
 
@@ -171,17 +172,40 @@
   }
   .sumbox-amount small{display:block;font-size:10.5px;font-weight:700;color:#7b93a8;letter-spacing:0;line-height:1.4;}
   .sumbox-amount.is-zero{color:#9aabb9;}
+  .sumlines{
+    display:grid;gap:4px;
+    margin:10px 0 4px;padding:9px 11px;
+    border-radius:10px;background:#eef6fd;border:1px solid #e1eefa;
+  }
+  .sumline{
+    display:flex;align-items:baseline;justify-content:space-between;gap:10px;
+    font-size:12px;font-weight:700;color:#4a6478;line-height:1.4;
+  }
+  .sumline .v{
+    font-size:13px;font-weight:800;color:var(--navy);
+    font-variant-numeric:tabular-nums;letter-spacing:-.01em;
+  }
+  .sumline.is-disc .v{color:var(--green);}
+  .sumline.is-disc.is-zero .v{color:#7b93a8;font-weight:700;}
+  .sumlines-fine{margin:5px 0 0;font-size:10.5px;font-weight:600;color:#7b93a8;line-height:1.45;}
   .selist{list-style:none;margin:0;padding:0;}
   .selist li{
-    display:flex;align-items:center;gap:10px;
-    padding:9px 0;border-bottom:1px dashed #dbe8f4;
+    display:grid;
+    grid-template-columns:44px minmax(0,1fr) auto;
+    align-items:center;column-gap:10px;row-gap:0;
+    padding:10px 0;border-bottom:1px dashed #dbe8f4;
   }
-  .selist li:last-child{border-bottom:0;padding-bottom:2px;}
+  .selist li:last-child{border-bottom:0;padding-bottom:4px;}
   .selist img{
-    flex:0 0 auto;width:44px;height:44px;border-radius:10px;
+    grid-column:1;grid-row:1;align-self:center;
+    width:44px;height:44px;border-radius:10px;
     background:#fff;border:1px solid #e3edf6;object-fit:contain;
   }
-  .selist .info{flex:1;min-width:0;}
+  .selist .info{grid-column:2;grid-row:1;min-width:0;}
+  .selist .prwrap{
+    grid-column:3;grid-row:1;justify-self:end;
+    display:flex;align-items:center;gap:6px;
+  }
   .selist .nm{font-size:13px;font-weight:800;color:var(--ink);line-height:1.4;}
   .selist .md{font-size:11px;color:var(--muted);line-height:1.4;margin-top:1px;}
   .selist .pr{
@@ -196,6 +220,41 @@
     cursor:pointer;-webkit-tap-highlight-color:transparent;
   }
   .selist .rm:focus-visible{outline:3px solid #8fd0ff;outline-offset:2px;}
+
+  /* ── 제품별 할인율 선택 ── */
+  .selist .discrow{
+    grid-column:1 / -1;grid-row:2;
+    display:flex;align-items:center;justify-content:space-between;
+    flex-wrap:wrap;gap:5px 8px;
+    margin-top:4px;
+  }
+  .selist .disc-applied{
+    flex:0 0 auto;
+    font-size:11.5px;font-weight:800;color:var(--muted);
+    font-variant-numeric:tabular-nums;line-height:1.4;
+  }
+  .selist .disc-applied.is-on{color:var(--green);}
+  .selist .disc-na{
+    flex:1 1 auto;min-width:0;
+    font-size:11px;font-weight:700;color:#a8501c;line-height:1.45;
+  }
+  .seg{
+    flex:0 0 auto;margin-left:auto;
+    display:inline-flex;gap:2px;padding:2px;
+    border-radius:10px;background:#eef5fb;border:1px solid #d7e7f5;
+  }
+  .segbtn{
+    display:inline-flex;align-items:center;justify-content:center;
+    min-width:40px;min-height:32px;padding:0 7px;
+    border:0;border-radius:8px;background:transparent;
+    font-family:inherit;font-size:12px;font-weight:800;
+    color:#5f7c93;letter-spacing:-.01em;
+    font-variant-numeric:tabular-nums;
+    cursor:pointer;-webkit-tap-highlight-color:transparent;
+  }
+  .segbtn:active{background:rgba(10,122,194,.10);}
+  .segbtn.is-on{background:#fff;color:#0869a8;box-shadow:0 1px 4px rgba(14,44,74,.16);}
+  .segbtn:focus-visible{outline:3px solid #8fd0ff;outline-offset:1px;}
   .selist-empty{
     margin:0;padding:12px 0 2px;
     font-size:12.5px;color:var(--muted);line-height:1.6;text-align:center;
@@ -408,6 +467,19 @@
     .selist .nm{color:#eef5fb;}
     .selist .pr{color:#dce9f6;}
     .selist .rm{background:#121d29;border-color:#243446;color:#94a8ba;}
+    .selist .disc-applied{color:#9fb0c1;}
+    .selist .disc-applied.is-on{color:#6fd3bd;}
+    .selist .disc-na{color:#d5ab86;}
+    .seg{background:#0f2233;border-color:#23516f;}
+    .segbtn{color:#9fb4c7;}
+    .segbtn:active{background:rgba(140,203,247,.12);}
+    .segbtn.is-on{background:#1b4a75;color:#eaf5ff;box-shadow:none;}
+    .sumlines{background:#0f2233;border-color:#23516f;}
+    .sumline{color:#a9bccd;}
+    .sumline .v{color:#dce9f6;}
+    .sumline.is-disc .v{color:#6fd3bd;}
+    .sumline.is-disc.is-zero .v{color:#8fa3b5;}
+    .sumlines-fine{color:#8fa3b5;}
     .sum-ask{background:#241a12;border-color:#3d2c1e;color:#d5ab86;}
     .deal-note{background:#12304a;border-color:#23516f;border-left-color:#3a86bd;color:#bfe0f8;}
     .deal-note b{color:#eaf5ff;}
@@ -461,7 +533,7 @@
       <span>실시간 합산</span>
       <span>상담으로 최종 확인</span>
     </div>
-    <p class="phero-note">표시 금액은 코웨이닷컴 기준 월 렌탈료입니다 · 세부 세트 할인은 상담으로 안내해 드립니다</p>
+    <p class="phero-note">표시 금액은 코웨이닷컴 기준 월 렌탈료입니다 · 제품마다 5~20% 할인율을 골라 적용해 볼 수 있고, 최종 요율과 조건은 상담으로 확정됩니다</p>
   </header>
 
   <div class="sumbar is-empty" id="sumbar" aria-live="polite">
@@ -476,7 +548,7 @@
     <div class="sec-head sec-head-row">
       <div>
         <h2 id="sel-h">선택한 제품 <span id="sel-count">0개</span></h2>
-        <p>담은 제품의 월 렌탈료를 합산한 금액입니다.</p>
+        <p>이번 달 프로모션에 맞춰 제품마다 5%·10%·15%·20%를 체크하세요. 고른 요율을 한 번 더 누르면 해제되고, 기본은 할인 없음입니다.</p>
       </div>
       <button class="reset" type="button" id="reset-btn" hidden>전체 삭제</button>
     </div>
@@ -485,16 +557,22 @@
       <div class="sumbox-top">
         <span class="t">
           <b id="sum-people">0개 선택</b>
-          선택한 제품 월 합산
+          할인 적용 월 합산
         </span>
         <span class="sumbox-amount" id="sum-total">0원<small>월 기준</small></span>
+      </div>
+
+      <div class="sumlines">
+        <div class="sumline"><span>할인 전 합산</span><span class="v" id="sum-gross">0원</span></div>
+        <div class="sumline is-disc is-zero" id="sum-disc-line"><span>총 할인액</span><span class="v" id="sum-disc">0원</span></div>
+        <p class="sumlines-fine">제품별 할인액은 원 단위로 반올림해 계산합니다.</p>
       </div>
 
       <ul class="selist" id="selist" aria-live="polite"></ul>
       <p class="selist-empty" id="selist-empty">아직 담은 제품이 없습니다.<br>아래에서 제품을 골라 <b>담기</b>를 눌러 보세요.</p>
       <p class="sum-ask" id="sum-ask" hidden></p>
 
-      <p class="deal-note" id="deal-note">세부 세트 구성 할인 및 최종 조건은 확인 시 <b>전문상담사와 상의</b>해 주세요.</p>
+      <p class="deal-note" id="deal-note">제품별로 고른 5~20% 할인은 참고 계산입니다. 실제 적용 요율과 <b>최종 조건은 그 달 프로모션·상담으로 확정</b>됩니다.</p>
 
       <div class="duo">
         <a class="dbtn dbtn-call" href="tel:01094228307">
@@ -535,10 +613,10 @@
       <h2 id="guide-h">합산 금액 안내</h2>
     </div>
     <div class="notecard">
-      <h3>세부 세트 구성 할인 및 최종 조건은<br>확인 시 전문상담사와 상의해 주세요</h3>
+      <h3>제품별 할인율과 최종 조건은<br>상담으로 확정해 드립니다</h3>
       <ul>
-        <li>위 <b>월 합산 금액</b>은 각 제품에 표시된 <b>월 렌탈료를 그대로 더한 금액</b>입니다. 세트로 함께 구성할 때의 세부 할인은 조합·시점에 따라 달라서 이 화면에서는 계산하지 않습니다.</li>
-        <li>할인 적용 여부와 <b>최종 월 납부액</b>은 상담할 때 제품 조합과 설치 조건을 함께 확인해 안내해 드립니다.</li>
+        <li>위 <b>할인 적용 월 합산</b>은 담은 제품의 월 렌탈료에 <b>제품마다 고른 할인율(5%·10%·15%·20%)</b>을 적용해 계산한 금액입니다. 할인액은 제품별로 원 단위에서 반올림하고, 아무 요율도 고르지 않은 제품은 정가로 더합니다. 화면 위 <b>‘할인 전 합산’</b>은 할인을 적용하기 전 금액입니다.</li>
+        <li>실제 프로모션에서 제품별로 어느 요율이 적용되는지는 그 달 조건에 따라 달라집니다. 화면에서 고른 요율은 상담 전 참고 계산이며, <b>최종 할인율과 월 납부액</b>은 상담할 때 제품 조합과 설치 조건을 함께 확인해 확정해 드립니다.</li>
         <li>자동이체·제휴카드 할인, 설치비, 관리 주기 등은 상담에서 함께 정리해 드립니다.</li>
         <li>표시 금액이 <b>‘상담 확인’</b>인 제품은 월 렌탈료 대신 구매가로 안내되는 제품이라 합산에서 빠져 있습니다. 이 제품들도 상담으로 견적을 확인하실 수 있습니다.</li>
       </ul>
@@ -589,6 +667,8 @@
   PRODUCTS.forEach(function (p) { byId[p.id] = p; });
 
   var selected = [];          // product ids, in the order they were added
+  var discounts = {};         // product id -> 5 | 10 | 15 | 20 (키가 없으면 할인 미적용)
+  var RATES = [5, 10, 15, 20];
   var activeCat = "all";
   var query = "";
 
@@ -601,6 +681,9 @@
   var elSelCount = document.getElementById("sel-count");
   var elSumPeople = document.getElementById("sum-people");
   var elSumTotal = document.getElementById("sum-total");
+  var elSumGross = document.getElementById("sum-gross");
+  var elSumDisc = document.getElementById("sum-disc");
+  var elSumDiscLine = document.getElementById("sum-disc-line");
   var elSumAsk = document.getElementById("sum-ask");
   var elBar = document.getElementById("sumbar");
   var elBarLabel = document.getElementById("sumbar-label");
@@ -610,6 +693,8 @@
 
   function comma(n) { return n.toLocaleString("ko-KR"); }
   function won(n) { return comma(n) + "원"; }
+  function rateOf(id) { return discounts[id] || 0; }
+  function discOf(monthly, rate) { return Math.round(monthly * rate / 100); }
 
   /* ── 카테고리 탭 ── */
   var counts = {};
@@ -724,9 +809,18 @@
     if (i !== -1) { selected.splice(i, 1); renderSelected(); }
   }
 
+  /* 할인율 칩: 같은 요율을 한 번 더 누르면 해제(할인 미적용) */
+  function setRate(id, rate) {
+    if (discounts[id] === rate) { delete discounts[id]; }
+    else { discounts[id] = rate; }
+    renderSelected();
+  }
+
   function renderSelected() {
-    var sum = 0;
+    var gross = 0;      // 할인 전 합산
+    var discSum = 0;    // 총 할인액
     var askCount = 0;
+    var discCount = 0;
 
     // 제품 목록의 담기 버튼 상태
     PRODUCTS.forEach(function (p) {
@@ -746,9 +840,14 @@
     selected.forEach(function (id) {
       var p = byId[id];
       if (!p) return;
-      if (p.monthly === null) { askCount++; } else { sum += p.monthly; }
+
+      var rate = rateOf(p.id);
+      var disc = (p.monthly !== null && rate) ? discOf(p.monthly, rate) : 0;
+      if (p.monthly === null) { askCount++; }
+      else { gross += p.monthly; discSum += disc; if (rate) { discCount++; } }
 
       var li = document.createElement("li");
+      li.dataset.pid = p.id;
 
       var img = document.createElement("img");
       img.src = p.img;
@@ -768,6 +867,9 @@
       info.appendChild(nm);
       info.appendChild(md);
 
+      var prwrap = document.createElement("div");
+      prwrap.className = "prwrap";
+
       var pr = document.createElement("span");
       pr.className = "pr" + (p.monthly === null ? " is-ask" : "");
       pr.textContent = p.monthly === null ? "상담 확인" : "월 " + won(p.monthly);
@@ -779,18 +881,59 @@
       rm.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
       rm.addEventListener("click", function () { removeItem(p.id); });
 
+      prwrap.appendChild(pr);
+      prwrap.appendChild(rm);
+
+      var row = document.createElement("div");
+      row.className = "discrow";
+
+      if (p.monthly === null) {
+        var na = document.createElement("span");
+        na.className = "disc-na";
+        na.textContent = "상담 확인 제품 · 할인은 상담에서 확인";
+        row.appendChild(na);
+      } else {
+        var applied = document.createElement("span");
+        applied.className = "disc-applied" + (rate ? " is-on" : "");
+        applied.textContent = rate ? "적용 " + won(p.monthly - disc) : "할인 없음";
+
+        var seg = document.createElement("div");
+        seg.className = "seg";
+        seg.setAttribute("role", "group");
+        seg.setAttribute("aria-label", p.name + " 할인율");
+        RATES.forEach(function (r) {
+          var sb = document.createElement("button");
+          sb.type = "button";
+          var on = rate === r;
+          sb.className = "segbtn" + (on ? " is-on" : "");
+          sb.textContent = r + "%";
+          sb.setAttribute("aria-pressed", on ? "true" : "false");
+          sb.setAttribute("aria-label", p.name + " " + r + "% 할인" + (on ? " 해제" : ""));
+          sb.addEventListener("click", function () { setRate(p.id, r); });
+          seg.appendChild(sb);
+        });
+
+        row.appendChild(applied);
+        row.appendChild(seg);
+      }
+
       li.appendChild(img);
       li.appendChild(info);
-      li.appendChild(pr);
-      li.appendChild(rm);
+      li.appendChild(prwrap);
+      li.appendChild(row);
       elSelList.appendChild(li);
     });
+
+    var net = gross - discSum;
 
     // 요약 값
     elSelCount.textContent = selected.length + "개";
     elSumPeople.textContent = selected.length + "개 선택";
-    elSumTotal.innerHTML = won(sum) + "<small>월 기준</small>";
+    elSumTotal.innerHTML = won(net) + "<small>월 기준</small>";
     elSumTotal.classList.toggle("is-zero", selected.length === 0);
+    elSumGross.textContent = won(gross);
+    elSumDisc.textContent = discSum > 0 ? "−" + won(discSum) : "0원";
+    elSumDiscLine.classList.toggle("is-zero", discSum === 0);
     elSelEmpty.hidden = selected.length > 0;
     elReset.hidden = selected.length === 0;
 
@@ -802,13 +945,13 @@
       elSumAsk.textContent = "";
     }
 
-    elBarLabel.innerHTML = "선택 <b>" + selected.length + "</b>개 · 월 합산";
+    elBarLabel.innerHTML = "선택 <b>" + selected.length + "</b>개 · " + (discCount > 0 ? "할인 적용" : "월 합산");
     if (selected.length === 0) {
       elBar.classList.add("is-empty");
       elBarTotal.textContent = "0원";
     } else {
       elBar.classList.remove("is-empty");
-      elBarTotal.textContent = won(sum);
+      elBarTotal.textContent = won(net);
     }
   }
 
