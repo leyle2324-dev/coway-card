@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<title>390 preview</title>
+<style>html,body{margin:0;background:#e9eef4;font-family:sans-serif}
+.frame{width:390px;margin:0 auto;background:#fff}
+iframe{width:390px;height:844px;border:0;display:block}</style>
+</head><body>
+<div class="frame"><iframe id="f" src="index.html" title="390px 미리보기"></iframe></div>
+<script>
+var f = document.getElementById('f');
+f.addEventListener('load', function () {
+  var d = f.contentDocument, w = f.contentWindow;
+  var q = (location.hash || '').replace('#','');
+  if (q === 'luneo') {
+    var card = null, cards = d.querySelectorAll('.pcard');
+    for (var i=0;i<cards.length;i++){ if(cards[i].querySelector('a[href*="prdno=1352"]')) card=cards[i]; }
+    if (card) w.scrollTo(0, card.getBoundingClientRect().top + w.pageYOffset - 70);
+  }
+});
+</script>
+</body></html>
