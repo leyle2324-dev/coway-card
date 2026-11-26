@@ -6,7 +6,7 @@
 .frame{width:390px;margin:0 auto;background:#fff}
 iframe{width:390px;height:1200px;border:0;display:block}</style>
 </head><body>
-<div class="frame"><iframe id="f" src="index.html?v=1127c" title="390px 미리보기"></iframe></div>
+<div class="frame"><iframe id="f" src="index.html?v=1127d" title="390px 미리보기"></iframe></div>
 <script>
 var f = document.getElementById('f');
 f.addEventListener('load', function () {
@@ -16,7 +16,7 @@ f.addEventListener('load', function () {
   var el = d.querySelector('.mopts[data-mid="' + q + '"]');
   var card = el;
   while (card && card !== d && !(card.classList && card.classList.contains('pcard'))) card = card.parentNode;
-  if (card) w.scrollTo(0, card.getBoundingClientRect().top + w.pageYOffset - 10);
+  if (card) w.scrollTo(0, card.getBoundingClientRect().top + w.pageYOffset - 80);
 });
 </script>
 </body></html>
