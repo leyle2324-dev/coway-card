@@ -1447,53 +1447,6 @@
   .set-sub{font-size:10.5px;font-weight:700;color:#5c7890;line-height:1.5;margin:2px 0 0;}
   .set-arrow{flex:0 0 auto;display:flex;color:#0a6fb2;opacity:.72;}
 
-  /* ── 매트리스 맞춤 진단 바로가기 칸 (/diagnosis/) ── */
-  .qtile-diag{
-    grid-column:1 / -1;
-    display:flex;
-    flex-direction:row;
-    align-items:center;
-    gap:13px;
-    min-height:80px;
-    padding:12px 13px 12px 17px;
-    background:linear-gradient(135deg,#1f5244 0%,#153b31 100%);
-    border-color:#153b31;
-    box-shadow:0 6px 18px rgba(21,59,49,.2);
-  }
-  .qtile-diag::before{width:5px;background:#b08a54;}
-  .diag-badge{
-    flex:0 0 auto;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    width:56px;
-    height:56px;
-    border-radius:15px;
-    background:rgba(255,255,255,.14);
-    color:#f3eada;
-  }
-  .qtile-diag .qtile-t{
-    display:block;
-    font-size:16.5px;
-    color:#fff;
-    white-space:normal;
-    overflow:visible;
-    text-overflow:clip;
-  }
-  .diag-pill{
-    display:inline-block;
-    vertical-align:middle;
-    margin-left:4px;
-    padding:1px 7px;
-    border-radius:999px;
-    background:rgba(255,255,255,.2);
-    font-size:10.5px;
-    font-weight:800;
-    color:#f6ead3;
-    letter-spacing:0;
-  }
-  .qtile-diag .qtile-s{font-size:11.5px;color:#c9e0d8;line-height:1.5;white-space:normal;overflow:visible;}
-  .diag-arrow{flex:0 0 auto;display:flex;color:#e8d3b3;opacity:.85;}
   /* 세트 구성 칸 아래에 이어지는 코웨이 제품 안내 간격 */
   .quicknav + .section{padding-top:22px;}
   @media (prefers-color-scheme: dark){
@@ -1509,12 +1462,6 @@
     .set-badge{background:#e9f0f7;color:#0e2c4a;box-shadow:none;}
     .set-arrow{color:#8ccbf7;}
     .set-sub{color:#8ba3b8;}
-    .qtile-diag{background:linear-gradient(135deg,#1f5244 0%,#123029 100%);border-color:#2c6153;box-shadow:0 6px 18px rgba(0,0,0,.3);}
-    .diag-badge{background:rgba(255,255,255,.12);color:#e6d6bb;}
-    .qtile-diag .qtile-t{color:#f2f8f5;}
-    .qtile-diag .qtile-s{color:#a9c8bd;}
-    .diag-arrow{color:#cbb694;}
-    .diag-pill{background:rgba(255,255,255,.16);color:#e6d6bb;}
   }
 
   /* ── 매트리스 케어 등급 칩 (토탈·베이직·서비스프리) ── */
@@ -1765,16 +1712,6 @@
         <span class="set-sub">세부 세트 할인은 전문상담사와 상의</span>
       </span>
       <span class="set-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></span>
-    </a>
-    <a class="qtile qtile-diag" href="./diagnosis/" aria-label="내 몸에 맞는 매트리스 맞춤 진단 1분, 8단계 문진으로 BEREX 매트리스 추천">
-      <span class="diag-badge" aria-hidden="true">
-        <svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18V8.5a1.5 1.5 0 0 1 3 0V13h12V9.5a1.5 1.5 0 0 1 3 0V18"/><path d="M3 15h18"/><path d="M3 18v2M21 18v2"/></svg>
-      </span>
-      <span class="set-body">
-        <span class="qtile-t">내 몸에 맞는 매트리스 맞춤 진단<span class="diag-pill">1분</span></span>
-        <span class="qtile-s">체형·허리·수면습관·반려동물 8단계 문진</span>
-      </span>
-      <span class="diag-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></span>
     </a>
   </section>
 
