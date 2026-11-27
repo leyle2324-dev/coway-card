@@ -1624,6 +1624,161 @@
     .mbtn.is-on{background:#1b4a75;border-color:#2f6f9f;color:#f2f8ff;}
     .mbasis{color:#8296a8;}
   }
+
+  /* ── 제품 검색칸 (2026-11-27 M·R 비교 칸 자리) ── */
+  .psearch{margin:0 0 14px;}
+  .psearch-box{
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    min-height:46px;
+    padding:0 11px 0 12px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    box-shadow:var(--shadow);
+    transition:border-color .12s ease, box-shadow .12s ease;
+  }
+  .psearch-box:focus-within{
+    border-color:#9cc7e8;
+    box-shadow:0 0 0 3px rgba(10,122,194,.12), var(--shadow);
+  }
+  .psearch-ic{flex:0 0 auto;color:#8ba0b2;display:block;}
+  .psearch-box:focus-within .psearch-ic{color:var(--accent);}
+  .psearch-input{
+    flex:1 1 auto;
+    min-width:0;
+    width:100%;
+    height:44px;
+    margin:0;
+    padding:0;
+    border:0;
+    background:transparent;
+    font-family:inherit;
+    font-size:16px;
+    font-weight:600;
+    line-height:1.4;
+    color:var(--ink);
+    -webkit-appearance:none;
+    appearance:none;
+    outline:none;
+  }
+  .psearch-input::placeholder{
+    color:#93a4b5;
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:-.01em;
+    opacity:1;
+  }
+  .psearch-input::-webkit-search-cancel-button,
+  .psearch-input::-webkit-search-decoration{-webkit-appearance:none;appearance:none;}
+  .psearch-clear{
+    flex:0 0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:26px;
+    height:26px;
+    padding:0;
+    margin:0 0 0 1px;
+    border:0;
+    border-radius:50%;
+    background:#e8eef5;
+    color:#5e6f80;
+    cursor:pointer;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .psearch-clear:active{background:#d8e3ee;}
+  .psearch-clear:focus-visible{outline:3px solid #8fd0ff;outline-offset:1px;}
+  .psearch-clear[hidden]{display:none;}
+  .psearch-status{
+    margin:7px 2px 0;
+    font-size:12.5px;
+    line-height:1.55;
+    font-weight:600;
+    color:var(--muted);
+  }
+  .psearch-status b{font-weight:800;color:var(--navy);font-variant-numeric:tabular-nums;}
+  .psearch-status[hidden]{display:none;}
+  .psearch-more{
+    margin:0 0 0 1px;
+    padding:0;
+    border:0;
+    background:none;
+    font-family:inherit;
+    font-size:12.5px;
+    font-weight:800;
+    color:var(--accent);
+    text-decoration:underline;
+    cursor:pointer;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .psearch-more:focus-visible{outline:3px solid #8fd0ff;outline-offset:2px;}
+  .psearch-empty{
+    margin:6px 0 4px;
+    padding:26px 18px 24px;
+    background:var(--card);
+    border:1px dashed #d7e2ec;
+    border-radius:var(--radius);
+    text-align:center;
+    color:var(--muted);
+  }
+  .psearch-empty[hidden]{display:none;}
+  .pse-ic{display:block;margin:0 auto 10px;color:#9fb2c4;}
+  .pse-t{
+    margin:0;
+    font-size:15.5px;
+    font-weight:800;
+    color:var(--navy);
+    letter-spacing:-.01em;
+    line-height:1.45;
+  }
+  .pse-s{
+    margin:6px 0 0;
+    font-size:13px;
+    line-height:1.6;
+    color:var(--muted);
+  }
+  .pse-more{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:38px;
+    margin:14px 0 0;
+    padding:0 16px;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background:#f2f7fc;
+    font-family:inherit;
+    font-size:13px;
+    font-weight:700;
+    color:var(--navy);
+    cursor:pointer;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .pse-more:active{background:#e2eefa;}
+  .pse-more:focus-visible{outline:3px solid #8fd0ff;outline-offset:2px;}
+  .pse-more[hidden]{display:none;}
+  @media (prefers-color-scheme: dark){
+    .psearch-box{border-color:#243446;box-shadow:0 6px 20px rgba(0,0,0,.28);}
+    .psearch-box:focus-within{border-color:#2f6f9f;box-shadow:0 0 0 3px rgba(44,110,168,.24), 0 6px 20px rgba(0,0,0,.28);}
+    .psearch-ic{color:#7d92a6;}
+    .psearch-box:focus-within .psearch-ic{color:#6cc0f5;}
+    .psearch-input{color:#e9f0f7;}
+    .psearch-input::placeholder{color:#7d92a6;}
+    .psearch-clear{background:#1c2b39;color:#c3d1de;}
+    .psearch-clear:active{background:#24384b;}
+    .psearch-status{color:#9fb0c1;}
+    .psearch-status b{color:#dce9f6;}
+    .psearch-more{color:#6cc0f5;}
+    .psearch-empty{border-color:#243446;}
+    .pse-ic{color:#5d7c96;}
+    .pse-t{color:#dce9f6;}
+    .pse-s{color:#9fb0c1;}
+    .pse-more{background:#16232f;border-color:#243446;color:#dce9f6;}
+    .pse-more:active{background:#1c2b39;}
+  }
 </style>
 <body>
 
@@ -1696,13 +1851,15 @@
       <p>카테고리를 누르면 <strong>그 제품만</strong> 볼 수 있어요. 상담은 <strong>전화</strong>로 바로 연결됩니다.</p>
     </div>
 
-    <div class="compare-box">
-      <p class="compare-title">BEREX 침대 렌탈료 비교</p>
-      <p class="compare-sub">R시리즈·M시리즈 렌탈료와 관리유형을 한 번에 볼 수 있어요.</p>
-      <div class="compare-actions">
-        <a class="btn-compare" href="r-series.html">R시리즈 비교</a>
-        <a class="btn-compare" href="m-series.html">M시리즈 비교</a>
+    <div class="psearch" role="search" aria-label="제품 검색">
+      <div class="psearch-box">
+        <svg class="psearch-ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7.2"/><path d="M20.4 20.4 16.5 16.5"/></svg>
+        <input class="psearch-input" id="psearch-input" type="search" placeholder="제품명·모델명 검색 (예: 아이콘, 루네어, MC-R01)" aria-label="제품명 또는 모델명으로 검색" aria-controls="list" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search">
+        <button class="psearch-clear" id="psearch-clear" type="button" aria-label="검색어 지우기" hidden>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M6 6 18 18M18 6 6 18"/></svg>
+        </button>
       </div>
+      <p class="psearch-status" id="psearch-status" role="status" aria-live="polite" hidden></p>
     </div>
 
     <nav class="catnav" id="catnav" aria-label="제품 카테고리">
@@ -4343,6 +4500,13 @@
       </li>
       </ul>
     </section>
+
+    <div class="psearch-empty" id="psearch-empty" role="status" aria-live="polite" hidden>
+      <svg class="pse-ic" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7.2"/><path d="M20.4 20.4 16.5 16.5"/><path d="M8.4 11h5.2"/></svg>
+      <p class="pse-t" id="psearch-empty-title">검색 결과가 없습니다</p>
+      <p class="pse-s" id="psearch-empty-sub">제품명이나 모델명을 다시 확인해 보세요.</p>
+      <button class="pse-more" id="psearch-more" type="button" hidden>전체 카테고리에서 보기</button>
+    </div>
     </div>
 
     <p class="source-note">제품 정보·가격은 2026-11-27 코웨이 공식몰(coway.com) 기준입니다. 화면의 굵은 금액은 취소선 정상가에서 약정 할인·자동이체 할인을 뺀 <b>실제 월 렌탈료</b>이고, 첫 N개월만 적용되는 프로모션(1만원·반값 등)은 제품 옆 배지로 따로 적었습니다.<br>렌탈 조건·재고에 따라 달라질 수 있으며, 제품 사진과 설명은 코웨이 공식 홈페이지 자료를 사용했습니다.</p>
@@ -4374,22 +4538,149 @@
   if (!nav || !list) return;
   var tabs = nav.querySelectorAll('.tab');
   var groups = list.querySelectorAll('.cat-group');
+  var input = document.getElementById('psearch-input');
+  var clearBtn = document.getElementById('psearch-clear');
+  var statusEl = document.getElementById('psearch-status');
+  var emptyEl = document.getElementById('psearch-empty');
+  var emptyTitle = document.getElementById('psearch-empty-title');
+  var emptySub = document.getElementById('psearch-empty-sub');
+  var moreBtn = document.getElementById('psearch-more');
+
+  var current = 'all';
+  var groupCards = [];
+  var groupNum = [];
+
+  // 공백·대소문자를 무시한 비교용 문자열
+  function flat(s) {
+    return String(s == null ? '' : s).toLowerCase().replace(/[\s\u00a0]+/g, '');
+  }
+  function tokens(q) {
+    var raw = String(q == null ? '' : q).toLowerCase().split(/[\s\u00a0]+/);
+    var out = [];
+    for (var i = 0; i < raw.length; i++) {
+      var t = flat(raw[i]);
+      if (t) out.push(t);
+    }
+    return out;
+  }
+
+  // 카드별 검색 텍스트(제품명·모델명·설명) 미리 준비
+  for (var gi = 0; gi < groups.length; gi++) {
+    var g = groups[gi];
+    var cards = g.querySelectorAll('.pcard');
+    var arr = [];
+    for (var ci = 0; ci < cards.length; ci++) {
+      var card = cards[ci];
+      if (typeof card.__hay !== 'string') {
+        var buf = '';
+        var nm = card.querySelector('.pname');
+        if (nm) buf += ' ' + nm.textContent;
+        var md = card.querySelectorAll('.pmodel');
+        for (var mi = 0; mi < md.length; mi++) buf += ' ' + md[mi].textContent;
+        var ds = card.querySelector('.pdesc');
+        if (ds) buf += ' ' + ds.textContent;
+        card.__hay = flat(buf);
+      }
+      arr.push(card);
+    }
+    groupCards.push(arr);
+    groupNum.push(g.querySelector('.cat-title span'));
+  }
+
+  function hit(card, toks) {
+    var hay = card.__hay || '';
+    for (var i = 0; i < toks.length; i++) {
+      if (hay.indexOf(toks[i]) < 0) return false;
+    }
+    return true;
+  }
+
+  function tabLabel(filter) {
+    for (var i = 0; i < tabs.length; i++) {
+      if (tabs[i].getAttribute('data-filter') === filter) {
+        return tabs[i].textContent.replace(/[0-9,\s]+/g, ' ').replace(/^\s+|\s+$/g, '');
+      }
+    }
+    return '';
+  }
+
+  function paintStatus(toks, total) {
+    if (!statusEl) return;
+    statusEl.textContent = '';
+    if (!toks.length || total === 0 || !input) { statusEl.hidden = true; return; }
+    statusEl.hidden = false;
+    var q = input.value.replace(/^\s+|\s+$/g, '');
+    statusEl.appendChild(document.createTextNode('‘' + q + '’ 검색 결과 '));
+    var b = document.createElement('b');
+    b.textContent = total + '개';
+    statusEl.appendChild(b);
+    var lab = current === 'all' ? '' : tabLabel(current);
+    if (lab) statusEl.appendChild(document.createTextNode(' · ' + lab + ' 안에서'));
+  }
+
+  function paintEmpty(toks, total) {
+    if (!emptyEl) return;
+    if (!toks.length || total > 0) { emptyEl.hidden = true; return; }
+    var q = input ? input.value.replace(/^\s+|\s+$/g, '') : '';
+    if (emptyTitle) emptyTitle.textContent = '‘' + q + '’ 검색 결과가 없습니다';
+
+    // 현재 카테고리에 없을 때: 다른 카테고리에 있으면 바로 이동
+    var elsewhere = 0;
+    if (current !== 'all') {
+      for (var i = 0; i < groupCards.length; i++) {
+        for (var k = 0; k < groupCards[i].length; k++) {
+          if (hit(groupCards[i][k], toks)) elsewhere++;
+        }
+      }
+    }
+    if (emptySub) {
+      emptySub.textContent = elsewhere > 0
+        ? '지금 고른 ' + (tabLabel(current) || '') + ' 카테고리에는 없어요. 다른 카테고리에 ' + elsewhere + '개 있습니다.'
+        : '제품명이나 모델명을 다시 확인해 보세요. 찾으시는 제품은 전화로 바로 물어 보셔도 됩니다.';
+    }
+    if (moreBtn) {
+      moreBtn.hidden = elsewhere === 0;
+      moreBtn.textContent = '전체 카테고리에서 ' + elsewhere + '개 보기';
+    }
+    emptyEl.hidden = false;
+  }
 
   function apply(filter) {
-    var shown = 0;
+    if (filter) current = filter;
+    var toks = tokens(input ? input.value : '');
+    var searching = toks.length > 0;
+    var total = 0;
+
     for (var i = 0; i < groups.length; i++) {
       var g = groups[i];
-      var on = (filter === 'all' || g.getAttribute('data-cat') === filter);
-      g.hidden = !on;
-      if (on) shown += g.querySelectorAll('.pcard').length;
+      var catOn = (current === 'all' || g.getAttribute('data-cat') === current);
+      var cards = groupCards[i];
+      var count = 0;
+      for (var k = 0; k < cards.length; k++) {
+        var on = catOn && (!searching || hit(cards[k], toks));
+        cards[k].hidden = !on;
+        if (on) count++;
+      }
+      g.hidden = !(catOn && count > 0);
+      var num = groupNum[i];
+      if (num) {
+        if (num.getAttribute('data-total') === null) num.setAttribute('data-total', num.textContent);
+        num.textContent = searching ? count : (num.getAttribute('data-total') || count);
+      }
+      total += count;
     }
+
     for (var j = 0; j < tabs.length; j++) {
       var t = tabs[j];
-      var active = t.getAttribute('data-filter') === filter;
+      var active = t.getAttribute('data-filter') === current;
       if (active) { t.classList.add('is-active'); } else { t.classList.remove('is-active'); }
       t.setAttribute('aria-selected', active ? 'true' : 'false');
     }
-    return shown;
+
+    if (clearBtn) clearBtn.hidden = !(input && input.value.length > 0);
+    paintStatus(toks, total);
+    paintEmpty(toks, total);
+    return total;
   }
 
   nav.addEventListener('click', function (e) {
@@ -4403,6 +4694,25 @@
     var top = nav.getBoundingClientRect().top + window.pageYOffset - 2;
     if (window.pageYOffset > top) { window.scrollTo(0, top); }
   });
+
+  if (input) {
+    input.addEventListener('input', function () { apply(); });
+    input.addEventListener('compositionend', function () { apply(); });
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && input.value) { input.value = ''; apply(); }
+    });
+  }
+  if (clearBtn) {
+    clearBtn.addEventListener('click', function () {
+      if (input) input.value = '';
+      apply();
+      if (input) { try { input.focus(); } catch (err) {} }
+    });
+  }
+
+  if (moreBtn) {
+    moreBtn.addEventListener('click', function () { apply('all'); });
+  }
 
   // 기본값: 전체
   apply('all');
