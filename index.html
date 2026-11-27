@@ -4091,6 +4091,7 @@
           <p class="pname"><a href="https://www.coway.com/product/detail?prdno=1207" target="_blank" rel="noopener">BEREX 트리플체어</a></p>
           <p class="pmeta"><span class="pmodel">MC-R01</span><span class="pbadge">24개월 1만원</span></p>
           <p class="pdesc">3가지 능력을 하나의 의자에</p>
+          <div class="mopts" data-mid="1207"></div>
           <div class="prow">
             <p class="pprice"><b>월 60,900원</b></p>
             <a class="pbtn" href="tel:01094228307" aria-label="BEREX 트리플체어 상담 문의 전화">
@@ -4409,7 +4410,7 @@
 </script>
 
 
-<script src="product-options-data.js?v=1127d"></script>
+<script src="product-options-data.js?v=1127e"></script>
 <script>
 /* ── 제품 옵션(사이즈·관리유형·약정기간) 선택 → 실렌탈료 즉시 반영 ── */
 (function () {
@@ -4444,7 +4445,18 @@
     var body = box.parentNode;
     while (body && body !== document && !(body.classList && body.classList.contains('pbody'))) body = body.parentNode;
     var pr = body && body.querySelector ? body.querySelector('.pprice') : null;
-    if (pr) pr.innerHTML = F.priceHTML(F.price(id, st));
+    if (pr) {
+      var pv = F.price(id, st);
+      // 1207(트리플체어): '24개월 1만원' 배지와 '월 60,900원' 표기는 그대로 두고(정상가 취소선 없이)
+      // 관리유형 칩을 누를 때 금액 숫자만 바꾼다.
+      if (id === '1207') {
+        var bEl = pr.querySelector('b');
+        if (bEl && pv) bEl.textContent = '월 ' + Number(pv[0]).toLocaleString('ko-KR') + '원';
+        else pr.innerHTML = F.priceHTML(pv);
+      } else {
+        pr.innerHTML = F.priceHTML(pv);
+      }
+    }
   }
   function init() {
     var boxes = document.querySelectorAll('.mopts[data-mid]');
